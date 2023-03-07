@@ -4,13 +4,16 @@ import logo from './logo.svg';
 import './styles/app.scss';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {Home, AddNewMovie, LogIn, Movie, Movies, SignIn} from './pages'
+import { Navbar, Footer, Header } from './components';
 
 
 function App() {
   return (
     <div className="App">
+     
       <BrowserRouter>
-      
+
+        <Header />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/addMovie' element={< AddNewMovie />}/>
@@ -19,6 +22,7 @@ function App() {
           <Route path='/movie' element={<Movie />} />
           <Route path='/movies' element={<Movies />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
       
     </div>
