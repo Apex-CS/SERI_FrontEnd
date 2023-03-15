@@ -1,15 +1,89 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import reportWebVitals from "./reportWebVitals";
+
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import {
+  Home,
+  AddNewMovie,
+  Movie,
+  Movies,
+  SignIn,
+  PageNotFound,
+  SignUp,
+} from "./pages";
+import "./styles/App.css";
+import {
+  Navbar,
+  Footer,
+  // Header,
+  // Sidebar,
+} from "./components";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+import { faMoon, faRocket } from "@fortawesome/free-solid-svg-icons";
+
+const AppLayout = () => {
+  library.add(fas, faMoon, faRocket);
+  return (
+    <div className="background-color-main">
+      <div className="header-container">
+        <Navbar />
+        {/* <Sidebar /> */}
+      </div>
+
+      <div className="flex flex-col min-h-screen text-base font-sans children-container">
+        <Outlet />
+      </div>
+      <Footer />
+    </div>
+  );
+};
+
+const router = createBrowserRouter([
+  {
+    element: <AppLayout />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/addMovie",
+        element: <AddNewMovie />,
+      },
+      {
+        path: "/signin",
+        element: <SignIn />,
+      },
+      {
+        path: "/signup",
+        element: <SignUp />,
+      },
+      {
+        path: "/movie",
+        element: <Movie />,
+      },
+      {
+        path: "/movies",
+        element: <Movies />,
+      },
+      {
+        path: "*",
+        element: <PageNotFound />,
+      },
+    ],
+  },
+]);
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
+
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 
