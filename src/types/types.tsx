@@ -1,17 +1,17 @@
 ////// Movies
 export type Movies = {
-    id: number | string,
-    title: string,
-    poster: any, // esto sera una imagen
-    synopsis: string,
-    originalLanguage: number,
-    release_date: Date,
-    duration: number,
-    likes: number,
-    createdDate: Date,
-    ModifiedDate: Date,
-    createdBy: number,
-    modifiedBy: number,
+    id? : number | string,
+    title? : string,
+    poster? : any, // esto sera una imagen
+    synopsis? : string,
+    originalLanguage? : number,
+    release_date? : Date,
+    duration? : number,
+    likes? : number,
+    createdDate? : Date,
+    ModifiedDate? : Date,
+    createdBy? : number,
+    modifiedBy? : number,
 };
 
 export type MoviesGenre = {
@@ -24,8 +24,6 @@ export type GenreCat = {
     id: number | string,
     description: string
 };
-
-
 
 export type Tags = {
     id: number | string,
