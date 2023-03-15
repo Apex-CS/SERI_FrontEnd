@@ -12,6 +12,15 @@ code {
     monospace;
 }
 
+.background-color-main {
+  background-color: rgb(39, 51, 85)
+}
+
+.container-list {
+  margin-top: 10rem;
+  
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
