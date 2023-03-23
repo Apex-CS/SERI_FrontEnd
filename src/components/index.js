@@ -10,9 +10,15 @@ import Sidebar from "./Sidebar/Sidebar";
 import SignUp from "./SignUp/SignUp";
 import Carousel from "./Carousel/Carousel";
 import CommentBox from "./Comment/CommentBox";
-import InputText from "./InputText/InputText";
-import Search from "./Search/Search";
+import InputText from "./Inputs/InputText/InputText";
+import Search from "./Inputs/Search/Search";
 import Loader from "./Loader/Loader";
+import InputDate from "./Inputs/InputDatePicker/InputDatePicker";
+import InputFile from "./Inputs/InputFile/InputFile";
+import InputIcon from "./Inputs/InputIcon/InputIcon";
+import InputSelect from "./Inputs/InputSelect/InputSelect";
+import Button from "./Inputs/Button/Button";
+import SearchBar from "./Inputs/SearchBar/SearchBar";
 
 export {
     MovieItem,
@@ -30,4 +36,10 @@ export {
     InputText,
     Search,
     Loader,
+    InputSelect,
+    InputIcon,
+    InputFile,
+    InputDate,
+    Button,
+    SearchBar,
 };
