@@ -18,6 +18,10 @@ export interface HeaderLinks extends referenceLink {
 	id?: number | string;
 }
 
+export interface IconProps {
+	color?: string,
+}
+
 export type InputTextStateProp = string | number;
 
 export enum InputTextTypeEnum {
