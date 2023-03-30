@@ -1,6 +1,8 @@
+type IDElemnt = number | string
+
 ////// Movies
 export type Movies = {
-    id? : number | string,
+    id? : IDElemnt,
     title? : string,
     poster? : any, // esto sera una imagen
     synopsis? : string,
@@ -16,98 +18,113 @@ export type Movies = {
 };
 
 export type MoviesGenre = {
-    id: number | string,
+    id: IDElemnt,
     movieId: number,
     genreId: number
 };
 
 export type GenreCat = {
-    id: number | string,
+    id: IDElemnt,
     description: string
 };
 
 export type Tags = {
-    id: number | string,
+    id: IDElemnt,
     description: string,
 
 };
 
 export type MoviesTags = {
-    id: number | string,
+    id: IDElemnt,
     movieId: number,
     tagId: number,
 };
 
 export type LanguagesCat = {
-    id : number | string,
+    id : IDElemnt,
     name: string,
 };
 
 export type Reviews = {
-    id: number | string,
+    id: IDElemnt,
     moviewId: number,
     userId: number,
     review: string,
 };
 
 export type Rates = {
-    id: number | string,
+    id: IDElemnt,
     moviewId: number,
     userId: number,
     rate: number
 };
 
 export type MoviesCollaborators = {
-    id: number | string,
+    id: IDElemnt,
     moviewId: number,
     collaboratorId: number,
 };
 
 export type MoviesHostedOn = {
-    id: number | string,
+    id: IDElemnt,
     moviewId: number,
     stramingPlatformId: number,
 };
 
 export type ClassificationCat = {
-    id: number | string,
+    id: IDElemnt,
     description: string,
 };
 
 
 
 export type MoviesClasification = {
-    id: number | string,
+    id: IDElemnt,
     moviewId: number,
     clasificartionId: number,
 };
 
 export type Collaborators = {
-    id: number | string,
+    id: IDElemnt,
 
 };
 
 export type RolesCat = {
-    id: number | string,
+    id: IDElemnt,
 
 };
 
 export type StreamingPlatformsCat = {
-    id: number | string,
+    id: IDElemnt,
     name: string,
-    logo: Blob, // Si no tambien hacerlo con Any
+    logo: string, // Si no tambien hacerlo con Any
 };
+
+export type Director = {
+    id: IDElemnt,
+    name: string,
+}
+
+export type Star = {
+    id: IDElemnt,
+    name: string,
+}
+
+export type Writer = {
+    id: IDElemnt,
+    name: string,
+}
 
 
 //////7 USERS
 
 export type Users = {
-    id: number | string,
+    id: IDElemnt,
 
 };
 
 export type UsersRol = {
-    id: number | string,
+    id: IDElemnt,
 
 };
 
@@ -119,6 +136,28 @@ export enum ClassificationCatEnum {
     C = 'C',
     NA = 'N/A',
     D = 'D',
+}
+
+export enum LanguageEnum {
+    English= "English",
+    Mandarin= "Mandarin",
+    French= "French",
+    Japanese= "Japanese",
+    Spanish= "Spanish",
+    Korean= "Korean",
+    German= "German",
+    Hindi= "Hindi",
+    Cantonese= "Cantonese",
+    Italian= "Italian",
+    Russian= "Russian",
+    Swedish= "Swedish",
+    Arabic= "Arabic",
+    Navi= "Na'vi",
+    Latin= "Latin",
+    Portuguese= "Portuguese",
+    Hebrew= "Hebrew",
+    Turkish= "Turkish",
+    Polish= "Polish",
 }
 
 
