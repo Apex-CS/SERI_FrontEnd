@@ -9,7 +9,7 @@ function MovieItem({ item }: MovieItemProps) {
 
 	return (
 		<div className='w-full ml-3 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'>
-			<a href={`/movies/${item.id}`}>
+			<a href={`/movie/${item.id}`}>
 				<img
 					className='p-8 rounded-t-lg'
 					src='https://www.geekmi.news/__export/1659891562198/sites/debate/img/2022/08/07/onepiecefilm.jpg_423682103.jpg'
