@@ -7,7 +7,7 @@ const setIDMovie = () => {
 const carrouselData: Movies[] = [
 	{ title: "A Man Called Otto", likes: Math.round(Math.random() * 100), id: setIDMovie() },
 	{
-		title: "Everything Everywhere All at Once",
+		title: "Everything Everywhere All at Once ",
 		likes: Math.round(Math.random() * 100),
 		id: setIDMovie(),
 	},
@@ -40,7 +40,7 @@ const listDataTop10MoviesTemp: Movies[] = [
 		id: setIDMovie(),
 	},
 	{
-		title: "Everything Everywhere All at Once",
+		title: "Everything Everywhere All at Once Everything Everywhere All at Once",
 		likes: Math.round(Math.random() * 100),
 		id: setIDMovie(),
 	},
