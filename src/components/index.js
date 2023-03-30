@@ -16,7 +16,6 @@ import InputFile from "./Inputs/InputFile/InputFile";
 import InputIcon from "./Inputs/InputIcon/InputIcon";
 import InputSelect from "./Inputs/InputSelect/InputSelect";
 import Button from "./Inputs/Button/Button";
-import SearchBar from "./Inputs/SearchBar/SearchBar";
 import Pagination from "./Pagination/Pagination";
 import InputTextArea from "./Inputs/InputTextArea/InputTextArea";
 import StreamingPlatformElement from "./StreamingPlatform/StremingPlatformElement";
@@ -40,7 +39,6 @@ export {
     InputFile,
     InputDate,
     Button,
-    SearchBar,
     Pagination,
     InputTextArea,
     StreamingPlatformElement,
