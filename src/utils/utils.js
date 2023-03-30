@@ -28,4 +28,17 @@ const getRandomClassification = () => {
 	return getRandomEnumValue(ClassificationCatEnum) + "".toString();
 };
 
-export { objectIsNull, getRandomNumber, getRandomEnumValue, getRandomClassification };
+function getRandomDate() {
+    const maxDate = Date.now();
+    const timestamp = Math.floor(Math.random() * maxDate);
+    return new Date(timestamp);
+}
+
+const getStringWithElipsis = (searchValue, limitValue) => {
+	if (searchValue && searchValue?.length > limitValue) {
+		return searchValue?.substring(0, limitValue) + '...';
+	} 
+	return searchValue;
+}
+
+export { objectIsNull, getRandomNumber, getRandomEnumValue, getRandomClassification, getRandomDate, getStringWithElipsis };
