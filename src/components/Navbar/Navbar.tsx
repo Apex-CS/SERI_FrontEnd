@@ -1,7 +1,6 @@
 import apexLogo from "../../resources/img/Apex_logo_horizontal_white.png";
-import SignButton from "../SignButton/SignButton";
 import { useState } from "react";
-
+import Button from "../Inputs/Button/Button";
 
 function Navbar() {
     const dataHeader = [
@@ -24,7 +23,6 @@ function Navbar() {
           window.location.href = '/signin';
       }
       setFlagActionSignIn((prevState) => !prevState);
-
     };
 
     /**
@@ -70,11 +68,10 @@ function Navbar() {
                ))}
               </ul>
             </div>
-            <div className="flex">
-              <SignButton title="Sign In" onClickFunction={signIn} flagAction={flagActionSignIn} />
-              <SignButton title="Sign Up" onClickFunction={signUp} flagAction={flagActionSignIn} />
+            <div className="flex justify-between ">
+              <Button label="Sign In" onClickHandler={signIn} customClass={`w-40 bg-yellow-500 mx-2 `} />
+              <Button label="Sign Up" onClickHandler={signUp} customClass={`w-40 bg-yellow-500 mx-2 `}/>
             </div>
-            
           </div>
         </nav>
       </div>
