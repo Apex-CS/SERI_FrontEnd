@@ -1,11 +1,11 @@
-import { Carousel, CommentBox, Loader } from "../../components";
-import {MovieItem, ListGenrs} from "./components";
+import { Carousel, CommentBox, Loader, Pagination, Search } from "../../components";
+import { MovieItem, ListGenrs } from "./components";
 import "../../styles/Carousel.css";
 import { ClassificationCatEnum, GenreCat, Movies as MoviesType } from "../../types/types";
 import { getRandomEnumValue, getRandomNumber } from "../../utils/utils";
-import image from "./movies-wallpaper/paprika.jpg";
+import image from "../../resources/img/movies-wallpaper/paprika.jpg";
 import React, { useEffect } from "react";
-import { genrsListData, moviesListData } from "../../resources/data/MoviesData";
+import { GenrsListData, moviesListData } from "../../resources/data/MoviesData";
 function Movies() {
 	const [moviesList, setMoviesList] = React.useState<MoviesType[]>();
 	const [genrs, setGenrs] = React.useState<GenreCat[]>();
@@ -36,8 +36,8 @@ function Movies() {
 		 *  label: string
 		 * }
 		 */
-		console.log("🚀 ~ file: Movies.tsx:42 ~ getGenrs ~ genrsListData:", genrsListData);
-		return genrsListData;
+		console.log("🚀 ~ file: Movies.tsx:42 ~ getGenrs ~ GenrsListData:", GenrsListData);
+		return GenrsListData;
 	};
 
 	const getMovies = async (): Promise<MoviesType[]> => {
@@ -60,35 +60,35 @@ function Movies() {
 	}, []);
 
 	return (
-		<div className='flex flex-col w-full'>
-			<div className='flex flex-row w-full'>
+		<div className='justify-center items-center flex flex-col w-full'>
+			<div className='container m-6 flex flex-row w-full'>
 				<div className='flex flex-row w-full justify-start'>
-					<div className='w-60 p-2 ml-4 mr-4'>
-						{genrsListData ? (
-                            <ListGenrs
-                                dataList={genrsListData}
-                            />
-						) : (
-							<Loader />
-						)}
+					<div className='w-60 mr-4'>
+						{GenrsListData ? <ListGenrs dataList={GenrsListData} /> : <Loader />}
 					</div>
 
 					<div className='flex flex-col w-full'>
+						<div className='pl-3 pr-3'>
+							<Search label={""}/>
+						</div>
+
 						{moviesList ? (
-								moviesList?.map((item) => (
-									<MovieItem
-										item={item}
-										image={image}
-									/>
-								))
+							moviesList?.map((item) => (
+								<MovieItem
+									item={item}
+									image={image}
+								/>
+							))
 						) : (
 							<Loader />
 						)}
+						<div className="flex justify-center items-center">
+							<Pagination />
+						</div>
+						
 					</div>
 				</div>
 			</div>
-
-			<CommentBox />
 		</div>
 	);
 }
