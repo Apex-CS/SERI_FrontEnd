@@ -12,6 +12,7 @@ export type Movies = {
     ModifiedDate? : Date,
     createdBy? : number,
     modifiedBy? : number,
+    classification? : string,
 };
 
 export type MoviesGenre = {
@@ -37,7 +38,7 @@ export type MoviesTags = {
     tagId: number,
 };
 
-export type languages_cat = {
+export type LanguagesCat = {
     id : number | string,
     name: string,
 };
@@ -110,7 +111,15 @@ export type UsersRol = {
 
 };
 
-
+export enum ClassificationCatEnum {
+    A = 'A',
+    AA = 'AA',
+    B = 'B',
+    B15 = 'B-15',
+    C = 'C',
+    NA = 'N/A',
+    D = 'D',
+}
 
 
 

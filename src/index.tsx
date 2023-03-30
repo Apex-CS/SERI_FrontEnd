@@ -17,8 +17,6 @@ import "./styles/App.css";
 import {
   Navbar,
   Footer,
-  // Header,
-  // Sidebar,
 } from "./components";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
@@ -30,7 +28,6 @@ const AppLayout = () => {
     <div className="background-color-main">
       <div className="header-container">
         <Navbar />
-        {/* <Sidebar /> */}
       </div>
 
       <div className="flex flex-col min-h-screen text-base font-sans children-container">
