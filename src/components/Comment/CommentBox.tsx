@@ -1,7 +1,24 @@
-function CommentBox() {
+import React from "react";
+
+interface CommentBoxInterface {
+
+};
+
+function CommentBox({}: CommentBoxInterface) {
+  const [comment, setComment] = React.useState('');
+
+  const inputHandler = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const enteredValue = event?.target?.value;
+    setComment(enteredValue ? enteredValue : '');
+  };
+
+  const onSubmit = () => {
+    console.log('comment:', comment)
+  };
+
   return (
-    <div>
-      <form>
+    <div className="w-full container">
+      <form onSubmit={onSubmit}>
         <div className="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
           <div className="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
             <label htmlFor="comment" className="sr-only">
@@ -12,6 +29,8 @@ function CommentBox() {
               rows={4}
               className="w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
               placeholder="Write a comment..."
+              value={comment}
+              onChange={inputHandler}
               required
             ></textarea>
           </div>
