@@ -11,8 +11,6 @@ function SignIn() {
    * del usaurio en el sistema
    */
   const signIn = () => {
-    console.log("🚀 ~ file: SignIn.tsx:16 ~ signIn ~ aqui ando:")
-    console.log("🚀 ~ file: SignIn.tsx:23 ~ signIn ~ flagAction:", flagAction)
     if (!flagAction) {
         // return redirect("/signin");
         window.location.href = '/signin';
