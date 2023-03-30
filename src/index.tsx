@@ -59,7 +59,7 @@ const router = createBrowserRouter([
         element: <SignUp />,
       },
       {
-        path: "/movie",
+        path: "/movie/:movieId",
         element: <Movie />,
       },
       {
