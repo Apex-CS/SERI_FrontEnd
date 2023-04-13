@@ -6,14 +6,14 @@ export type Movies = {
     title? : string,
     poster? : any, // esto sera una imagen
     synopsis? : string,
-    originalLanguage? : number,
+    originalLanguage? : string,
     release_date? : Date,
     duration? : number,
     likes? : number,
     createdDate? : Date,
     ModifiedDate? : Date,
-    createdBy? : number,
-    modifiedBy? : number,
+    createdBy? : string,
+    modifiedBy? : string,
     classification? : string,
 };
 
@@ -25,7 +25,8 @@ export type MoviesGenre = {
 
 export type GenreCat = {
     id: IDElemnt,
-    description: string
+    description: string,
+    selected?: boolean,
 };
 
 export type Tags = {
@@ -98,6 +99,7 @@ export type StreamingPlatformsCat = {
     id: IDElemnt,
     name: string,
     logo: string, // Si no tambien hacerlo con Any
+    select?: boolean,
 };
 
 export type Director = {
