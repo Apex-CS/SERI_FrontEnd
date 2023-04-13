@@ -1,7 +1,18 @@
-const Pagination = () => {
+/* eslint-disable jsx-a11y/anchor-is-valid */
+interface PaginationProps {
+	length?: number;
+	urlPath?: string;
+}
+const Pagination = ({ length = 6, urlPath }: PaginationProps) => {
+	const DEFAULT_CLASS = 'px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white';
+	const SELECTED_CLASS = 'z-10 px-3 py-2 leading-tight text-blue-600 border border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white'
+
+	
+
 	return (
 		<nav aria-label='Page navigation example'>
 			<ul className='inline-flex items-center -space-x-px'>
+				{/* LEFTH */}
 				<li>
 					<a
 						href='#'
@@ -20,42 +31,18 @@ const Pagination = () => {
 						</svg>
 					</a>
 				</li>
-				<li>
-					<a
-						href='#'
-						className='px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white'>
-						1
-					</a>
-				</li>
-				<li>
-					<a
-						href='#'
-						className='px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white'>
-						2
-					</a>
-				</li>
-				<li>
-					<a
-						href='#'
-						aria-current='page'
-						className='z-10 px-3 py-2 leading-tight text-blue-600 border border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white'>
-						3
-					</a>
-				</li>
-				<li>
-					<a
-						href='#'
-						className='px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white'>
-						4
-					</a>
-				</li>
-				<li>
-					<a
-						href='#'
-						className='px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white'>
-						5
-					</a>
-				</li>
+				{/* NUMBERS */}
+				{Array.from({ length: length }).map((item, index) => (
+					<li>
+						<a
+							href={`${urlPath}+/${index}`}
+							className={index === 0 ? SELECTED_CLASS : DEFAULT_CLASS}>
+							{index + 1}
+						</a>
+					</li>
+				))}
+
+				{/* RIGHT */}
 				<li>
 					<a
 						href='#'

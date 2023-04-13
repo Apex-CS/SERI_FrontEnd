@@ -17,8 +17,7 @@ function MovieItem({ item }: MovieItemProps) {
 				/>
 				<div className='px-5 pb-5 flex flex-col justify-between items-start text-white'>
 					<h3 className='flex'>Country: {item.originalLanguage}</h3>
-					<h4>Date: {item.release_date?.toString()}</h4>
-					<h5>current</h5>
+					<h4>Date: {item.release_date?.toString()} - Current</h4>
 					{/* ?imagino que necesitare validar la fechar release_date con la fecha actual o algo asi_ */}
 				</div>
 
