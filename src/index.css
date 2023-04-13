@@ -13,12 +13,21 @@ code {
 }
 
 .background-color-main {
-  background-color: rgb(39, 51, 85)
+  /* background-color: rgb(39, 51, 85) */
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(2,0,54,1) 0%, rgba(50,71,128,1) 35%);
 }
 
 .container-list {
   margin-top: 10rem;
-  
+}
+
+.nav-bar-bg-default {
+  background-color: rgb(39, 51, 85)
+}
+
+.react-calendar {
+  background-color: black !important;
 }
 
 @tailwind base;
