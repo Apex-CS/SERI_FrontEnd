@@ -94,16 +94,16 @@ function Movie({}) {
 	useEffect(() => {
 		setTimeout(() => {
 			setMovie(getMovieInfoById());
-		}, 6000);
+		}, 1000);
 	}, []);
 
 	return (
 		<div className='flex w-full flex-col content-center items-center '>
 			<div
 				id='movie-info'
-				className='flex flex-row w-full justify-center items-center content-center p-5'>
+				className='flex flex-row w-full justify-center items-start content-center px-28 py-5'>
 				{movie ? (
-					<div className='flex flex-row justify-center items-center content-center w-full max-h-max  text-white'>
+					<div className='flex flex-row justify-center items-start content-center w-full h-full max-h-max  text-white'>
 						<div className='flex flex-col w-2/4 justify-around items-center'>
 							<div className='flex w-3/4 mb-3 items-start'>
 								<h1 className='text-2xl'>The Goddather</h1>
@@ -125,15 +125,16 @@ function Movie({}) {
 			</div>
 			<div
 				id='comment-div'
-				className='flex flex-col w-full justify-center items-center p-5'>
-				<div id='comments-box'>
-					<div>
-						<h1 className='text-xl text-white'>RATE AND REVIEW</h1>
-					</div>
-					<div className='flex w-full justify-center items-center p-5'>
+				className='flex flex-col w-4/5 justify-center items-center p-5'>
+				<div
+					className='w-full flex flex-col justify-center items-center'
+					id='comments-box'>
+					<div className='flex w-full flex-col justify-center items-center p-1'>
+						<div></div>
+						<h1 className='text-xl ml-10 text-white'>RATE AND REVIEW</h1>
 						<CommentBox />
 					</div>
-					<div className='w-full container'>
+					<div className='w-full items-center justify-center'>
 						{comments.map((item) => (
 							<ReviewItem item={item} />
 						))}
