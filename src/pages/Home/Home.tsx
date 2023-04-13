@@ -69,6 +69,7 @@ function Home() {
 						<List
 							title={"top 10 coming soon in Theaters"}
 							data={listDataTop10ComingTheaters}
+							redirect={true}
 						/>
 					</div>
 				</div>
