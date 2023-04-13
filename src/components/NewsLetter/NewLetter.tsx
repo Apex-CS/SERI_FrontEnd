@@ -16,13 +16,7 @@ function NewsLetter() {
 		console.log("🚀 ~ file: NewLetter.tsx:12 ~ suscribeNewsLetter ~ params:", params);
 	};
 
-	const handlerOnChangeEmail = (event: React.InputHTMLAttributes<HTMLInputElement>) => {
-		const param = event?.value;
-		// console.log("🚀 ~ file: NewLetter.tsx:19 ~ handlerOnChangeEmail ~ event:", );
-		// setEmail(event.value)
-	};
-
-	const [email, setEmail] = React.useState<string | number>("");
+	const [email, setEmail] = React.useState<string>("");
 
 	return (
 		<form
@@ -51,7 +45,7 @@ function NewsLetter() {
 						<Button
 							type='submit'
 							label='Join'
-							customClass='flex w-full items-center justify-center bg-yellow-600'
+							customClass={`flex w-full items-center justify-center bg-yellow-500`}
 						/>
 					</div>
 				</div>

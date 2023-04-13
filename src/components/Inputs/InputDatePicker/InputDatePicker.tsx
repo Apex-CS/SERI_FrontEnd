@@ -1,44 +1,30 @@
 import React from "react";
-import Datepicker from "react-tailwindcss-datepicker";
-
-export type DateType = string | null | Date;
-export type DateRangeType = {
-    startDate: DateType;
-    endDate: DateType;
-    
-};
-export type DateValueType = DateRangeType | null;
-
+import DatePicker from "react-date-picker";
+import "react-date-picker/dist/DatePicker.css";
+import "react-calendar/dist/Calendar.css";
 interface InputDatePickerProps {
-    startDate: DateType,
-    endDate: DateType,
+	setDateValue: React.Dispatch<React.SetStateAction<Date>>;
+	dateValue: Date;
 }
 
-const InputDatePicker = ({
-    startDate = new Date(),
-    endDate = new Date(),
-}) => {
-    const [value, setValue] = React.useState<DateValueType>({
-        startDate,
-        endDate
-    });
-    
-    const handleValueChange = (newValue: any) => {
-        console.log("newValue:", newValue);
-        setValue(newValue);
-    }
-    
-    return (
-        <div>
-            
-            <Datepicker
-                value={value}
-                onChange={handleValueChange}
-                asSingle
-                
-            />
-        </div>
-    );
+const InputDatePicker = ({ setDateValue, dateValue }: InputDatePickerProps) => {
+	/**
+	 * 
+	 * @param value Type Date
+	 */
+	const onChangeEvent = (value: any) => {
+		setDateValue(value);
+	};
+
+	return (
+		<div className='flex container '>
+			<DatePicker
+				className={"bg-gray-800"}
+				onChange={(value) => onChangeEvent(value)}
+				value={dateValue}
+			/>
+		</div>
+	);
 };
 
 export default InputDatePicker;

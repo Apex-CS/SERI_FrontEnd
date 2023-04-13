@@ -8,10 +8,14 @@ interface InputTextProps {
 	id?: string;
 	placeHolder?: string;
 	required?: boolean;
-	value: string | number;
-	setValue: React.Dispatch<React.SetStateAction<string | number>>;
+	value?: string | number;
+	numberValue?: number,
+	setValue?: React.Dispatch<React.SetStateAction<string>>;
+	setNumberValue?: React.Dispatch<React.SetStateAction< number>>;
 	classNameContainer?: string;
-  customClassInput?: string;
+	customClassInput?: string;
+	onSubmitEvent?: () => void;
+	maxNumber?: number;
 }
 
 function InputText({
@@ -22,9 +26,13 @@ function InputText({
 	placeHolder,
 	required = false,
 	value,
+	numberValue,
 	setValue,
+	setNumberValue,
 	classNameContainer,
-  customClassInput,
+	onSubmitEvent,
+	maxNumber,
+	customClassInput,
 }: InputTextProps) {
 	const classLabel = `
     absolute text-sm text-gray-500 dark:text-gray-400 
@@ -40,15 +48,29 @@ function InputText({
     `;
 	const customClass = `--tw-translate-y: -1.5rem`;
 
-  const DEFAULT_CLASS_INPUT = customClassInput ? customClassInput: `
+	const DEFAULT_CLASS_INPUT = customClassInput
+		? customClassInput
+		: `
   block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 
   border-gray-300 appearance-none dark:text-white dark:border-gray-600 
-  dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer`
+  dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer`;
 
 	// This function is called when the input changes
 	const inputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-		const enteredValue = event?.target?.value;
-		setValue(enteredValue ? enteredValue : "");
+		const inputValue = event?.target?.value;
+		if (type === 'number' && setNumberValue) {
+			setNumberValue(Number(inputValue))
+		} else if (setValue){
+			setValue(inputValue);
+		}
+	};
+
+	const handleKeyboardEvent = (event: React.KeyboardEvent<HTMLElement>) => {
+		if (event.code === "Enter" && onSubmitEvent) {
+			onSubmitEvent();
+		}
+
+		// if (event.code)
 	};
 
 	const classContainer = `relative z-0 mb-6 group ${classNameContainer} `;
@@ -56,9 +78,11 @@ function InputText({
 	return (
 		<div className={classContainer}>
 			<input
+				onKeyDown={handleKeyboardEvent}
 				type={type}
 				name={name}
-				value={value}
+				max={maxNumber}
+				value={type !== 'number' ? value : numberValue}
 				onChange={inputHandler}
 				id={id}
 				className={DEFAULT_CLASS_INPUT}
