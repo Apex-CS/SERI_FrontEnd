@@ -19,7 +19,7 @@ import { ContainerSearch, GenrsList, StreamingPlatformList, TagsList } from "./c
 const rowClass = "grid md:grid-cols-2 md:gap-6 mt-5";
 const inputSelecContainerClass = `w-2/4 mx-2`;
 function AddNewMovie() {
-	const [poster, setPoster] = useState();
+	const [poster, setPoster] = React.useState<File | undefined>();
 	const [title, setTitle] = React.useState<string>("");
 	const [languages, setLanguages] = React.useState<string[]>([""]);
 	const [classification, setClassification] = React.useState<string>("");
@@ -43,9 +43,21 @@ function AddNewMovie() {
 	const [starSearch, setStarSearch] = useState('');
 
 	// const form: Movies = {};
-	const getDirector = (directoValueSearch: string) => {};
-	const getStarts = (startValueSearch: string) => {};
-	const getWritters = (writterValueSearch: string) => {};
+	const getDirector = (directoValueSearch: string) => {
+		console.log("🚀 ~ file: AddNewMovie.tsx:47 ~ getDirector ~ directoValueSearch:", directoValueSearch)
+		const responseDirectorsAPI: Director[] = [{id: 1, name:'Roman Polansky'}, {id: 1, name:'Roman Polansky'}, {id: 1, name:'Roman Polansky'}, {id: 1, name:'Roman Polansky'}, {id: 1, name:'Roman Polansky'},];
+		return responseDirectorsAPI;
+	};
+	const getStars = (startValueSearch: string) => {
+		console.log("🚀 ~ file: AddNewMovie.tsx:51 ~ getStarts ~ startValueSearch:", startValueSearch)
+		const responseStarsAPI: Star[] = [{id: 1, name:'Brad Pitt'}];
+		return (responseStarsAPI);
+	};
+	const getWritters = (writterValueSearch: string) => {
+		console.log("🚀 ~ file: AddNewMovie.tsx:55 ~ getWritters ~ writterValueSearch:", writterValueSearch)
+		const responseWrittersAPI: Writer[] = [{id: 1, name:'Denis Villanueve'}];
+		return responseWrittersAPI;
+	};
 	const getLanguages = () => {
 		const languagesData = Object.values(LanguageEnum) as string[];
 		return languagesData;
@@ -70,19 +82,18 @@ function AddNewMovie() {
 		 * with the searchValue:string
 		 * and return a array of elements
 		 */
-		const responseDirectorsAPI: Director[] = [{id: 1, name:'Roman Polansky'}, {id: 1, name:'Roman Polansky'}, {id: 1, name:'Roman Polansky'}, {id: 1, name:'Roman Polansky'}, {id: 1, name:'Roman Polansky'},];
-		return setDirectors(responseDirectorsAPI);
+		const responseDirectors = getDirector(searchValue);
+		setDirectors(responseDirectors);
 	}
 
 	const handlerSearchStars = (searchValue: string) => {
-		console.log("🚀 ~ file: AddNewMovie.tsx:74 ~ handlerSearchStars ~ searchValue:", searchValue)
 		/**
 		 * Call API to search some list  of related values
 		 * with the searchValue:string
 		 * and return a array of elements
 		 */
-		const responseStarsAPI: Star[] = [{id: 1, name:'Brad Pitt'}];
-		return setStars(responseStarsAPI);
+		const responseStars = getStars(searchValue);
+		setStars(responseStars)
 	}
 
 	const handlerSearchWritter = (searchValue: string) => {
@@ -92,8 +103,8 @@ function AddNewMovie() {
 		 * with the searchValue:string
 		 * and return a array of elements
 		 */
-		const responseWrittersAPI: Writer[] = [{id: 1, name:'Denis Villanueve'}];;
-		return setWriters(responseWrittersAPI);
+		const responseWritters = getWritters(searchValue)
+		setWriters(responseWritters);
 	}
 
 	const postTag = (newTagValue: string): string => {
@@ -125,23 +136,23 @@ function AddNewMovie() {
 			classification: classification,
 			synopsis: synopsis,
 			createdBy: "",
-			poster: "",
+			poster: poster ? URL.createObjectURL(poster) : 'no image',
 		};
 		tags.forEach((tagItem) => {
 			postTag(tagItem);
 		});
 
-		// genres.forEach((genrItem) => {
-		// 	console.log(
-		// 		"🚀 ~ file: AddNewMovie.tsx:105 ~ genres.forEach ~ send genrItem to API Genrs:",
-		// 		genrItem,
-		// 	);
-		// });
+		 genres.forEach((genrItem) => {
+		 	console.log(
+		 		"🚀 ~ file: AddNewMovie.tsx:105 ~ genres.forEach ~ send genrItem to API Genrs:",
+		 		genrItem,
+		 	);
+		 });
 
-		// console.log(
-		// 	"🚀 ~ file: AddNewMovie.tsx:107 ~ onSubmitHandler ~ streamingsMovie:",
-		// 	streamingsMovie,
-		// );
+		 console.log(
+		 	"🚀 ~ file: AddNewMovie.tsx:107 ~ onSubmitHandler ~ streamingsMovie:",
+		 	streamingsMovie,
+		 );
 
 		const streamMovisDataAPI = streamingsMovie.filter(
 			(value, index, self) => index === self.findIndex((t) => t.id === value.id),
@@ -167,6 +178,8 @@ function AddNewMovie() {
 		setReleaseDate(new Date());
 		setSynopsis("");
 		setStreamingPlatforms(getStreamingPlatforms());
+		setPoster(undefined);
+		
 	};
 
 	useEffect(() => {
@@ -198,12 +211,12 @@ function AddNewMovie() {
 						label={"Title"}
 						value={title}
 						setValue={setTitle}
-						classNameContainer={`w-2/4 mr-4 mt-2 flex items-center`}
+						classNameContainer={`w-2/6 mr-4 mt-2 flex items-center`}
 					/>
 					<InputFile
 						label={"Poster"}
-						value={poster}
-						setValue={setPoster}
+						valueImage={poster}
+						setValueImage={setPoster}
 					/>
 				</div>
 
