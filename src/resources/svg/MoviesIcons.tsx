@@ -1,6 +1,6 @@
-import { IconProps } from "../../../types/generalTypes";
+import { IconProps } from "../../types/generalTypes";
 
-const defaultColor = '#fff';
+const defaultColor = "#fff";
 
 function Like({ color = defaultColor }: IconProps) {
 	return (
@@ -28,4 +28,42 @@ const DisLike = ({ color = defaultColor }: IconProps) => (
 	</svg>
 );
 
-export { Like, DisLike };
+const Pencil = ({ color = defaultColor }: IconProps) => (
+	<svg
+		xmlns='http://www.w3.org/2000/svg'
+		width='16'
+		height='16'
+		fill={color}
+		className='bi bi-pencil'
+		viewBox='0 0 16 16'>
+		<path d='M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z' />
+	</svg>
+);
+
+const Eye = ({ color = defaultColor }: IconProps) => (
+	<svg
+		xmlns='http://www.w3.org/2000/svg'
+		width='16'
+		height='16'
+		fill={color}
+		className='bi bi-eye-fill'
+		viewBox='0 0 16 16'>
+		<path d='M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z' />
+		<path d='M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z' />
+	</svg>
+);
+
+const HideEye = ({ color = defaultColor }: IconProps) => (
+	<svg
+		xmlns='http://www.w3.org/2000/svg'
+		width='16'
+		height='16'
+		fill={color}
+		className='bi bi-eye-slash-fill'
+		viewBox='0 0 16 16'>
+		<path d='m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7.029 7.029 0 0 0 2.79-.588zM5.21 3.088A7.028 7.028 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474L5.21 3.089z' />
+		<path d='M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829l-2.83-2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12-.708.708z' />
+	</svg>
+);
+
+export { Like, DisLike, Pencil, Eye, HideEye };

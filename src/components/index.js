@@ -3,9 +3,7 @@ import Footer from "./Footer/Footer";
 import Navbar from "./Navbar/Navbar";
 import List from "./List/List";
 import NewsLetter from "./NewsLetter/NewLetter";
-import SignIn from "./SignIn/SignIn";
 import Comment from "./Comment/Comment";
-import SignUp from "./SignUp/SignUp";
 import Carousel from "./Carousel/Carousel";
 import CommentBox from "./Comment/CommentBox";
 import InputText from "./Inputs/InputText/InputText";
@@ -16,7 +14,9 @@ import InputFile from "./Inputs/InputFile/InputFile";
 import InputIcon from "./Inputs/InputIcon/InputIcon";
 import InputSelect from "./Inputs/InputSelect/InputSelect";
 import Button from "./Inputs/Button/Button";
-import SearchBar from "./Inputs/SearchBar/SearchBar";
+import Pagination from "./Pagination/Pagination";
+import InputTextArea from "./Inputs/InputTextArea/InputTextArea";
+import StreamingPlatformElement from "./StreamingPlatform/StremingPlatformElement";
 
 export {
     MovieItem,
@@ -24,9 +24,7 @@ export {
     Navbar,
     List,
     NewsLetter,
-    SignIn,
     Comment,
-    SignUp,
     Carousel,
     CommentBox,
     InputText,
@@ -37,5 +35,7 @@ export {
     InputFile,
     InputDate,
     Button,
-    SearchBar,
+    Pagination,
+    InputTextArea,
+    StreamingPlatformElement,
 };

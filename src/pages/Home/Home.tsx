@@ -16,7 +16,6 @@ function Home() {
 
 	const url = "https://pokeapi.co/api/v2/pokemon/pikachu";
 	const response = useFetch(url);
-	console.log("🚀 ~ file: Home.tsx:7 ~ Home ~ response:", response);
 
 	const getTop10Movies = () => {
 		/** Funcion que obtiene las 10 mejores peliculas calificadas en el sistema */
@@ -47,7 +46,6 @@ function Home() {
 
 	useEffect(() => {
 		setTimeout(() => {
-			console.log("TimeOut");
 			setListDataTop10Movies(getTop10Movies());
 			setListDataTop10ComingTheaters(getComingSoonMovies());
 			setCarrouselList(getCarrouselMovies());
@@ -71,6 +69,7 @@ function Home() {
 						<List
 							title={"top 10 coming soon in Theaters"}
 							data={listDataTop10ComingTheaters}
+							redirect={true}
 						/>
 					</div>
 				</div>

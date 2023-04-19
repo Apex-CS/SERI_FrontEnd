@@ -1,7 +1,7 @@
 import './Loader.css';
 function Loader() {
 	return (
-		<div role='status'>
+		<div className='flex justify-center items-center my-10 ' role='status'>
             <span className="loader-icon sr-only "></span>
             
 		</div>

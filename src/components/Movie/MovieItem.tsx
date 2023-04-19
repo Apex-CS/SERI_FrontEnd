@@ -9,7 +9,7 @@ function MovieItem({ item }: MovieItemProps) {
 
 	return (
 		<div className='w-full ml-3 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'>
-			<a href={`/movies/${item.id}`}>
+			<a href={`/movie/${item.id}`}>
 				<img
 					className='p-8 rounded-t-lg'
 					src='https://www.geekmi.news/__export/1659891562198/sites/debate/img/2022/08/07/onepiecefilm.jpg_423682103.jpg'
@@ -17,8 +17,7 @@ function MovieItem({ item }: MovieItemProps) {
 				/>
 				<div className='px-5 pb-5 flex flex-col justify-between items-start text-white'>
 					<h3 className='flex'>Country: {item.originalLanguage}</h3>
-					<h4>Date: {item.release_date?.toString()}</h4>
-					<h5>current</h5>
+					<h4>Date: {item.release_date?.toString()} - Current</h4>
 					{/* ?imagino que necesitare validar la fechar release_date con la fecha actual o algo asi_ */}
 				</div>
 
