@@ -4,7 +4,7 @@ import logo from "./logo.svg";
 import "./styles/App.css";
 import "./styles/app.scss";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Home, AddNewMovie, Movie, Movies, SignIn, PageNotFound } from "./pages";
+import { Home, AddNewMovie, Movie, Movies,  PageNotFound } from "./pages";
 import { Navbar, Footer } from "./components";
 
 function App() {
@@ -20,10 +20,6 @@ function App() {
 						<Route
 							path='/addMovie'
 							element={<AddNewMovie />}
-						/>
-						<Route
-							path='/signin'
-							element={<SignIn />}
 						/>
 						<Route
 							path='/movie'

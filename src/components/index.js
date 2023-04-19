@@ -3,9 +3,7 @@ import Footer from "./Footer/Footer";
 import Navbar from "./Navbar/Navbar";
 import List from "./List/List";
 import NewsLetter from "./NewsLetter/NewLetter";
-import SignIn from "./SignIn/SignIn";
 import Comment from "./Comment/Comment";
-import SignUp from "./SignUp/SignUp";
 import Carousel from "./Carousel/Carousel";
 import CommentBox from "./Comment/CommentBox";
 import InputText from "./Inputs/InputText/InputText";
@@ -26,9 +24,7 @@ export {
     Navbar,
     List,
     NewsLetter,
-    SignIn,
     Comment,
-    SignUp,
     Carousel,
     CommentBox,
     InputText,
