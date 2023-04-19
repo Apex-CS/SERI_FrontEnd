@@ -4,7 +4,7 @@ import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
-import { Home, AddNewMovie, Movie, Movies, PageNotFound, } from "./pages";
+import { Home, AddNewMovie, Movie, Movies, PageNotFound, EditMovie, } from "./pages";
 import "./styles/App.css";
 import { Navbar, Footer } from "./components";
 import {
@@ -13,6 +13,7 @@ import {
 	PATH_ERROR_PAGE,
 	PATH_ADD_MOVIE,
   PATH_MOVIES,
+  PATH_EDIT_MOVIE,
 } from "./resources/data/RootPath";
 
 const AppLayout = () => {
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
 			{
 				path: PATH_ADD_MOVIE,
 				element: <AddNewMovie />,
+			},
+			{
+				path: PATH_EDIT_MOVIE,
+				element: <EditMovie />,
 			},
 			{
 				path: PATH_MOVIE,
