@@ -47,15 +47,6 @@ const moviesListData: Movies[] = [
 		likes: getRandomNumber(1000),
 		classification: getRandomClassification(),
 	},
-	// {
-	//     id: getRandomNumber(),
-	//     poster: './resources/img/movies-wallpaper/perfect-blue.jpg',
-	//     title: 'Perfect Blue',
-	//     duration: getRandomNumber(240),
-	//     release_date: new Date(),
-	//     likes: getRandomNumber(1000),
-	//     classification: getRandomClassification(),
-	// },
 ];
 
 const MAX_NUMBER_ID_GENRS = 88;
@@ -274,4 +265,18 @@ const TagsMovieExamples: string[] = [
 	"Paranormal Romance",
 ];
 
-export { GenrsListData, moviesListData, StreamingPlatformData, TagsMovieExamples };
+const MovieExample: Movies = {
+	id: getRandomNumber(),
+	poster: "https://i.ytimg.com/vi/peMX_zlIIA4/movieposter_en.jpg",
+	title: "2001 Space Odessey",
+	duration: getRandomNumber(240),
+	release_date: new Date('1968-04-02'),
+	likes: 999,
+	classification: 'C',
+	originalLanguage: 'English',
+	createdBy: 'Diego Campanero',
+	createdDate: new Date(),
+	synopsis: 'La secuencia del filme inicia con la imagen de la Tierra ascendiendo sobre la Luna, mientras que el Sol asciende a su vez sobre la Tierra, todos en alineación. En este momento comienza a escucharse la composición musical Así habló Zaratustra, de Richard Strauss, la misma que acompaña, en su mayoría, la primera parte de la película, titulada El amanecer del hombre.'	
+}
+
+export { GenrsListData, moviesListData, StreamingPlatformData, TagsMovieExamples, MovieExample };
