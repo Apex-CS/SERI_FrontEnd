@@ -21,15 +21,19 @@ function Search({
 	onSearchHandlerEvent,
 }: SearchProps) {
 	const [searchValue, setsearchValue] = useState('');
-	const onSubmitEventHandler = (event: React.FormEvent<HTMLFormElement>) => {
-		console.log("🚀 ~ file: Search.tsx:9 ~ onSubmitEventHandler ~ event:", event);
+	const onSubmitEventHandler = () => {
 		if (onSubmit) {
 			onSubmit(searchValue)
 		}
 	};
 
+	const inputSearchHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+		const inputValue = event?.target?.value;
+		setsearchValue(inputValue);
+	};
+
 	return (
-		<form className={className} onSubmit={onSubmitEventHandler}>
+		<div className={className} >
 			<div className='relative w-full'>
 				<div className='absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none'>
 					<svg
@@ -49,12 +53,13 @@ function Search({
 					id='simple-search'
 					className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
 					placeholder={placeholder}
-					
+					onChange={inputSearchHandler}
 					required
 				/>
 			</div>
 			<button
-				type='submit'
+				onClick={onSubmitEventHandler}
+				type='button'
 				className='p-2.5 ml-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'>
 				<svg
 					className='w-5 h-5'
@@ -70,7 +75,7 @@ function Search({
 				</svg>
 				<span className='sr-only'>{buttonLabel}</span>
 			</button>
-		</form>
+		</div>
 	);
 }
 
