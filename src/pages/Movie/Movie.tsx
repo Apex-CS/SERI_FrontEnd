@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { CommentBox, Loader } from "../../components";
 import { Movies } from "../../types/types";
 import { getRandomClassification, getRandomNumber } from "../../utils/utils";
-import imagen from "../../resources/img/movies-wallpaper/the-godfather.jpg";
 import { MovieInfo } from "./components";
 import { useParams } from "react-router-dom";
 import { ReviewItem } from "../Movies/components";
@@ -11,7 +10,8 @@ function Movie({}) {
 	let { movieId } = useParams();
 	console.log("🚀 ~ file: Movie.tsx:11 ~ Movie ~ movieId:", movieId);
 	const [comments, setComments] = React.useState<any[]>([]);
-
+	const imageURL = 'https://i.pinimg.com/474x/b2/7b/7b/b27b7bbd39877d9ea00bd70c9e467677--godfather-movie-film-making.jpg';
+	
 	// Variable que optendra la url y mediante los parametros en ella se definira la pelicula para mostrar en la pagina
 	const url: string = "";
 	const defaultValueSynopsis =
@@ -112,7 +112,7 @@ function Movie({}) {
 								className='w-3/4 max-h-full transition-all 
 							duration-300 rounded-lg cursor-pointer 
 							filter hover:grayscale'
-								src={imagen}
+								src={imageURL}
 								alt='poster'
 							/>
 						</div>
