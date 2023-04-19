@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Button, InputFile, InputSelect, InputText, InputTextArea } from "../../components";
 import InputDatePicker from "../../components/Inputs/InputDatePicker/InputDatePicker";
 import { GenrsListData, StreamingPlatformData } from "../../resources/data/MoviesData";
@@ -12,31 +13,36 @@ import {
 	StreamingPlatformsCat,
 	GenreCat,
 } from "../../types/types";
-import { ContainerSearch, StreamingPlatformList } from "./components";
+import { getRandomNumber } from "../../utils/utils";
+import { ContainerSearch, GenrsList, StreamingPlatformList, TagsList } from "./components";
 
 const rowClass = "grid md:grid-cols-2 md:gap-6 mt-5";
-const inputSelecContainerClass = `w-2/5 mx-2`;
+const inputSelecContainerClass = `w-2/4 mx-2`;
 function AddNewMovie() {
-	const [title, setTitle] = React.useState<string | number>("");
+	const [poster, setPoster] = useState();
+	const [title, setTitle] = React.useState<string>("");
 	const [languages, setLanguages] = React.useState<string[]>([""]);
 	const [classification, setClassification] = React.useState<string>("");
 	const [classificationData, setClassificationData] = React.useState<string[]>([""]);
-	const [genr, setGenr] = React.useState<string>("");
-	const [genres, setGenres] = React.useState<GenreCat[] | undefined>();
-	const [genresData, setGenresData] = useState();
-	const [duration, setDuration] = React.useState<string | number>("");
+	const [genres, setGenres] = React.useState<GenreCat[]>([]);
+	const [genresData, setGenresData] = React.useState<GenreCat[] | undefined>();
+	const [duration, setDuration] = React.useState<number>(0);
 	const [synopsis, setSynopsis] = React.useState<string>("");
 	const [language, setLanguage] = React.useState<string>("");
 	const [directors, setDirectors] = React.useState<Director[]>();
-	const [streamingPlatforms, setStreamingPlatforms] = React.useState<StreamingPlatformsCat[]>();
+	const [streamingPlatforms, setStreamingPlatforms] = React.useState<StreamingPlatformsCat[]>([]);
 	const [writers, setWriters] = React.useState<Writer[]>();
 	const [stars, setStars] = React.useState<Star[]>();
-	const [releaseDate, setReleaseDate] = React.useState<Date>();
-	const [streamingsMovie, setStreamingsMovie] = useState();
-	const [tags, setTags] = useState();
-	const [tag, setTag] = React.useState<string | number>('');
+	const [releaseDate, setReleaseDate] = React.useState<Date>(new Date());
+	const [streamingsMovie, setStreamingsMovie] = React.useState<StreamingPlatformsCat[]>([]);
+	const [tags, setTags] = React.useState<string[]>([]);
+	const [tagInput, setTagInput] = React.useState<string>("");
 
-	const form: Movies = {};
+	const [directorSearch, setDirectorSearch] = useState('');
+	const [writterSearch, setWritterSearch] = useState('');
+	const [starSearch, setStarSearch] = useState('');
+
+	// const form: Movies = {};
 	const getDirector = (directoValueSearch: string) => {};
 	const getStarts = (startValueSearch: string) => {};
 	const getWritters = (writterValueSearch: string) => {};
@@ -56,21 +62,124 @@ function AddNewMovie() {
 	const getTags = (tagValueSearch: string): string[] => {
 		return [""];
 	};
+
+	const handlerSearchDirectors = (searchValue: string) => {
+		console.log("🚀 ~ file: AddNewMovie.tsx:67 ~ handlerSearchDirectors ~ searchValue:", searchValue)
+		/**
+		 * Call API to search some list  of related values
+		 * with the searchValue:string
+		 * and return a array of elements
+		 */
+		const responseDirectorsAPI: Director[] = [{id: 1, name:'Roman Polansky'}, {id: 1, name:'Roman Polansky'}, {id: 1, name:'Roman Polansky'}, {id: 1, name:'Roman Polansky'}, {id: 1, name:'Roman Polansky'},];
+		return setDirectors(responseDirectorsAPI);
+	}
+
+	const handlerSearchStars = (searchValue: string) => {
+		console.log("🚀 ~ file: AddNewMovie.tsx:74 ~ handlerSearchStars ~ searchValue:", searchValue)
+		/**
+		 * Call API to search some list  of related values
+		 * with the searchValue:string
+		 * and return a array of elements
+		 */
+		const responseStarsAPI: Star[] = [{id: 1, name:'Brad Pitt'}];
+		return setStars(responseStarsAPI);
+	}
+
+	const handlerSearchWritter = (searchValue: string) => {
+		console.log("🚀 ~ file: AddNewMovie.tsx:80 ~ handlerSearchWritter ~ searchValue:", searchValue)
+		/**
+		 * Call API to search some list  of related values
+		 * with the searchValue:string
+		 * and return a array of elements
+		 */
+		const responseWrittersAPI: Writer[] = [{id: 1, name:'Denis Villanueve'}];;
+		return setWriters(responseWrittersAPI);
+	}
+
 	const postTag = (newTagValue: string): string => {
-		return "";
+		console.log("🚀 ~ file: AddNewMovie.tsx:62 ~ postTag ~ newTagValue:", newTagValue);
+		return newTagValue;
 	};
+
+	const onsubmitTag = () => {
+		setTags([...tags, tagInput.toString()]);
+		tags?.push(tagInput + "");
+		setTagInput("");
+	};
+
+	const removeTagFromList = (indexProp: number) =>
+		setTags((current) => current.filter((tag, index) => index !== indexProp));
+
 	const getMoviesHosted = (idMovie: number | string) => {};
+
 	const setFormAddMovie = () => {};
 
-	const onSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {};
+	const onSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
+		const formData: Movies = {
+			id: getRandomNumber(1000),
+			title: title.toString(),
+			createdDate: new Date(),
+			duration: duration,
+			release_date: releaseDate,
+			originalLanguage: language,
+			classification: classification,
+			synopsis: synopsis,
+			createdBy: "",
+			poster: "",
+		};
+		tags.forEach((tagItem) => {
+			postTag(tagItem);
+		});
 
-	const onResetHandlerEvent = () => {};
+		// genres.forEach((genrItem) => {
+		// 	console.log(
+		// 		"🚀 ~ file: AddNewMovie.tsx:105 ~ genres.forEach ~ send genrItem to API Genrs:",
+		// 		genrItem,
+		// 	);
+		// });
+
+		// console.log(
+		// 	"🚀 ~ file: AddNewMovie.tsx:107 ~ onSubmitHandler ~ streamingsMovie:",
+		// 	streamingsMovie,
+		// );
+
+		const streamMovisDataAPI = streamingsMovie.filter(
+			(value, index, self) => index === self.findIndex((t) => t.id === value.id),
+		);
+		console.log("🚀 ~ file: AddNewMovie.tsx:115 ~ onSubmitHandler ~ streamMovisDataAPI:", streamMovisDataAPI)
+		
+		streamMovisDataAPI.forEach(streamItem => {
+			console.log('CALL API streamItem', streamItem);
+		});
+		console.log("🚀 ~ file: AddNewMovie.tsx:96 ~ onSubmitHandler ~ send formData:", formData);
+		event.preventDefault();
+	};
+
+	const onResetHandlerEvent = () => {
+		// clean all the elements in the form
+		setTitle("");
+		setTags([]);
+		setTagInput("");
+		setClassification("");
+		setLanguage("");
+		setDuration(0);
+		setStreamingsMovie([]);
+		setReleaseDate(new Date());
+		setSynopsis("");
+		setStreamingPlatforms(getStreamingPlatforms());
+	};
 
 	useEffect(() => {
 		setLanguages(getLanguages());
 		setClassificationData(getClasifications());
 		setStreamingPlatforms(getStreamingPlatforms());
-		setGenres(getGenres());
+	}, []);
+
+	const genrsListDataRef = React.useRef<GenreCat[]>();
+
+	useEffect(() => {
+		setGenresData(getGenres());
+		genrsListDataRef.current = getGenres();
 	}, []);
 
 	return (
@@ -86,12 +195,16 @@ function AddNewMovie() {
 						id={"title"}
 						placeHolder={"Title Movie"}
 						required={true}
-						label='Title'
+						label={"Title"}
 						value={title}
 						setValue={setTitle}
 						classNameContainer={`w-2/4 mr-4 mt-2 flex items-center`}
 					/>
-					<InputFile label={"Poster"} />
+					<InputFile
+						label={"Poster"}
+						value={poster}
+						setValue={setPoster}
+					/>
 				</div>
 
 				<div className='inline-flex items-center justify-center w-full'>
@@ -113,20 +226,12 @@ function AddNewMovie() {
 				<div className={rowClass}></div>
 				{/* Genres */}
 				<div className='flex items-center justify-center py-5 '>
-					<ul className='flex flex-wrap items-center justify-between text-gray-900 dark:text-white w-full '>
-						{genres?.map((item) => (
-							<button
-								type='button'
-								style={{ listStyle: "none" }}
-								onClick={() => console.log("")}
-								className='bg-yellow-300 p-2 my-2 mx-0 rounded-xl flex justify-center items-center'
-								key={item.id}>
-								<h1 className='text-lg text-ellipsis text-slate-500'>{item.description}</h1>
-							</button>
-						))}
-					</ul>
+					<GenrsList
+						listGenrs={genresData}
+						setGenresData={setGenres}
+					/>
 				</div>
-				<div className='flex flex-row w-full justify-around items-center py-5'>
+				<div className='flex flex-row w-full justify-around items-center py-1'>
 					{/* Languages */}
 					<InputSelect
 						data={languages}
@@ -147,62 +252,92 @@ function AddNewMovie() {
 						value={classification}
 						containerClass={inputSelecContainerClass}
 					/>
-					
-					<div className={`w-2/5 mx-2`}>
+
+					<InputText
+						type='number'
+						numberValue={duration}
+						setNumberValue={setDuration}
+						label={"duration"}
+						maxNumber={500}
+						placeHolder={""}
+						classNameContainer={`w-2/12 m-5 flex justify-between`}
+					/>
+
+					<div className={`w-2/5 flex justify-center items-center flex-col mx-2`}>
 						<h1>Release Date</h1>
-						<InputDatePicker startDate={releaseDate} />
+						<InputDatePicker
+							setDateValue={setReleaseDate}
+							dateValue={releaseDate}
+						/>
 					</div>
 				</div>
-				<div id='container-search' className="flex py-5 flex-col">
+				<div
+					id='container-search'
+					className='flex py-5 flex-col'>
 					{/* Director */}
 					<ContainerSearch
 						label='Directors'
 						listData={directors}
-						onSearchHandlerEvent={() => console.log("")}
+						onSearchHandlerEvent={handlerSearchDirectors}
 						placeHolder={"Search Directores by name..."}
 					/>
 					{/* Writers */}
 					<ContainerSearch
 						label='Writers'
 						listData={writers}
-						onSearchHandlerEvent={() => console.log("")}
+						onSearchHandlerEvent={handlerSearchWritter}
 						placeHolder={"Search Writers by name..."}
 					/>
 					{/* Stars */}
 					<ContainerSearch
 						label='Stars'
 						listData={stars}
-						onSearchHandlerEvent={() => console.log("")}
+						onSearchHandlerEvent={handlerSearchStars}
 						placeHolder={"Search Stars by name..."}
 					/>
 				</div>
 
 				<div className='flex items-center justify-between py-5'>
-					<InputText
-            type="number"
-						value={duration}
-						setValue={setDuration}
-						label={"duration"}
-            classNameContainer={`w-1/12 flex items-center justify-between`}
-					/>
-					<div className="ml-20 w-full justify-between items-center ">
-						<h1 className="my-2">Where to Watch:</h1>
-						<StreamingPlatformList listData={streamingPlatforms} />
+					<div className=' w-full justify-between items-center '>
+						<h1 className='my-2'>Where to Watch:</h1>
+						<StreamingPlatformList
+							setDataFormStreaming={setStreamingsMovie}
+							listDataRender={streamingPlatforms}
+						/>
 					</div>
 				</div>
-				<div className="flex bg-gray-800 h-auto p-3 flex-col">
-					<div>
+				<div className='flex bg-gray-800 h-auto p-3'>
+					<div className='flex flex-col justify-center w-1/4'>
 						<h1>Tags:</h1>
-						<InputText label="" value={tag} setValue={setTag} />
+						<InputText
+							label=''
+							value={tagInput}
+							setValue={setTagInput}
+							onSubmitEvent={onsubmitTag}
+						/>
 					</div>
-					<ul>{}</ul>
-					
+
+					<TagsList
+						onClickRemoveTag={removeTagFromList}
+						tagsList={tags}
+					/>
 				</div>
 				<div
 					id='buttons-container'
-					className='flex w-full items-center justify-around my-4'>
-						<Button label="Save" isPillStyle={true} type={'button'} customClass={'mx-2 w-1/6 bg-yellow-500 text-lg text-center text-white'} />
-						<Button label="Cancel" isPillStyle={true} type={'button'} customClass={'mx-2 w-1/6 bg-yellow-500 text-lg text-center text-white'} />
+					className='flex w-full items-center justify-around my-6'>
+					<Button
+						label='Save'
+						isPillStyle={true}
+						type={"submit"}
+						customClass={"mx-2 w-1/6 bg-yellow-500 text-lg text-center text-white"}
+					/>
+					<Button
+						label='Cancel'
+						isPillStyle={true}
+						type={"button"}
+						onClickHandler={onResetHandlerEvent}
+						customClass={"mx-2 w-1/6 bg-yellow-500 text-lg text-center text-white"}
+					/>
 				</div>
 			</form>
 		</div>
