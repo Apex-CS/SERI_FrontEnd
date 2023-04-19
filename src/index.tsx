@@ -7,9 +7,6 @@ import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import { Home, AddNewMovie, Movie, Movies, SignIn, PageNotFound, SignUp } from "./pages";
 import "./styles/App.css";
 import { Navbar, Footer } from "./components";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fas } from "@fortawesome/free-solid-svg-icons";
-import { faMoon, faRocket } from "@fortawesome/free-solid-svg-icons";
 import {
 	PATH_HOME,
 	PATH_MOVIE,
@@ -21,7 +18,6 @@ import {
 } from "./resources/data/RootPath";
 
 const AppLayout = () => {
-	library.add(fas, faMoon, faRocket);
 	return (
 		<div className='background-color-main'>
 			<div className='header-container'>
