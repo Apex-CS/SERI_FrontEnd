@@ -1,75 +1,33 @@
-import { ChangeEvent, useState } from "react";
-
+import { ChangeEvent } from "react";
+import './InputFile.css';
 interface InputFileProps {
 	label: string;
 	accept?: string;
-	value: any;
-	setValue: React.Dispatch<React.SetStateAction<any>>;
+	valueImage: File | undefined | string;
+	setValueImage: React.Dispatch<React.SetStateAction<File | undefined | string>>;
 }
-function InputFile({ label, accept = "image/png, image/jpeg", value, setValue }: InputFileProps) {
+function InputFile({ label, accept = "image/png, image/jpeg", valueImage, setValueImage }: InputFileProps) {
 	const id = "file_input";
 	const defaultClassLabel = "block mb-2 text-sm font-medium text-gray-900 dark:text-white";
 	const defaultClassButton =
 		"block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400";
 
-	const [currentFile, setCurrentFile] = useState<File>();
-	const [progress, setProgress] = useState<number>(0);
-	const [message, setMessage] = useState<string>("");
-
-	const [state, setState] = useState({
-		photo: "",
-	});
-
-	const { photo } = state;
-
-	const handlerInputFile = (event: React.ChangeEvent<HTMLInputElement>) => {
-		const { files } = event.target;
-		const selectedFiles = files as FileList;
-		setCurrentFile(selectedFiles?.[0]);
-		setProgress(0);
-	};
-
-	const [file, setFile] = useState<File>();
-
 	const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-		
-		console.log("🚀 ~ file: InputFile.tsx:36 ~ handleFileChange ~ e.target.files:", e.target.files)
 		if (e.target.files) {
-			setFile(e.target.files[0]);
+			setValueImage(e.target.files[0])
 		}
 	};
 
-	const handleUploadClick = () => {
-		if (!file) {
-			return;
+	const handlerImage = () => {
+		if (typeof valueImage === 'string') {
+			return valueImage;
+		} else if (valueImage) {
+			return URL.createObjectURL(valueImage)
 		}
-
-		// 👇 Uploading the file using the fetch API to the server
-		fetch("https://httpbin.org/post", {
-			method: "POST",
-			body: file,
-			// 👇 Set headers manually for single file upload
-			headers: {
-				"content-type": file.type,
-				"content-length": `${file.size}`, // 👈 Headers need to be a string
-			},
-		})
-			.then((res) => res.json())
-			.then((data) => console.log(data))
-			.catch((err) => console.error(err));
-	};
-
-	const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		console.log("🚀 ~ file: InputFile.tsx:38 ~ onChange ~ event:", event);
-		event.persist();
-		setState((prev) => ({
-			...prev,
-			[event.target.id]: event.target.value,
-		}));
-	};
-
+	}
+		
 	return (
-		<div>
+		<div className="flex w-full flex-col justify-start items-start">
 			<label
 				className={defaultClassLabel}
 				htmlFor={id}>
@@ -82,8 +40,12 @@ function InputFile({ label, accept = "image/png, image/jpeg", value, setValue }:
 				id={id}
 				type='file'
 			/>
-
-			<div>{file && `${file.name} - ${file.type}`}</div>
+			
+			{valueImage && 
+			(<div className="flex justify-start items-center">
+				<img id="poster-image-form" className="w-2/4 h-1/3" src={handlerImage()} alt="" />
+			</div>
+			)}
 		</div>
 	);
 }
