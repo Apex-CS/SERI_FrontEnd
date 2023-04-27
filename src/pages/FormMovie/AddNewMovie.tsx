@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, InputFile, InputSelect, InputText, InputTextArea } from "../../components";
 import InputDatePicker from "../../components/Inputs/InputDatePicker/InputDatePicker";
 import { GenrsListData, StreamingPlatformData } from "../../resources/data/MoviesData";
@@ -13,26 +13,32 @@ import {
 	StreamingPlatformsCat,
 	GenreCat,
 } from "../../types/types";
-import { getRandomNumber } from "../../utils/utils";
+import { getRandomNumber, handlerPosterValue } from "../../utils/utils";
 import { ContainerSearch, GenrsList, StreamingPlatformList, TagsList } from "./components";
 
 const rowClass = "grid md:grid-cols-2 md:gap-6 mt-5";
 const inputSelecContainerClass = `w-2/4 mx-2`;
 function AddNewMovie() {
-	const [poster, setPoster] = React.useState<File | undefined>();
+	const [poster, setPoster] = React.useState<File | undefined | string>();
 	const [title, setTitle] = React.useState<string>("");
 	const [languages, setLanguages] = React.useState<string[]>([""]);
 	const [classification, setClassification] = React.useState<string>("");
 	const [classificationData, setClassificationData] = React.useState<string[]>([""]);
 	const [genres, setGenres] = React.useState<GenreCat[]>([]);
-	const [genresData, setGenresData] = React.useState<GenreCat[] | undefined>();
 	const [duration, setDuration] = React.useState<number>(0);
 	const [synopsis, setSynopsis] = React.useState<string>("");
 	const [language, setLanguage] = React.useState<string>("");
-	const [directors, setDirectors] = React.useState<Director[]>();
+	
 	const [streamingPlatforms, setStreamingPlatforms] = React.useState<StreamingPlatformsCat[]>([]);
-	const [writers, setWriters] = React.useState<Writer[]>();
-	const [stars, setStars] = React.useState<Star[]>();
+	
+	
+	const [directorsData, setDirectorsData] = React.useState<Director[]>([]);
+	const [writersData, setWritersData] = React.useState<Writer[]>([]);
+	const [starsData, setStarsData] = React.useState<Star[]>([]);
+	const [writers, setWriters] = React.useState<Writer[]>([]);
+	const [stars, setStars] = React.useState<Star[]>([]);
+	const [directors, setDirectors] = React.useState<Director[]>([]);
+	
 	const [releaseDate, setReleaseDate] = React.useState<Date>(new Date());
 	const [streamingsMovie, setStreamingsMovie] = React.useState<StreamingPlatformsCat[]>([]);
 	const [tags, setTags] = React.useState<string[]>([]);
@@ -83,7 +89,7 @@ function AddNewMovie() {
 		 * and return a array of elements
 		 */
 		const responseDirectors = getDirector(searchValue);
-		setDirectors(responseDirectors);
+		setDirectorsData(responseDirectors);
 	}
 
 	const handlerSearchStars = (searchValue: string) => {
@@ -93,7 +99,7 @@ function AddNewMovie() {
 		 * and return a array of elements
 		 */
 		const responseStars = getStars(searchValue);
-		setStars(responseStars)
+		setStarsData(responseStars)
 	}
 
 	const handlerSearchWritter = (searchValue: string) => {
@@ -104,7 +110,32 @@ function AddNewMovie() {
 		 * and return a array of elements
 		 */
 		const responseWritters = getWritters(searchValue)
-		setWriters(responseWritters);
+		setWritersData(responseWritters);
+	}
+
+	const handlerClickStarEvent = (star: Star) => {
+		console.log("🚀 ~ file: EditMovie.tsx:103 ~ handlerClickStarEvent ~ Star:", star)
+		setStars(prevArray => {
+			prevArray.push(star)
+			return prevArray
+		})
+	}
+	
+	const handlerClickWritterEvent = (writter: Writer) => {
+		console.log("🚀 ~ file: EditMovie.tsx:106 ~ handlerClickWritterEvent ~ writter:", writter)
+		setWriters(prevArray => {
+			prevArray.push(writter)
+			return prevArray;
+		})
+	}
+
+	const handlerClickDirectorEvent = (director: Director) => {
+		console.log("🚀 ~ file: EditMovie.tsx:111 ~ handlerClickDirectorEvent ~ director:", director)
+		setDirectors(prevArray => {
+			prevArray.push(director)
+			return prevArray;
+		})
+		
 	}
 
 	const postTag = (newTagValue: string): string => {
@@ -121,9 +152,10 @@ function AddNewMovie() {
 	const removeTagFromList = (indexProp: number) =>
 		setTags((current) => current.filter((tag, index) => index !== indexProp));
 
-	const getMoviesHosted = (idMovie: number | string) => {};
-
-	const setFormAddMovie = () => {};
+	const getMoviesHosted = (idMovie: number | string) => {
+		const responseMovieHosted: StreamingPlatformsCat[] = [];
+		return responseMovieHosted;
+	};
 
 	const onSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
 		const formData: Movies = {
@@ -136,7 +168,7 @@ function AddNewMovie() {
 			classification: classification,
 			synopsis: synopsis,
 			createdBy: "",
-			poster: poster ? URL.createObjectURL(poster) : 'no image',
+			poster: handlerPosterValue(poster),
 		};
 		tags.forEach((tagItem) => {
 			postTag(tagItem);
@@ -191,7 +223,7 @@ function AddNewMovie() {
 	const genrsListDataRef = React.useRef<GenreCat[]>();
 
 	useEffect(() => {
-		setGenresData(getGenres());
+		setGenres(getGenres());
 		genrsListDataRef.current = getGenres();
 	}, []);
 
@@ -211,7 +243,7 @@ function AddNewMovie() {
 						label={"Title"}
 						value={title}
 						setValue={setTitle}
-						classNameContainer={`w-2/6 mr-4 mt-2 flex items-center`}
+						classNameContainer={`w-2/4 mr-4 mt-2 flex items-center`}
 					/>
 					<InputFile
 						label={"Poster"}
@@ -240,8 +272,8 @@ function AddNewMovie() {
 				{/* Genres */}
 				<div className='flex items-center justify-center py-5 '>
 					<GenrsList
-						listGenrs={genresData}
-						setGenresData={setGenres}
+						listGenrs={genres}
+						setGenres={setGenres}
 					/>
 				</div>
 				<div className='flex flex-row w-full justify-around items-center py-1'>
@@ -290,23 +322,29 @@ function AddNewMovie() {
 					{/* Director */}
 					<ContainerSearch
 						label='Directors'
-						listData={directors}
+						listData={directorsData}
 						onSearchHandlerEvent={handlerSearchDirectors}
 						placeHolder={"Search Directores by name..."}
+						setListData={setDirectorsData}
+						handlerClickElement={handlerClickDirectorEvent}
 					/>
 					{/* Writers */}
 					<ContainerSearch
 						label='Writers'
-						listData={writers}
+						listData={writersData}
+						setListData={setWritersData}
 						onSearchHandlerEvent={handlerSearchWritter}
 						placeHolder={"Search Writers by name..."}
+						handlerClickElement={handlerClickWritterEvent}
 					/>
 					{/* Stars */}
 					<ContainerSearch
 						label='Stars'
-						listData={stars}
+						listData={starsData}
+						setListData={setStarsData}
 						onSearchHandlerEvent={handlerSearchStars}
 						placeHolder={"Search Stars by name..."}
+						handlerClickElement={handlerClickStarEvent}
 					/>
 				</div>
 
@@ -314,7 +352,7 @@ function AddNewMovie() {
 					<div className=' w-full justify-between items-center '>
 						<h1 className='my-2'>Where to Watch:</h1>
 						<StreamingPlatformList
-							setDataFormStreaming={setStreamingsMovie}
+							setListDataRender={setStreamingPlatforms}
 							listDataRender={streamingPlatforms}
 						/>
 					</div>
