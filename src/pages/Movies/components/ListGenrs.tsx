@@ -1,4 +1,3 @@
-import imagen from "../../../resources/img/movies-wallpaper/paprika.jpg";
 import { GenreCat } from "../../../types/types";
 import { getStringWithElipsis } from "../../../utils/utils";
 

@@ -1,22 +1,18 @@
 import { useState } from "react";
 import { StreamingPlatformsCat } from "../../../types/types";
-
 interface StreamingPlatformListProps {
 	listDataRender: StreamingPlatformsCat[];
-	setDataFormStreaming: React.Dispatch<React.SetStateAction<StreamingPlatformsCat[]>>;
-
-	onClickEventHandler?: () => void;
+	setListDataRender?: React.Dispatch<React.SetStateAction<StreamingPlatformsCat[]>>;
 }
-
 interface ElementListProps {
 	itemPlatform: StreamingPlatformsCat;
-	setGenresData: React.Dispatch<React.SetStateAction<StreamingPlatformsCat[]>>;
+	setListDataRender?: React.Dispatch<React.SetStateAction<StreamingPlatformsCat[]>>;
 }
 const SELECT_GENR_CLASS = "border-4 border-pink-600";
 const BUTTON_DEFAULT_CLASS = ' my-2 mx-1 rounded-xl flex justify-center items-center '
 
-const ListElement = ({ itemPlatform, setGenresData }: ElementListProps) => {
-	const [classFlag, setClassFlag] = useState(false);
+const ListElement = ({ itemPlatform, setListDataRender }: ElementListProps) => {
+	const [classFlag, setClassFlag] = useState(itemPlatform.select);
 
 	/**
 	 * Function that handle the borderColor class for the single item
@@ -25,20 +21,29 @@ const ListElement = ({ itemPlatform, setGenresData }: ElementListProps) => {
 	 */
 	const handlerGenrSelector = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
 		setClassFlag((prevValue) => {
-			// Validate if push a new object
+		// Validate if push a new object
+		if (setListDataRender) {
 			if (!prevValue) {
-				setGenresData((preArray) => {
-					preArray?.push(itemPlatform);
+				setListDataRender((preArray) => {
+					preArray.forEach((prevItem) => {
+						if (prevItem.id === itemPlatform.id) {
+							prevItem.select = true;
+						}
+					})
 					return preArray;
 				});
+					
 			} else {
-				setGenresData((preArray) => {
-					const newArray = preArray.filter((itemPrev) => {
-						return itemPrev.id !== itemPlatform.id;
+				setListDataRender((preArray) => {
+					preArray.forEach((itemPrev) => {
+						if(itemPrev.id === itemPlatform.id) {
+							itemPrev.select = false;
+						}
 					});
-					return newArray;
+					return preArray;
 				});
 			}
+		}
 			return !prevValue; // Change the styleClassFlag value
 		});
 		event.preventDefault();
@@ -67,17 +72,16 @@ const ListElement = ({ itemPlatform, setGenresData }: ElementListProps) => {
 
 const StreamingPlatformList = ({
 	listDataRender,
-	setDataFormStreaming,
-}: StreamingPlatformListProps) => (
-	<ul className='flex flex-row justify-around'>
-		{listDataRender?.map((item) => (
-			<li className='flex flex-col  items-center justify-center'>
-				<ListElement
-					setGenresData={setDataFormStreaming}
-					itemPlatform={item}
-				/>
-			</li>
-		))}
-	</ul>
-);
+	setListDataRender,
+}: StreamingPlatformListProps) => {
+	
+	return (
+		<ul className='flex flex-row justify-around'>
+			{listDataRender?.map((item) => (
+				<li className='flex flex-col  items-center justify-center'>
+					<ListElement itemPlatform={item} setListDataRender={setListDataRender}/>
+				</li>
+			))}
+		</ul>
+	);}
 export default StreamingPlatformList;

@@ -9,6 +9,7 @@ interface ActionItemProps {
 const ActionItem = ({ item }: ActionItemProps) => {
 	const navigate = useNavigate();
 	const urlItem = `/movie/movieId:${item.id}`;
+	const editMovieUrl = `/edit-movie/movieId:${item.id}`;
 
 	const classButtons = `text-white m-4 bg-blue-700 h-22
         hover:bg-blue-800 focus:ring-4 focus:outline-none 
@@ -22,8 +23,8 @@ const ActionItem = ({ item }: ActionItemProps) => {
 	const handlerDislikeEvent = () => {};
 
 	const handlerEditEvent = () => {
-		console.log("🚀 ~ file: MovieItem.tsx:19 ~ handlerEditEvent ~ urlItem:", urlItem);
-		navigate(urlItem);
+		console.log("🚀 ~ file: MovieItem.tsx:19 ~ handlerEditEvent ~ editMovieUrl:", editMovieUrl);
+		navigate(editMovieUrl);
 	};
 
 	const handlerViewEvent = () => {

@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useEffect } from "react";
-import { Button, InputFile, InputSelect, InputText, InputTextArea } from "../../components";
+import React, { useEffect, useState } from "react";
+import { Button, InputFile, InputSelect, InputText, InputTextArea, Loader } from "../../components";
 import InputDatePicker from "../../components/Inputs/InputDatePicker/InputDatePicker";
-import { DirectorsListExample, GenrsListData, StarsListTemp, StreamingPlatformData, WritersListExample } from "../../resources/data/MoviesData";
+import { DirectorsListExample, GenrsListData, GenrsListDataByMovieExample, MovieExample, StarsListTemp, StreamingPlatformData, StreamingPlatformListByMovieExample, WritersListExample } from "../../resources/data/MoviesData";
 import {
 	ClassificationCatEnum,
 	Movies,
@@ -13,13 +13,16 @@ import {
 	StreamingPlatformsCat,
 	GenreCat,
 } from "../../types/types";
-import { getRandomNumber, handlerPosterValue } from "../../utils/utils";
+import { getRandomNumber, handlerEmptyNumberValues, handlerEmptyStringsValues, handlerPosterValue } from "../../utils/utils";
 import { ContainerSearch, GenrsList, StreamingPlatformList, TagsList } from "./components";
+import { useParams } from "react-router-dom";
 
 const rowClass = "grid md:grid-cols-2 md:gap-6 mt-5";
 const inputSelecContainerClass = `w-2/4 mx-2`;
-function AddNewMovie() {
+function EditMovie() {
+    let { movieId } = useParams();
 	const [poster, setPoster] = React.useState<File | string>('');
+	const [movieLoadingFlag, setMovieLoadingFlag] = useState(false);
 	const [title, setTitle] = React.useState<string>("");
 	const [languages, setLanguages] = React.useState<string[]>([""]);
 	const [classification, setClassification] = React.useState<string>("");
@@ -28,17 +31,13 @@ function AddNewMovie() {
 	const [duration, setDuration] = React.useState<number>(0);
 	const [synopsis, setSynopsis] = React.useState<string>("");
 	const [language, setLanguage] = React.useState<string>("");
-	
 	const [streamingPlatforms, setStreamingPlatforms] = React.useState<StreamingPlatformsCat[]>([]);
-	
-	
+	const [directors, setDirectors] = React.useState<Director[]>([]);
+	const [writers, setWriters] = React.useState<Writer[]>([]);
+	const [stars, setStars] = React.useState<Star[]>([]);
 	const [directorsData, setDirectorsData] = React.useState<Director[]>([]);
 	const [writersData, setWritersData] = React.useState<Writer[]>([]);
 	const [starsData, setStarsData] = React.useState<Star[]>([]);
-	const [writers, setWriters] = React.useState<Writer[]>([]);
-	const [stars, setStars] = React.useState<Star[]>([]);
-	const [directors, setDirectors] = React.useState<Director[]>([]);
-	
 	const [releaseDate, setReleaseDate] = React.useState<Date>(new Date());
 	const [streamingsMovie, setStreamingsMovie] = React.useState<StreamingPlatformsCat[]>([]);
 	const [tags, setTags] = React.useState<string[]>([]);
@@ -60,17 +59,12 @@ function AddNewMovie() {
 		const languagesData = Object.values(LanguageEnum) as string[];
 		return languagesData;
 	};
-	const getGenres = () => {
-		return GenrsListData;
-	};
+	
 	const getStreamingPlatforms = () => {
 		return StreamingPlatformData;
 	};
 	const getClasifications = () => {
 		return Object.values(ClassificationCatEnum) as string[];
-	};
-	const getTags = (tagValueSearch: string): string[] => {
-		return [""];
 	};
 
 	const handlerSearchDirectors = (searchValue: string) => {
@@ -94,17 +88,6 @@ function AddNewMovie() {
 		setStarsData(responseStars)
 	}
 
-	const handlerSearchWritter = (searchValue: string) => {
-		console.log("🚀 ~ file: AddNewMovie.tsx:80 ~ handlerSearchWritter ~ searchValue:", searchValue)
-		/**
-		 * Call API to search some list  of related values
-		 * with the searchValue:string
-		 * and return a array of elements
-		 */
-		const responseWritters = getWritters(searchValue)
-		setWritersData(responseWritters);
-	}
-
 	const handlerClickStarEvent = (star: Star) => {
 		console.log("🚀 ~ file: EditMovie.tsx:103 ~ handlerClickStarEvent ~ Star:", star)
 		setStars(prevArray => {
@@ -122,16 +105,22 @@ function AddNewMovie() {
 	}
 
 	const handlerClickDirectorEvent = (director: Director) => {
-		console.log("🚀 ~ file: EditMovie.tsx:111 ~ handlerClickDirectorEvent ~ director:", director)
-		setDirectors(prevArray => {
-			prevArray.push(director)
-			return prevArray;
-		})
-		
+		const newArray = directors;
+		newArray.push(director)
+		setDirectors(newArray);
+	}
+
+	const handlerSearchWritter = (searchValue: string) => {
+		/**
+		 * Call API to search some list  of related values
+		 * with the searchValue:string
+		 * and return a array of elements
+		 */
+		const responseWritters = getWritters(searchValue)
+		setWritersData(responseWritters);
 	}
 
 	const postTag = (newTagValue: string): string => {
-		console.log("🚀 ~ file: AddNewMovie.tsx:62 ~ postTag ~ newTagValue:", newTagValue);
 		return newTagValue;
 	};
 
@@ -144,12 +133,13 @@ function AddNewMovie() {
 	const removeTagFromList = (indexProp: number) =>
 		setTags((current) => current.filter((tag, index) => index !== indexProp));
 
-	const getMoviesHosted = (idMovie: number | string) => {
-		const responseMovieHosted: StreamingPlatformsCat[] = [];
+	const getMoviesHosted = (idMovie: string) => {
+		const responseMovieHosted: StreamingPlatformsCat[] = StreamingPlatformListByMovieExample;
 		return responseMovieHosted;
 	};
 
 	const onSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
+		event.preventDefault()
 		const formData: Movies = {
 			id: getRandomNumber(1000),
 			title: title.toString(),
@@ -162,13 +152,22 @@ function AddNewMovie() {
 			createdBy: "",
 			poster: handlerPosterValue(poster),
 		};
+		console.log("🚀 ~ file: EditMovie.tsx:145 ~ onSubmitHandler ~ formData:", formData)
 		tags.forEach((tagItem) => {
 			postTag(tagItem);
 		});
 
-		 genres.forEach((genrItem) => {
-		 	console.log("🚀 ~ file: AddNewMovie.tsx:105 ~ genres.forEach ~ send genrItem to API Genrs:", genrItem);
-		 });
+		genres.forEach(genrItem => {
+			if (genrItem.selected) {
+				console.log("🚀 ~ file: EditMovie.tsx:151 ~ onSubmitHandler ~ genrItem CallAPI:", genrItem);	
+			}
+		})
+		
+		streamingPlatforms.forEach(streamItem => {
+			if (streamItem.select) {
+				console.log('CALL API streamItem', streamItem);
+			}
+		});
 
 		directors.forEach((directorItem) => {
 			console.log("🚀 ~ file: EditMovie.tsx:173 ~ directors.forEach ~ directorItem:", directorItem);
@@ -181,18 +180,7 @@ function AddNewMovie() {
 		stars.forEach((StarItem) => {
 			console.log("🚀 ~ file: EditMovie.tsx:181 ~ stars.forEach ~ StarItem:", StarItem)
 		});
-		
-		console.log("🚀 ~ file: AddNewMovie.tsx:107 ~ onSubmitHandler ~ streamingsMovie:", streamingsMovie);
 
-		const streamMovisDataAPI = streamingsMovie.filter(
-			(value, index, self) => index === self.findIndex((t) => t.id === value.id),
-		);
-		console.log("🚀 ~ file: AddNewMovie.tsx:115 ~ onSubmitHandler ~ streamMovisDataAPI:", streamMovisDataAPI)
-		
-		streamMovisDataAPI.forEach(streamItem => {
-			console.log('CALL API streamItem', streamItem);
-		});
-		console.log("🚀 ~ file: AddNewMovie.tsx:96 ~ onSubmitHandler ~ send formData:", formData);
 		event.preventDefault();
 	};
 
@@ -211,22 +199,79 @@ function AddNewMovie() {
 		setPoster('');
 		
 	};
-
 	useEffect(() => {
 		setLanguages(getLanguages());
 		setClassificationData(getClasifications());
 		setStreamingPlatforms(getStreamingPlatforms());
 	}, []);
 
-	const genrsListDataRef = React.useRef<GenreCat[]>();
+    useEffect(() => {
+        const getMovieInfoFromID = () => {
+			const responseMovie: Movies = MovieExample;
+			setClassification(handlerEmptyStringsValues(responseMovie.classification));
+			setDuration(handlerEmptyNumberValues(responseMovie.duration));
+			setLanguage(handlerEmptyStringsValues(responseMovie.originalLanguage))
+			setPoster(responseMovie.poster);
+			setSynopsis(handlerEmptyStringsValues(responseMovie.synopsis));
+			setTitle(handlerEmptyStringsValues(responseMovie.title));
+			setReleaseDate(responseMovie.release_date ? responseMovie.release_date : new Date());
+        }
 
-	useEffect(() => {
-		setGenres(getGenres());
-		genrsListDataRef.current = getGenres();
-	}, []);
+		const getTagsByMovie = () => {
+			const tagsResponse = [
+					'Foreign','Written-directed','Enjoyable','Brilliant','Emotional','Well-acted','Moving','Insightful','Beautiful','Dramatic','Powerful','Absorbing','Family','Intense','Character-driven','Touching','Mysterious','Teenagers','Challenging','LGBT','Fun','Based on a book','Thrilling','Violent','Dark',
+			];
+			setTags(tagsResponse);
+		}
+			
+		 const getGenresByMovie = () => {
+			 const genrsAPIData = GenrsListDataByMovieExample.map(item => {
+				item.selected = false
+				return item;
+			});
+			
+			const tempAPIArray = GenrsListData.map(itemGenrRenderItem => {
+				if (genrsAPIData.find(e => e.id === itemGenrRenderItem.id)) {
+					itemGenrRenderItem.selected = true;
+				} else {
+					itemGenrRenderItem.selected = false;
+				}
 
+				return itemGenrRenderItem;
+			})
+			console.log("🚀 ~ file: EditMovie.tsx:246 ~ tempAPIArray ~ tempAPIArray:", tempAPIArray)
+
+		 	setGenres(tempAPIArray);
+		 }
+
+		const getStreamPlatformByMovie = () => {
+			const streamPlatforms : StreamingPlatformsCat[] = getMoviesHosted(movieId ? movieId : '0');
+			streamPlatforms.forEach(streamItem => streamItem.select = false);
+			const tempStreamingPlatformOriginal = getStreamingPlatforms().map((itemStream) => {
+				if (streamPlatforms.find(e => e.id === itemStream.id)) {
+					itemStream.select = true;
+				} else {
+					itemStream.select = false;
+				}
+				return itemStream;
+			})
+			setStreamingPlatforms(tempStreamingPlatformOriginal);
+		};
+
+        setTimeout(() => {
+			getMovieInfoFromID()
+			getTagsByMovie()
+			getGenresByMovie()
+			getStreamPlatformByMovie()
+			setMovieLoadingFlag(true);
+		}, 5000);
+		// }, 1000);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[]); // Effect execute just one time
+        
 	return (
 		<div className='flex justify-center items-stretch flex-col container w-3/5 mx-auto mt-5 mb-5 text-white'>
+		{movieLoadingFlag ? (
 			<form
 				onSubmit={onSubmitHandler}
 				className=''>
@@ -307,7 +352,7 @@ function AddNewMovie() {
 					/>
 
 					<div className={`w-2/5 flex justify-center items-center flex-col mx-2`}>
-						<h1>Release Date</h1>
+						<h1 className="mr-12">Release Date</h1>
 						<InputDatePicker
 							setDateValue={setReleaseDate}
 							dateValue={releaseDate}
@@ -326,6 +371,7 @@ function AddNewMovie() {
 						setListData={setDirectorsData}
 						handlerClickElement={handlerClickDirectorEvent}
 					/>
+					
 					{/* Writers */}
 					<ContainerSearch
 						label='Writers'
@@ -339,9 +385,9 @@ function AddNewMovie() {
 					<ContainerSearch
 						label='Stars'
 						listData={starsData}
-						setListData={setStarsData}
 						onSearchHandlerEvent={handlerSearchStars}
 						placeHolder={"Search Stars by name..."}
+						setListData={setStarsData}
 						handlerClickElement={handlerClickStarEvent}
 					/>
 				</div>
@@ -350,8 +396,8 @@ function AddNewMovie() {
 					<div className=' w-full justify-between items-center '>
 						<h1 className='my-2'>Where to Watch:</h1>
 						<StreamingPlatformList
-							setListDataRender={setStreamingPlatforms}
 							listDataRender={streamingPlatforms}
+							setListDataRender={setStreamingPlatforms}
 						/>
 					</div>
 				</div>
@@ -389,8 +435,14 @@ function AddNewMovie() {
 					/>
 				</div>
 			</form>
+		) : (
+			<div className="flex mt-16 justify-center items-center container">
+				<Loader />
+			</div>
+			
+		)}
 		</div>
 	);
 }
 
-export default AddNewMovie;
+export default EditMovie;

@@ -41,4 +41,30 @@ const getStringWithElipsis = (searchValue, limitValue) => {
 	return searchValue;
 }
 
-export { objectIsNull, getRandomNumber, getRandomEnumValue, getRandomClassification, getRandomDate, getStringWithElipsis };
+/**
+ * 
+ * @param {String | undefined} stringValue 
+ * @returns 
+ */
+const handlerEmptyStringsValues = (stringValue) => {
+	return stringValue ? stringValue : ''
+};
+
+/**
+ * 
+ * @param {number | undefined} numberValue 
+ * @returns 
+ */
+const handlerEmptyNumberValues = (numberValue) => {
+	return numberValue ? numberValue : 0
+};
+
+const handlerPosterValue = (posterValue) => {
+	if (typeof posterValue === 'string') {
+		return posterValue
+	} else {
+		return URL.createObjectURL(posterValue)
+	}
+}
+
+export { objectIsNull, getRandomNumber, getRandomEnumValue, getRandomClassification, getRandomDate, getStringWithElipsis, handlerEmptyStringsValues, handlerEmptyNumberValues, handlerPosterValue};

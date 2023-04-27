@@ -1,8 +1,6 @@
 import { Movies } from "../../../types/types";
-import imagen from "../../../resources/img/movies-wallpaper/paprika.jpg";
 import InfoItem from "./InfoItem";
 import ActionItem from "./ActionItem";
-import { redirect } from "react-router-dom";
 
 interface MovieItemProps {
 	item: Movies;
@@ -10,14 +8,7 @@ interface MovieItemProps {
 }
 
 function MovieItem({ item }: MovieItemProps) {
-	
-
-	const redirectToMovie = () => {
-		const urlItem = `/movies/:id${item.id}`;
-		redirect(urlItem);
-		console.log("🚀 ~ file: MovieItem.tsx:19 ~ redirectToMovie ~ urlItem:", urlItem)
-	};
-
+	const imageURL = 'https://m.media-amazon.com/images/M/MV5BNDI4MGEwZDAtZDg0Yy00MjFhLTg1MjctODdmZTMyNTUyNDI3L2ltYWdlXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg'
 	return (
 		<div className='m-2'>
 			<div
@@ -31,7 +22,7 @@ function MovieItem({ item }: MovieItemProps) {
 				<div className='w-80 p-5'>
 					<img
 						className='object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg'
-						src={imagen}
+						src={imageURL}
 						alt='poster'
 					/>
 				</div>

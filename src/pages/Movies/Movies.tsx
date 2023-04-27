@@ -3,13 +3,12 @@ import { MovieItem, ListGenrs } from "./components";
 import "../../styles/Carousel.css";
 import { ClassificationCatEnum, GenreCat, Movies as MoviesType } from "../../types/types";
 import { getRandomEnumValue, getRandomNumber } from "../../utils/utils";
-import image from "../../resources/img/movies-wallpaper/paprika.jpg";
 import React, { useEffect } from "react";
 import { GenrsListData, moviesListData } from "../../resources/data/MoviesData";
 function Movies() {
 	const [moviesList, setMoviesList] = React.useState<MoviesType[]>();
 	const [genrs, setGenrs] = React.useState<GenreCat[]>();
-
+	const imageURL = 'https://m.media-amazon.com/images/M/MV5BNDI4MGEwZDAtZDg0Yy00MjFhLTg1MjctODdmZTMyNTUyNDI3L2ltYWdlXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg'
 	console.log("🚀 ~ file: Movies.tsx:68 ~ Movies ~ moviesTemp:", moviesListData);
 
 	// Variable que optendra la url y mediante los parametros en ella se definira la busque de peliculas para mostrar en la pagina
@@ -76,7 +75,7 @@ function Movies() {
 							moviesList?.map((item) => (
 								<MovieItem
 									item={item}
-									image={image}
+									image={imageURL}
 								/>
 							))
 						) : (

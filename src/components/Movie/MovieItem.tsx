@@ -88,7 +88,6 @@ function MovieItem({ item }: MovieItemProps) {
 								</li>
 							))}
 						</ul>
-						{/* <span className='text-3xl font-bold text-gray-900 dark:text-white'>$599</span> */}
 					</div>
 				</div>
 			</a>
