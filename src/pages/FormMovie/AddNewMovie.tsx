@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Button, InputFile, InputSelect, InputText, InputTextArea } from "../../components";
 import InputDatePicker from "../../components/Inputs/InputDatePicker/InputDatePicker";
-import { GenrsListData, StreamingPlatformData } from "../../resources/data/MoviesData";
+import { DirectorsListExample, GenrsListData, StarsListTemp, StreamingPlatformData, WritersListExample } from "../../resources/data/MoviesData";
 import {
 	ClassificationCatEnum,
 	Movies,
@@ -45,18 +45,15 @@ function AddNewMovie() {
 	const [tagInput, setTagInput] = React.useState<string>("");
 
 	const getDirector = (directoValueSearch: string) => {
-		console.log("🚀 ~ file: AddNewMovie.tsx:47 ~ getDirector ~ directoValueSearch:", directoValueSearch)
-		const responseDirectorsAPI: Director[] = [{id: 1, name:'Roman Polansky'}, {id: 1, name:'Roman Polansky'}, {id: 1, name:'Roman Polansky'}, {id: 1, name:'Roman Polansky'}, {id: 1, name:'Roman Polansky'},];
+		const responseDirectorsAPI: Director[] = DirectorsListExample;
 		return responseDirectorsAPI;
 	};
 	const getStars = (startValueSearch: string) => {
-		console.log("🚀 ~ file: AddNewMovie.tsx:51 ~ getStarts ~ startValueSearch:", startValueSearch)
-		const responseStarsAPI: Star[] = [{id: 1, name:'Brad Pitt'}];
+		const responseStarsAPI: Star[] = StarsListTemp;
 		return (responseStarsAPI);
 	};
 	const getWritters = (writterValueSearch: string) => {
-		console.log("🚀 ~ file: AddNewMovie.tsx:55 ~ getWritters ~ writterValueSearch:", writterValueSearch)
-		const responseWrittersAPI: Writer[] = [{id: 1, name:'Denis Villanueve'}];
+		const responseWrittersAPI: Writer[] = WritersListExample;
 		return responseWrittersAPI;
 	};
 	const getLanguages = () => {
@@ -173,7 +170,19 @@ function AddNewMovie() {
 		 	console.log("🚀 ~ file: AddNewMovie.tsx:105 ~ genres.forEach ~ send genrItem to API Genrs:", genrItem);
 		 });
 
-		 console.log("🚀 ~ file: AddNewMovie.tsx:107 ~ onSubmitHandler ~ streamingsMovie:", streamingsMovie);
+		directors.forEach((directorItem) => {
+			console.log("🚀 ~ file: EditMovie.tsx:173 ~ directors.forEach ~ directorItem:", directorItem);
+		});
+
+		writers.forEach((writerItem) => {
+			console.log("🚀 ~ file: EditMovie.tsx:177 ~ writers.forEach ~ writerItem:", writerItem)
+		});
+
+		stars.forEach((StarItem) => {
+			console.log("🚀 ~ file: EditMovie.tsx:181 ~ stars.forEach ~ StarItem:", StarItem)
+		});
+		
+		console.log("🚀 ~ file: AddNewMovie.tsx:107 ~ onSubmitHandler ~ streamingsMovie:", streamingsMovie);
 
 		const streamMovisDataAPI = streamingsMovie.filter(
 			(value, index, self) => index === self.findIndex((t) => t.id === value.id),
