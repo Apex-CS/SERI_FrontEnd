@@ -19,7 +19,7 @@ import { ContainerSearch, GenrsList, StreamingPlatformList, TagsList } from "./c
 const rowClass = "grid md:grid-cols-2 md:gap-6 mt-5";
 const inputSelecContainerClass = `w-2/4 mx-2`;
 function AddNewMovie() {
-	const [poster, setPoster] = React.useState<File | undefined | string>();
+	const [poster, setPoster] = React.useState<File | string>('');
 	const [title, setTitle] = React.useState<string>("");
 	const [languages, setLanguages] = React.useState<string[]>([""]);
 	const [classification, setClassification] = React.useState<string>("");
@@ -44,11 +44,6 @@ function AddNewMovie() {
 	const [tags, setTags] = React.useState<string[]>([]);
 	const [tagInput, setTagInput] = React.useState<string>("");
 
-	const [directorSearch, setDirectorSearch] = useState('');
-	const [writterSearch, setWritterSearch] = useState('');
-	const [starSearch, setStarSearch] = useState('');
-
-	// const form: Movies = {};
 	const getDirector = (directoValueSearch: string) => {
 		console.log("🚀 ~ file: AddNewMovie.tsx:47 ~ getDirector ~ directoValueSearch:", directoValueSearch)
 		const responseDirectorsAPI: Director[] = [{id: 1, name:'Roman Polansky'}, {id: 1, name:'Roman Polansky'}, {id: 1, name:'Roman Polansky'}, {id: 1, name:'Roman Polansky'}, {id: 1, name:'Roman Polansky'},];
@@ -175,16 +170,10 @@ function AddNewMovie() {
 		});
 
 		 genres.forEach((genrItem) => {
-		 	console.log(
-		 		"🚀 ~ file: AddNewMovie.tsx:105 ~ genres.forEach ~ send genrItem to API Genrs:",
-		 		genrItem,
-		 	);
+		 	console.log("🚀 ~ file: AddNewMovie.tsx:105 ~ genres.forEach ~ send genrItem to API Genrs:", genrItem);
 		 });
 
-		 console.log(
-		 	"🚀 ~ file: AddNewMovie.tsx:107 ~ onSubmitHandler ~ streamingsMovie:",
-		 	streamingsMovie,
-		 );
+		 console.log("🚀 ~ file: AddNewMovie.tsx:107 ~ onSubmitHandler ~ streamingsMovie:", streamingsMovie);
 
 		const streamMovisDataAPI = streamingsMovie.filter(
 			(value, index, self) => index === self.findIndex((t) => t.id === value.id),
@@ -210,7 +199,7 @@ function AddNewMovie() {
 		setReleaseDate(new Date());
 		setSynopsis("");
 		setStreamingPlatforms(getStreamingPlatforms());
-		setPoster(undefined);
+		setPoster('');
 		
 	};
 

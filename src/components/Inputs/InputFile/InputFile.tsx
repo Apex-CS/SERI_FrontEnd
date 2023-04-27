@@ -3,8 +3,8 @@ import './InputFile.css';
 interface InputFileProps {
 	label: string;
 	accept?: string;
-	valueImage: File | undefined | string;
-	setValueImage: React.Dispatch<React.SetStateAction<File | undefined | string>>;
+	valueImage: File | string;
+	setValueImage: React.Dispatch<React.SetStateAction<File | string>>;
 }
 function InputFile({ label, accept = "image/png, image/jpeg", valueImage, setValueImage }: InputFileProps) {
 	const id = "file_input";
