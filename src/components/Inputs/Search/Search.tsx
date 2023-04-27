@@ -20,6 +20,8 @@ function Search({
 	className = `flex items-center`,
 	onSearchHandlerEvent,
 }: SearchProps) {
+	const disabledButtonClass = 'text-white bg-blue-400 dark:bg-blue-500 cursor-not-allowed font-medium rounded-lg text-sm px-2.5 py-2.5 mx-2 text-center';
+	const defaultClassButton = 'p-2.5 mx-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800';
 	const [searchValue, setSearchValue] = useState('');
 	const onSubmitEventHandler = () => {
 		if (onSubmit) {
@@ -61,7 +63,8 @@ function Search({
 			<button
 				onClick={onSubmitEventHandler}
 				type='button'
-				className='p-2.5 mx-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'>
+				disabled={searchValue.length === 0}
+				className={searchValue.length === 0 ? disabledButtonClass : defaultClassButton}>
 				<svg
 					className='w-5 h-5'
 					fill='none'
