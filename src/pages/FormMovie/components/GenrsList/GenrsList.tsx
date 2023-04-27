@@ -3,7 +3,7 @@ import { GenreCat } from "../../../../types/types";
 
 interface GenrsListProps {
 	listGenrs: GenreCat[] | undefined;
-	setGenresData: React.Dispatch<React.SetStateAction<GenreCat[]>>;
+	setGenres: React.Dispatch<React.SetStateAction<GenreCat[]>>;
 }
 
 interface ElementListProps {
@@ -64,12 +64,12 @@ const ListElement = ({ item, setGenresData }: ElementListProps) => {
 	);
 };
 
-const GenrsList = ({ listGenrs, setGenresData }: GenrsListProps) => (
+const GenrsList = ({ listGenrs, setGenres }: GenrsListProps) => (
 		<ul className='flex flex-wrap items-center justify-between text-gray-900 dark:text-white w-full '>
 			{listGenrs?.map((item) => (
 				<ListElement
 					item={item}
-					setGenresData={setGenresData}
+					setGenresData={setGenres}
 				/>
 			))}
 		</ul>
