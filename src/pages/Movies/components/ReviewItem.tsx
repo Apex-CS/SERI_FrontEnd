@@ -1,10 +1,11 @@
+import { Comment } from "../../../types/types";
 import { getRandomDate } from "../../../utils/utils";
 
-interface ReviewItem {
-	item: {};
+interface ReviewItemProps {
+	item: Comment;
 }
 
-function ReviewItem({ item }: ReviewItem) {
+function ReviewItem({ item }: ReviewItemProps) {
 	console.log("🚀 ~ file: ReviewItem.tsx:6 ~ ReviewItem ~ item:", item);
 
 	const starRaiting = 4;
@@ -17,7 +18,7 @@ function ReviewItem({ item }: ReviewItem) {
     const srcImg = '';
 
 	return (
-		<article className='p-5 mt-10 border-2 '>
+		<article className='p-5 mt-10 w-full border-2 '>
 			<div className='flex items-center mb-4 space-x-4'>
 				<img
 					className='w-10 h-10 rounded-full'
@@ -50,29 +51,22 @@ function ReviewItem({ item }: ReviewItem) {
 
 
 				<h3 className='ml-2 text-sm font-semibold text-gray-900 dark:text-white'>
-					Thinking to buy another one!
+					{item.name}
 				</h3>
 			</div>
 			<footer className='mb-5 text-sm text-gray-500 dark:text-gray-400'>
 				<p>
-					Reviewed in the United Kingdom on <time dateTime='2017-03-03 19:00'>{reviewDate.toDateString()}</time>
+					Reviewed on <time dateTime='2017-03-03 19:00'>{reviewDate.toDateString()}</time>
 				</p>
 			</footer>
 			<p className='mb-2 text-gray-500 dark:text-gray-400'>
-				This is my third Invicta Pro Diver. They are just fantastic value for money. This one
-				arrived yesterday and the first thing I did was set the time, popped on an identical strap
-				from another Invicta and went in the shower with it to test the waterproofing.... No
-				problems.
+				{item.body}
 			</p>
-			<p className='mb-3 text-gray-500 dark:text-gray-400'>
-				It is obviously not the same build quality as those very expensive watches. But that is like
-				comparing a Citroën to a Ferrari. This watch was well under £100! An absolute bargain.
-			</p>
-			<a
+			{/* <a
 				href='#'
 				className='block mb-5 text-sm font-medium text-blue-600 hover:underline dark:text-blue-500'>
 				Read more
-			</a>
+			</a> */}
 			<aside>
 				<p className='mt-1 text-xs text-gray-500 dark:text-gray-400'>
 					19 people found this helpful

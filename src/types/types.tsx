@@ -1,5 +1,15 @@
 type IDElemnt = number | string
 
+export interface Comment {
+    id: number;
+    name: string;
+    body: string;
+  }
+  
+export interface CommentsState {
+    comments: Comment[];
+}
+
 ////// Movies
 export type Movies = {
     id? : IDElemnt,

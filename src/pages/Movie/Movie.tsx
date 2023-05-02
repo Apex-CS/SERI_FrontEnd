@@ -1,29 +1,23 @@
 import React, { useEffect } from "react";
-import { CommentBox, Loader } from "../../components";
+import { Provider } from 'react-redux';
+import { Loader } from "../../components";
 import { Movies } from "../../types/types";
 import { getRandomClassification, getRandomNumber } from "../../utils/utils";
 import { MovieInfo } from "./components";
 import { useParams } from "react-router-dom";
-import { ReviewItem } from "../Movies/components";
+import CommentList from "./ComentList";
+import store from "../../redux/store/store";
 
 function Movie({}) {
 	let { movieId } = useParams();
-	console.log("🚀 ~ file: Movie.tsx:11 ~ Movie ~ movieId:", movieId);
-	const [comments, setComments] = React.useState<any[]>([]);
 	const imageURL = 'https://i.pinimg.com/474x/b2/7b/7b/b27b7bbd39877d9ea00bd70c9e467677--godfather-movie-film-making.jpg';
-	
-	// Variable que optendra la url y mediante los parametros en ella se definira la pelicula para mostrar en la pagina
-	const url: string = "";
-	const defaultValueSynopsis =
-		"The aging patriarch of an organized crime dynasty in postwar New York City transfers control of his clandestine empire to his reluctant youngest son.";
-	const movieElement: Movies = {};
-	const [movie, setMovie] = React.useState<Movies>();
 
-	useEffect(() => {
-		setTimeout(() => {
-			setComments([1, 2, 3]);
-		}, 4000);
-	}, []);
+		// Variable que optendra la url y mediante los parametros en ella se definira la pelicula para mostrar en la pagina
+		const url: string = "";
+		const defaultValueSynopsis =
+			"The aging patriarch of an organized crime dynasty in postwar New York City transfers control of his clandestine empire to his reluctant youngest son.";
+		const movieElement: Movies = {};
+		const [movie, setMovie] = React.useState<Movies>();
 
 	const getStreamChannels = () => {
 		/**
@@ -39,7 +33,7 @@ function Movie({}) {
 		 * obtendra todos los comentarios relacionados a dicha pelicula
 		 * mediante una llamada GET a la API
 		 */
-		setComments([1, 2, 3]);
+		// setComments([1, 2, 3]);
 	};
 
 	const postComment = () => {
@@ -98,6 +92,7 @@ function Movie({}) {
 	}, []);
 
 	return (
+		<Provider store={store}>
 		<div className='flex w-full flex-col content-center items-center '>
 			<div
 				id='movie-info'
@@ -109,9 +104,7 @@ function Movie({}) {
 								<h1 className='text-2xl'>The Goddather</h1>
 							</div>
 							<img
-								className='w-3/4 max-h-full transition-all 
-							duration-300 rounded-lg cursor-pointer 
-							filter hover:grayscale'
+								className='w-5/12 transition-all duration-300 rounded-lg cursor-pointer filter hover:grayscale'
 								src={imageURL}
 								alt='poster'
 							/>
@@ -129,19 +122,11 @@ function Movie({}) {
 				<div
 					className='w-full flex flex-col justify-center items-center'
 					id='comments-box'>
-					<div className='flex w-full flex-col justify-center items-center p-1'>
-						<div></div>
-						<h1 className='text-xl ml-10 text-white'>RATE AND REVIEW</h1>
-						<CommentBox />
-					</div>
-					<div className='w-full items-center justify-center'>
-						{comments.map((item) => (
-							<ReviewItem item={item} />
-						))}
-					</div>
+					<CommentList />
 				</div>
 			</div>
 		</div>
+		</Provider>
 	);
 }
 
