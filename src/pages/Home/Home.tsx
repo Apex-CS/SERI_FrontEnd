@@ -7,7 +7,7 @@ import "../../index.css";
  	carrouselData,
  	listDataTop10ComingTheatersTemp,
  	listDataTop10MoviesTemp,
- } from "../../resources/data/HomeData";
+ } from "../../resources/data/homeData";
 
 function Home() {
 	const [listDataTop10Movies, setListDataTop10Movies] = React.useState<Movies[]>();
