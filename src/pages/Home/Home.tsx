@@ -12,14 +12,15 @@ import "../../index.css";
 function Home() {
 	const [listDataTop10Movies, setListDataTop10Movies] = React.useState<Movies[]>();
 	const [listDataTop10ComingTheaters, setListDataTop10ComingTheaters] = React.useState<Movies[]>();
-	const [carrouselList, setCarrouselList] = React.useState<Movies[]>();
+	const [carrouselList, setCarrouselList] = React.useState<Movies[]>([]);
 
 	const url = "https://pokeapi.co/api/v2/pokemon/pikachu";
 	const response = useFetch(url);
 
 	const getTop10Movies = () => {
 		/** Funcion que obtiene las 10 mejores peliculas calificadas en el sistema */
-		return listDataTop10MoviesTemp;
+		const newArray = listDataTop10MoviesTemp.sort((a,b) => b.likes - a.likes);
+		return newArray;
 	};
 
 	const getComingSoonMovies = () => {
@@ -27,7 +28,8 @@ function Home() {
 		 * Funcion que obtendra las ultimas peliculas que estan por estrenarse segun el sistema
 		 * Falta definir el numero que se obtendra o si sera una lista dinamica... etc
 		 */
-		return listDataTop10ComingTheatersTemp;
+		const newArray = listDataTop10ComingTheatersTemp.sort((a,b) => b.likes - a.likes);
+		return newArray;
 	};
 
 	const getMoviesReleased = () => {
@@ -60,14 +62,14 @@ function Home() {
 					className='flex row-auto justify-between w-3/4'>
 					<div className='w-1/2'>
 						<List
-							title={"top 10 Movies"}
+							title={"TOP 10 MOVIES"}
 							data={listDataTop10Movies}
 							redirect={true}
 						/>
 					</div>
 					<div className='w-1/2'>
 						<List
-							title={"top 10 coming soon in Theaters"}
+							title={"COMING SOON TO THEATERS"}
 							data={listDataTop10ComingTheaters}
 							redirect={true}
 						/>
@@ -78,6 +80,11 @@ function Home() {
 					className='w-1/4'>
 					<NewsLetter />
 				</div>
+			</div>
+
+			<div className="flex items-center justify-start pt-8 pb-3 mx-2">
+			<h1 className='font-bold ml-1 dark:text-yellow-400'>MOVIES RELEASED TODAY</h1>
+				
 			</div>
 
 			<Carousel

@@ -150,6 +150,7 @@ function EditMovie() {
 			classification: classification,
 			synopsis: synopsis,
 			createdBy: "",
+			likes: 0,
 			poster: handlerPosterValue(poster),
 		};
 		console.log("🚀 ~ file: EditMovie.tsx:145 ~ onSubmitHandler ~ formData:", formData)

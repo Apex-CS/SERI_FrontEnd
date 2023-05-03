@@ -13,7 +13,7 @@ function Button({
 	isPillStyle = false,
 	type = 'button',
 } : ButtonProps) {
-    const defaultClass = `focus:outline-none text-white focus:ring-4 focus:ring-purple-300 font-medium rounded-lg px-5 py-2.5 mb-2 ${customClass}`;
+    const defaultClass = `focus:outline-none text-white focus:ring-4 focus:ring-purple-300 font-medium rounded-lg px-5 py-2.5 ${customClass}`;
     const pillClass = '';
 
 	return (

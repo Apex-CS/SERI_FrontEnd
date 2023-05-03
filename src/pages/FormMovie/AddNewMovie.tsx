@@ -160,6 +160,7 @@ function AddNewMovie() {
 			classification: classification,
 			synopsis: synopsis,
 			createdBy: "",
+			likes: 0,
 			poster: handlerPosterValue(poster),
 		};
 		tags.forEach((tagItem) => {

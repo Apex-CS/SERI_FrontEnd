@@ -1,5 +1,15 @@
 type IDElemnt = number | string
 
+export interface Comment {
+    id: number;
+    name: string;
+    body: string;
+  }
+  
+export interface CommentsState {
+    comments: Comment[];
+}
+
 ////// Movies
 export type Movies = {
     id? : IDElemnt,
@@ -9,7 +19,7 @@ export type Movies = {
     originalLanguage? : string,
     release_date? : Date,
     duration? : number,
-    likes? : number,
+    likes : number,
     createdDate? : Date,
     ModifiedDate? : Date,
     createdBy? : string,

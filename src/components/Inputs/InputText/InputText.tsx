@@ -29,7 +29,7 @@ function InputText({
 	numberValue,
 	setValue,
 	setNumberValue,
-	classNameContainer,
+	classNameContainer = 'relative z-0 mb-6 group',
 	onSubmitEvent,
 	maxNumber,
 	customClassInput,
@@ -73,10 +73,10 @@ function InputText({
 		// if (event.code)
 	};
 
-	const classContainer = `relative z-0 mb-6 group ${classNameContainer} `;
+	// const classContainer = `relative z-0 mb-6 group ${classNameContainer} `;
 
 	return (
-		<div className={classContainer}>
+		<div className={classNameContainer}>
 			<input
 				onKeyDown={handleKeyboardEvent}
 				type={type}
