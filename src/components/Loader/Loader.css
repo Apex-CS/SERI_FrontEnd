@@ -1,57 +1,43 @@
-/* .loader-icon {
-    width: 64px;
-    height: 64px;
-    position: relative;
-    border-radius: 50%;
-    box-shadow: -10px 8px 0 18px inset #fff;
-    animation: rotate 2s ease-in infinite alternate;
-    background-color: white;
-  }
-  .loader-icon::before {
-    content: '';
-    position: absolute;
-    left: 14px;
-    bottom: 16px;
-    background: #FF3D00;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    animation: scale 1s ease-in infinite alternate;
-  }
-  @keyframes rotate {
-    100% { transform: rotate(750deg)}
-  }
-  @keyframes scale {
-   100% { transform: scale(0.5) translateY(5px)}
-  } */
-  .loader-icon {
-    border: 2px solid #FFF;
-    width: 48px;
-    height: 48px;
-    background: #FF3D00;
-    border-radius: 50%;
-    display: inline-block;
-    position: relative;
-    box-sizing: border-box;
-    animation: rotation 2s linear infinite;
-  }
-  .loader-icon::after {
-    content: '';  
-    box-sizing: border-box;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    border: 24px solid;
-    border-color: transparent #FFF;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-  }
-  
-  @keyframes rotation {
+.loader {
+  width: 48px;
+  height: 40px;
+  margin-top: 30px;
+  display: inline-block;
+  position: relative;
+  background: #FFF;
+  border-radius: 15% 15% 35% 35%;
+}
+.loader::after {
+  content: '';  
+  box-sizing: border-box;
+  position: absolute;
+  left: 45px;
+  top: 8px;
+  border: 4px solid #FFF;
+  width: 16px;
+  height: 20px;
+  border-radius: 0 4px 4px 0;
+}
+.loader::before {
+  content: '';  
+  position: absolute;
+  width: 1px;
+  height: 10px;
+  color: #FFF;
+  top: -15px;
+  left: 11px;
+  box-sizing: border-box;
+  animation: animloader 1s ease infinite;
+}
+
+@keyframes animloader {
     0% {
-      transform: rotate(0deg);
-    }
+  box-shadow: 2px 0px rgba(255, 255, 255, 0), 12px 0px rgba(255, 255, 255, 0.3), 20px 0px rgba(255, 255, 255, 0);
+}
+    50% {
+  box-shadow: 2px -5px rgba(255, 255, 255, 0.5), 12px -3px rgba(255, 255, 255, 0.5), 20px -2px rgba(255, 255, 255, 0.6);
+}
     100% {
-      transform: rotate(360deg);
-    }
-  } 
+  box-shadow: 2px -8px rgba(255, 255, 255, 0), 12px -5px rgba(255, 255, 255, 0), 20px -5px rgba(255, 255, 255, 0);
+}
+  }
