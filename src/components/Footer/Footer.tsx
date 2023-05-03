@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import apexLogo from "../../resources/img/Apex_logo_horizontal_white.png";
+import '../../App.css'
 import {
   footerLinks,
   footerSocialNetworkLinks,
@@ -42,9 +43,9 @@ function Footer() {
 
   return (
     <footer className="p-4 bg-white sm:p-6 dark:bg-gray-900">
-      <div className="md:flex md:justify-between">
-        <div className="mb-6 md:mb-0">
-          <a href="/" className="flex items-center">
+      <div className="md:flex md:justify-between justify-between items-center">
+        <div className="w-auto flex items-center justify-between mx-14 mb-6 md:mb-0">
+          <a href="/" className="flex flex-col justify-center items-center">
             <img
               src={apexLogo}
               className="h-8 mr-3"
@@ -52,7 +53,11 @@ function Footer() {
             />
           </a>
         </div>
-        <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-2">
+        <h1 className="text-xl text-gray-400">
+          <div className="waviy"> {Array.from('ApEX CINEMA ESCAPE ROOM ADVENTURE').map((char, index) => ( <span key={index} style={{ ['--i' as any]: index + 1, }} dangerouslySetInnerHTML={{ __html: char === ' ' ? '&nbsp;' : char, }} /> ))} </div>
+        </h1>
+
+        <div className="grid mx-8 gap-8">
           <div>
             <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
               Follow us
@@ -60,8 +65,7 @@ function Footer() {
             <ul className="text-gray-600 dark:text-gray-400">
               {dataFollowUs.map((item, index) => (
                 <li>
-                  <a 
-                    // key={index} 
+                  <a
                     href={item.href} 
                     className="hover:underline"
                   >
