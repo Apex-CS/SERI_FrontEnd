@@ -19,7 +19,7 @@ export type Movies = {
     originalLanguage? : string,
     release_date? : Date,
     duration? : number,
-    likes? : number,
+    likes : number,
     createdDate? : Date,
     ModifiedDate? : Date,
     createdBy? : string,

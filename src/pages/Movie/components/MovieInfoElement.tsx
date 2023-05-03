@@ -1,12 +1,41 @@
-import { Movies } from "../../../types/types";
+import { Director, Movies, Writer } from "../../../types/types";
 
 interface MovieInfoElementProps {
     item: Movies
 };
 const MovieInfoElement = ({item}: MovieInfoElementProps) => {
+    console.log("🚀 ~ file: MovieInfoElement.tsx:7 ~ MovieInfoElement ~ item:", item)
     const defaultParagraphClass = `mb-3 font-normal text-zinc-200 dark:text-zinc-300 ml-2`;
 	const defaultSubTitleClass = `mb-2 text-md font-bold tracking-tight text-gray-900 dark:text-white`;
 	const defaultContainerInfo = `flex justify-stretch`;
+
+    const directors: Director[] = [
+        {
+            id: 10,
+            name: 'Stanley Kubrick'
+        }
+    ];
+
+    const writers: Writer[] = [
+        {
+            name: 'Stanley Kubrick',
+            id: 200,
+        },
+        {
+            name: 'Peter Sellers',
+            id: 200,
+        },
+        {
+            name: 'Peter George',
+            id: 200,
+        },
+        {
+            name: 'Terry Southern',
+            id: 200,
+        },
+    ];
+
+
     const tempStreaming = [
 		{
 			img: "https://www.citypng.com/public/uploads/preview/-11596295514wdrm03x1ui.png",
@@ -26,6 +55,7 @@ const MovieInfoElement = ({item}: MovieInfoElementProps) => {
 		},
 	];
 
+    
     return (
         <div className='mt-2'>
             <h1 className='mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white'>
@@ -41,13 +71,28 @@ const MovieInfoElement = ({item}: MovieInfoElementProps) => {
                     <p className={defaultParagraphClass}>English</p>
                 </div>
                 <div className={defaultContainerInfo}>
-                    <h5 className={defaultSubTitleClass}>Director:</h5>
-                    <p className={defaultParagraphClass}>Francis Ford Coppola</p>
+                    <h5 className={defaultSubTitleClass}>Directors:</h5>
+                    {directors.map(directorItem => (
+                        <p className={defaultParagraphClass}>{directorItem.name}</p>
+                    ))}
                 </div>
-                <div className={defaultContainerInfo}>
+                
+                <div>
+                    
+                        <div className={defaultContainerInfo}>
+                            <h5 className={defaultSubTitleClass}>Writers:</h5>
+                            {writers.map(writer => (
+                                <p className={defaultParagraphClass}>{writer.name}</p>
+                            ))}
+                            
+                        </div>
+                    
+                </div>
+                
+                {/* <div className={defaultContainerInfo}>
                     <h5 className={defaultSubTitleClass}>Writers:</h5>
                     <p className={defaultParagraphClass}>ario Puzo – Francis Ford Coppola</p>
-                </div>
+                </div> */}
                 <div className={defaultContainerInfo}>
                     <h5 className={defaultSubTitleClass}>Stars:</h5>
                     <p className={defaultParagraphClass}>Marlon Brando – Al Pacino – James Caan</p>
