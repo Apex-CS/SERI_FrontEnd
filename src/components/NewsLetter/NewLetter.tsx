@@ -27,7 +27,7 @@ function NewsLetter() {
 					Join our Newsletter
 				</h1>
 				<h2 className='flex dark:text-white'>
-					get weekly access to our best deals, tips and tricks
+					get weekly access to our movie recommendations!
 				</h2>
 			</div>
 
