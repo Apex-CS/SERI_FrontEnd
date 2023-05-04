@@ -1,41 +1,24 @@
-import React from "react";
-import logo from "./logo.svg";
-// import './App.css';
-import "./styles/App.css";
-import "./styles/app.scss";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Home, AddNewMovie, Movie, Movies,  PageNotFound } from "./pages";
+import { Routes, Route } from "react-router-dom";
+import { Home, AddNewMovie, Movie, Movies, PageNotFound, EditMovie, } from "./pages";
 import { Navbar, Footer } from "./components";
+import { PATH_HOME, PATH_MOVIE,	PATH_ERROR_PAGE, PATH_ADD_MOVIE, PATH_MOVIES, PATH_EDIT_MOVIE } from "./resources/data/RootPath";
 
 function App() {
 	return (
-		<div className='App'>
-			<BrowserRouter>
-				<div className='container'>
-					<Routes>
-						<Route
-							path='/'
-							element={<Home />}
-						/>
-						<Route
-							path='/addMovie'
-							element={<AddNewMovie />}
-						/>
-						<Route
-							path='/movie'
-							element={<Movie />}
-						/>
-						<Route
-							path='/movies'
-							element={<Movies />}
-						/>
-						<Route
-							path='*'
-							element={<PageNotFound />}
-						/>
-					</Routes>
-				</div>
-			</BrowserRouter>
+		<div className='background-color-main'>
+			<div className='header-container'>
+				<Navbar />
+			</div>
+			<div className='flex flex-col min-h-screen text-base font-sans children-container'>
+				<Routes>
+					<Route path={PATH_HOME} element={<Home />} />
+					<Route path={PATH_ADD_MOVIE} element={<AddNewMovie />} />
+					<Route path={PATH_EDIT_MOVIE} element={<EditMovie />} />
+					<Route path={PATH_MOVIE} element={<Movie />} />
+					<Route path={PATH_MOVIES} element={<Movies />} />
+					<Route path={PATH_ERROR_PAGE} element={<PageNotFound />} />
+				</Routes>
+			</div>
 			<Footer />
 		</div>
 	);
