@@ -40,8 +40,8 @@ function Navbar() {
 	return (
 		<nav
 			id='navbar-container'
-			className='bg-white pt-4 px-2 sm:px-4 py-2.5 dark:bg-gray-900 w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600'>
-			<div className='container flex flex-wrap items-center justify-between mx-auto'>
+			className='bg-white pt-4 px-16  flex flex-row py-2.5 dark:bg-gray-900 w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600'>
+			<div className='container w-10/12 flex flex-wrap items-center justify-between mx-auto pl-24'>
 				<a
 					href={headerLogoButon.href}
 					className='flex items-center'>
@@ -68,7 +68,7 @@ function Navbar() {
 						))}
 					</ul>
 				</div>
-				<div className='flex justify-between items-center'>
+				<div className='flex justify-between items-center pr-24'>
 					<Button
 						label='Sign In'
 						onClickHandler={signIn}

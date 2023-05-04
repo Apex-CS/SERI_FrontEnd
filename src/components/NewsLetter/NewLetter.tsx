@@ -11,9 +11,7 @@ function NewsLetter() {
 	 * ya esta registrado o algun mensaje en especifico.
 	 */
 	const suscribeNewsLetter = (event: React.FormEvent<HTMLFormElement>) => {
-		console.log("🚀 ~ file: NewLetter.tsx:10 ~ suscribeNewsLetter ~ event:", event);
 		let params = event.target;
-		console.log("🚀 ~ file: NewLetter.tsx:12 ~ suscribeNewsLetter ~ params:", params);
 	};
 
 	const [email, setEmail] = React.useState<string>("");

@@ -83,8 +83,7 @@ function Home() {
 			</div>
 
 			<div className="flex items-center justify-start pt-8 pb-3 mx-2">
-			<h1 className='font-bold ml-1 dark:text-yellow-400'>MOVIES RELEASED TODAY</h1>
-				
+				<h1 className='font-bold ml-1 dark:text-yellow-400'>MOVIES RELEASED TODAY</h1>
 			</div>
 
 			<Carousel
@@ -98,9 +97,7 @@ function Home() {
 							data-testid='carousel-item-1'
 						/>
 					))
-				) : (
-					<Loader />
-				)}
+				) : ( <Loader /> )}
 			</Carousel>
 		</div>
 	);
