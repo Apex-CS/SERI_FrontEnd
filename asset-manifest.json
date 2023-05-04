@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/SERI_FrontEnd/static/css/main.2b440f38.css",
-    "main.js": "/SERI_FrontEnd/static/js/main.fce40442.js",
+    "main.js": "/SERI_FrontEnd/static/js/main.bae8ebf8.js",
     "static/media/Apex_logo_horizontal_white.png": "/SERI_FrontEnd/static/media/Apex_logo_horizontal_white.ae512bd79215d59686f7.png",
     "index.html": "/SERI_FrontEnd/index.html",
     "main.2b440f38.css.map": "/SERI_FrontEnd/static/css/main.2b440f38.css.map",
-    "main.fce40442.js.map": "/SERI_FrontEnd/static/js/main.fce40442.js.map"
+    "main.bae8ebf8.js.map": "/SERI_FrontEnd/static/js/main.bae8ebf8.js.map"
   },
   "entrypoints": [
     "static/css/main.2b440f38.css",
-    "static/js/main.fce40442.js"
+    "static/js/main.bae8ebf8.js"
   ]
 }
