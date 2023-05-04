@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import apexLogo from "../../resources/img/Apex_logo_horizontal_white.png";
 import '../../App.css'
+import { Link } from 'react-router-dom';
 import {
   footerLinks,
   footerSocialNetworkLinks,
@@ -45,13 +46,13 @@ function Footer() {
     <footer className="p-4 bg-white sm:p-6 dark:bg-gray-900">
       <div className="md:flex md:justify-between justify-between items-center">
         <div className="w-auto flex items-center justify-between mx-14 mb-6 md:mb-0">
-          <a href="/" className="flex flex-col justify-center items-center">
+          <Link to="/" className='flex flex-col justify-center items-center'>
             <img
-              src={apexLogo}
-              className="h-8 mr-3"
-              alt="FlowBite Logo"
-            />
-          </a>
+                src={apexLogo}
+                className="h-8 mr-3"
+                alt="FlowBite Logo"
+              />
+          </Link>
         </div>
         <h1 className="text-xl text-gray-400">
           <div className="waviy"> {Array.from('ApEX CINEMA ESCAPE ROOM ADVENTURE').map((char, index) => ( <span key={index} style={{ ['--i' as any]: index + 1, }} dangerouslySetInnerHTML={{ __html: char === ' ' ? '&nbsp;' : char, }} /> ))} </div>
