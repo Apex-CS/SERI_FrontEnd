@@ -1,7 +1,7 @@
 import { ThunkAction } from 'redux-thunk';
 import { Action } from 'redux';
 import { CommentsState, Comment } from '../../types/types';
-import { getRandomNumber } from '../../utils/utils';
+import { getRandomDate, getRandomNumber } from '../../utils/utils';
 export const fetchComments = (): ThunkAction<
   void,
   CommentsState,
@@ -9,31 +9,36 @@ export const fetchComments = (): ThunkAction<
   Action<string>
 > => async (dispatch) => {
   try {
-    // 
-    const response = await fetch('https://jsonplaceholder.typicode.com/comments');
     const comments : Comment[] = await  [
       {
         id: getRandomNumber(1999),
-        name: 'Ejemplo 1',
-        body: '// make the POST CALL to the API to POST the new comment',
+        name: 'Leonardo Dicaprio',
+        body: '// make the POST CALL to the API to POST the new comment // make the POST CALL to the API to POST the new comment // make the POST CALL to the API to POST the new comment',
+        reviewdDate: getRandomDate(),
+        raiting: getRandomNumber(5),
       },
       {
         id: getRandomNumber(1999),
-        name: 'Ejemplo 1',
-        body: '// make the POST CALL to the API to POST the new comment',
+        name: 'Salma Hayeck',
+        body: '// make the POST CALL to the API to POST the new comment // make the POST CALL to the API to POST the new comment // make the POST CALL to the API to POST the new comment // make the POST CALL to the API to POST the new comment // make the POST CALL to the API to POST the new comment ',
+        reviewdDate: getRandomDate(),
+        raiting: getRandomNumber(5),
       },
       {
         id: getRandomNumber(1999),
-        name: 'Ejemplo 1',
-        body: '// make the POST CALL to the API to POST the new comment',
+        name: 'Canelo Alvarez',
+        body: 'asd.,anjk sdhnakj uisah dashui dhsauhy d87ayh8daksji daiu dhjankjdau hdasiju',
+        reviewdDate: getRandomDate(),
+        raiting: getRandomNumber(5),
       },
       {
         id: getRandomNumber(1999),
-        name: 'Ejemplo 1',
-        body: '// make the POST CALL to the API to POST the new comment',
+        name: 'George Lukas',
+        body: ' asjdkjas dasokdasjik iuahg dai naduid gag a bkjsda njikbdhjka   jk aou hjkhdasb kjdbajhs gduhbasij ijkash dhjjav sdjhsa',
+        reviewdDate: getRandomDate(),
+        raiting: getRandomNumber(5),
       }
     ]
-    console.log("🚀 ~ file: commentsActions.tsx:13 ~ >=> ~ comments:", comments)
     dispatch({
       type: 'FETCH_COMMENTS_SUCCESS',
       payload: comments,

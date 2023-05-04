@@ -5,11 +5,8 @@ interface MovieItemProps {
 }
 
 function MovieItem({ item }: MovieItemProps) {
-	const genrs = ["action", "comedy", "adventure"];
 	const statPercent = (item.likes / 100) * 5
-	console.log("🚀 ~ file: MovieItem.tsx:10 ~ MovieItem ~ statPercent:", statPercent)
 	const starRaiting = Math.round(statPercent) ;
-	console.log("🚀 ~ file: MovieItem.tsx:10 ~ MovieItem ~ starRaiting:", starRaiting)
 	return (
 		<div className='w-full ml-3 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'>
 			<a href={`/movie/${item.id}`}>

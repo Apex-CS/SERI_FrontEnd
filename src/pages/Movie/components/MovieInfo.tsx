@@ -1,6 +1,4 @@
 import { Movies } from "../../../types/types";
-import GenresList from "./GenresList";
-import HeaderElement from "./HeaderElement";
 import MovieInfoElement from "./MovieInfoElement";
 
 interface MovieInfoProps {
@@ -8,7 +6,9 @@ interface MovieInfoProps {
 }
 function MovieInfo({ item }: MovieInfoProps) {
 	const defaultValueSynopsis =
-		"The aging patriarch of an organized crime dynasty in postwar New York City transfers control of his clandestine empire to his reluctant youngest son.";
+		`El general de la Fuerza Aérea de los Estados Unidos, Jack D. Ripper (Sterling Hayden; nombre que se pronuncia Jack The Ripper, Jack el Destripador), planea dar comienzo a una guerra nuclear con la Unión Soviética con el objetivo de impedir lo que considera una conspiración comunista para fluorizar el agua, contaminando así los "preciosos fluidos corporales" de los estadounidenses. Da la orden, sin la autorización del presidente Merkin Muffley (Peter Sellers), a su escuadra nuclear de combate, de bombardear sus respectivos objetivos dentro de la Unión Soviética, con la esperanza de que el presidente ordene un ataque a gran escala al no encontrar otra opción.
+		El general Ripper desconoce, sin embargo, que los soviéticos cuentan con un "Dispositivo del Fin del Mundo", el cual se activaría automáticamente en caso de detectar un ataque nuclear sobre territorio de la Unión Soviética, destruyendo toda vida sobre la faz de la Tierra por contaminación radiactiva.
+		`;
 
 	// ====>>>>> NOTA!!!
 	// Parece ser que faltan los directores en el objeto Movie,
@@ -41,16 +41,7 @@ function MovieInfo({ item }: MovieInfoProps) {
 	};
 
 	return (
-		<div className='container w-full max-w-3xl bg-white borde text-white border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 p-4'>
-			<HeaderElement />
-			<div>
-				<div className='w-full'>
-					<p className=''>{defaultValueSynopsis}</p>
-					<GenresList />
-				</div>
-			</div>
-			<MovieInfoElement item={item} />
-		</div>
+		<><MovieInfoElement item={item} /></>
 	);
 }
 

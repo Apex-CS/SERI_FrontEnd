@@ -23,12 +23,10 @@ const ActionItem = ({ item }: ActionItemProps) => {
 	const handlerDislikeEvent = () => {};
 
 	const handlerEditEvent = () => {
-		console.log("🚀 ~ file: MovieItem.tsx:19 ~ handlerEditEvent ~ editMovieUrl:", editMovieUrl);
 		navigate(editMovieUrl);
 	};
 
 	const handlerViewEvent = () => {
-		console.log("🚀 ~ file: ActionItem.tsx:35 ~ handlerViewEvent ~ urlItem:", urlItem);
 		navigate(urlItem);
 	};
 

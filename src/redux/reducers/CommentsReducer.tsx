@@ -23,10 +23,9 @@ const commentsReducer: Reducer<CommentsState, Action> = (
         comments: action.payload,
       };
     case ADD_COMMENT:
-        console.log("🚀 ~ file: CommentsReducer.tsx:34 ~ action:", action)
         return {
             ...state,
-            comments: [...state.comments, action.payload],
+            comments: [action.payload, ...state.comments],
         };
     default:
       return state;

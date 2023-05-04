@@ -4,6 +4,8 @@ export interface Comment {
     id: number;
     name: string;
     body: string;
+    reviewdDate: Date,
+    raiting: number,
   }
   
 export interface CommentsState {
@@ -110,6 +112,7 @@ export type StreamingPlatformsCat = {
     name: string,
     logo: string, // Si no tambien hacerlo con Any
     select?: boolean,
+    url?: string,
 };
 
 export type Director = {

@@ -1,17 +1,21 @@
 import React, { useEffect } from "react";
 import { Provider } from 'react-redux';
-import { Loader } from "../../components";
-import { Movies } from "../../types/types";
+import { LabelTitle, Loader } from "../../components";
+import { GenreCat, Movies } from "../../types/types";
 import { getRandomClassification, getRandomNumber } from "../../utils/utils";
 import { MovieInfo } from "./components";
 import { useParams } from "react-router-dom";
-import CommentList from "./ComentList";
+import CommentList from "./components/ComentList";
 import store from "../../redux/store/store";
+import HeaderElement from "./components/HeaderElement";
+import GenresList from "./components/GenresList";
+import cinemaLogo from  '.././../resources/img/cinema-logo.png' //' cinema-logo.png'
+import MovieInfoElement from "./components/MovieInfoElement";
 
 function Movie({}) {
 	let { movieId } = useParams();
 	const imageURL = 'https://i.pinimg.com/474x/b2/7b/7b/b27b7bbd39877d9ea00bd70c9e467677--godfather-movie-film-making.jpg';
-
+	const logoURL = 'https://e7.pngegg.com/pngimages/674/509/png-clipart-popcorn-cinema-systems-corp-film-reel-popcorn-logo-film.png';
 		// Variable que optendra la url y mediante los parametros en ella se definira la pelicula para mostrar en la pagina
 		const url: string = "";
 		const defaultValueSynopsis =
@@ -62,8 +66,10 @@ function Movie({}) {
 			poster: 'https://m.media-amazon.com/images/M/MV5BZWI3ZTMxNjctMjdlNS00NmUwLWFiM2YtZDUyY2I3N2MxYTE0XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg',
 			title: "Dr Strangelove",
 			duration: getRandomNumber(240),
-			release_date: new Date(),
+			release_date: new Date('1964-01-29'),
 			likes: getRandomNumber(1000),
+			synopsis: `El general de la Fuerza Aérea de los Estados Unidos, Jack D. Ripper (Sterling Hayden; nombre que se pronuncia Jack The Ripper, Jack el Destripador), planea dar comienzo a una guerra nuclear con la Unión Soviética con el objetivo de impedir lo que considera una conspiración comunista para fluorizar el agua, contaminando así los "preciosos fluidos corporales" de los estadounidenses. Da la orden, sin la autorización del presidente Merkin Muffley (Peter Sellers), a su escuadra nuclear de combate, de bombardear sus respectivos objetivos dentro de la Unión Soviética, con la esperanza de que el presidente ordene un ataque a gran escala al no encontrar otra opción.
+			El general Ripper desconoce, sin embargo, que los soviéticos cuentan con un "Dispositivo del Fin del Mundo", el cual se activaría automáticamente en caso de detectar un ataque nuclear sobre territorio de la Unión Soviética, destruyendo toda vida sobre la faz de la Tierra por contaminación radiactiva.`,
 			classification: getRandomClassification(),
 		};
 		return movie;
@@ -85,48 +91,90 @@ function Movie({}) {
 		 */
 	};
 
+	function formatTime(minutes: number | undefined): string {
+		if (minutes) {
+			const hours = Math.floor(minutes / 60);
+			const remainingMinutes = minutes % 60;
+			
+			// Use template literals to format the output string
+			return `${hours}h ${remainingMinutes}m`;
+			
+		} else {
+			return '0H, Om';
+		}
+	  }
+
 	useEffect(() => {
 		setTimeout(() => {
 			setMovie(getMovieInfoById());
 		}, 1000);
 	}, []);
+	const tempGenrs: GenreCat[] = [{id: getRandomNumber(), description:"Mafia"}, {id: getRandomNumber(), description:"Drama"}, {id: getRandomNumber(), description:"Crimen"}];
 
 	return (
 		<Provider store={store}>
-		<div className='flex w-full flex-col content-center items-center '>
-			<div
-				id='movie-info'
-				className='flex flex-col w-full justify-center items-start content-center px-28 py-5'>
-
-					<div className='flex w-2/4 mb-3 items-center justify-around'>
-						<h1 className='text-2xl text-white'>{movie?.title}</h1>
-					</div>
-					
-					{movie ? (
-						<div className='flex flex-row justify-center items-start content-center w-full h-full max-h-max  '>
-							<div className='flex flex-col w-2/4 justify-around items-center'>
+			<div className='flex w-full flex-col content-center items-center '>
+				<div
+					id='movie-info'
+					className='flex flex-col w-8/12 justify-center items-center content-center px-20 pt-5 rounded-lg '>
+						{movie ? (
+							<div className='flex flex-row mt-10 justify-between items-center w-full h-full max-h-max'>
 								<img
-									className='object-contain h-3/6 w-5/12 transition-all duration-300 rounded-lg cursor-pointer filter hover:grayscale'
+									className='object-contain h-1/4 w-1/4 transition-all duration-300 rounded-lg cursor-pointer filter hover:grayscale'
 									src={movie.poster}
 									alt='poster'
 								/>
+								<div className='container w-3/4 flex flex-col justify-around items-center max-w-3xl borde text-white border-gray-200 rounded-lg '>
+									<div className='flex flex-col w-2/4 mb-5 items-center justify-around'>
+										<h1 className='text-2xl m-0 font-bold text-yellow-400'>{movie?.title}</h1>
+										<div className="flex flex-row justify-around items-center mb-2">
+											<GenresList listItems={tempGenrs} />
+											<p className='text-zinc-200 px-1 py-1'>{formatTime(movie?.duration)}</p>{}
+										</div>
+									</div>
+									<HeaderElement />
+									<img
+										className='object-contain h-1/4 w-2/6 transition-all duration-300 rounded-lg cursor-pointer filter'
+										src={cinemaLogo}
+										alt="logo-cinema" />
+								</div>
+								
+								
 							</div>
-							<MovieInfo item={movie} />
+						) : (
+							<Loader />
+						)}
+
+						<div className='w-full mx-0 mt-9'>
+							<LabelTitle customClass="text-xl ml-1 my-0" title='STORYLINE'/>
+							<p className='font-sans text-xl leading-8 text-justify my-5 text-zinc-300'>
+								{movie?.synopsis}
+							</p>
+							<div className="flex flex-row items-center my-5 justify-start">
+								{tempGenrs.map((item) => (
+									<button
+										type='button'
+										className='text-white rounded-full font-medium border-2 border-zinc-500 text-sm px-5 py-2 text-center mr-3 hover:bg-zinc-400 active:zinc-400 focus:outline-none'
+										>
+										{item.description}
+									</button>
+								))}
+							</div>
 						</div>
-					) : (
-						<Loader />
-					)}
-			</div>
-			<div
-				id='comment-div'
-				className='flex flex-col w-4/5 justify-center items-center p-5'>
+						<div className="flex w-full items-start justify-start">
+							{movie && (<MovieInfoElement item={movie} />)}
+						</div>
+				</div>
 				<div
-					className='w-full flex flex-col justify-center items-center'
-					id='comments-box'>
-					<CommentList />
+					id='comment-div'
+					className='flex flex-col w-8/12 justify-center items-center px-20'>
+					<div
+						className='w-full flex flex-col justify-center items-center'
+						id='comments-box'>
+						<CommentList />
+					</div>
 				</div>
 			</div>
-		</div>
 		</Provider>
 	);
 }
