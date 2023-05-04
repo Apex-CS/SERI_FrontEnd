@@ -57,6 +57,15 @@
   animation-delay: calc(0.1s * var(--i));
 
 }
+
+.filled {
+  color: #ffc107;
+}
+
+.no-filled {
+  color: #e4e5e9;
+}
+
 @keyframes waviy {
   0%,
   40%,
