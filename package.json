@@ -1,5 +1,5 @@
 {
-  "homepage": "https://lgoensApex.github.io/SERI_FrontEnd/",
+  "homepage": "https://apex-cs.github.io/SERI_FrontEnd/",
   "name": "escape-room-frontend",
   "version": "0.1.0",
   "private": true,
@@ -16,7 +16,7 @@
     "react-date-picker": "^10.0.3",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.5",
-    "react-router-dom": "^6.8.2",
+    "react-router-dom": "^6.11.1",
     "react-scripts": "5.0.1",
     "react-tailwindcss-datepicker": "^1.5.1",
     "redux": "^4.2.1",
