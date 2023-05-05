@@ -13,7 +13,7 @@ function MovieItem({ item }: MovieItemProps) {
 			<Link to={`/movie/${item.id}`} className='flex items-center'>
 				<div className="flex flex-col w-5/5">
 					
-					<div style={{height: 415, width: 375}} className="">
+					<div style={{height: 400, width: 315}} className="">
 						<img
 							className='p-8 rounded-t-lg rounded-lg w-full h-full shadow-xl dark:shadow-gray-800'
 							src={item.poster}
@@ -21,8 +21,8 @@ function MovieItem({ item }: MovieItemProps) {
 						/>
 					</div>
 					
-					<div className='px-5 pb-5 flex flex-col justify-center items-start'>
-						<h5 className='font-semibold tracking-tight text-lg text-gray-900 dark:text-white'>
+					<div className='px-5 pb-0 flex flex-col justify-center items-start'>
+						<h5 className='font-semibold tracking-tight h-14 text-lg text-gray-900 dark:text-white'>
 							{item.title}
 						</h5>
 

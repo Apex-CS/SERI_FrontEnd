@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
-import { Carousel, List, Loader, MovieItem, NewsLetter } from "../../components";
-import { useFetch } from "../../hooks";
+import { Carousel, LabelTitle, List, Loader, MovieItem, NewsLetter } from "../../components";
 import { Movies } from "../../types/types";
 import "../../index.css";
  import {
@@ -13,9 +12,6 @@ function Home() {
 	const [listDataTop10Movies, setListDataTop10Movies] = React.useState<Movies[]>();
 	const [listDataTop10ComingTheaters, setListDataTop10ComingTheaters] = React.useState<Movies[]>();
 	const [carrouselList, setCarrouselList] = React.useState<Movies[]>([]);
-
-	const url = "https://pokeapi.co/api/v2/pokemon/pikachu";
-	const response = useFetch(url);
 
 	const getTop10Movies = () => {
 		/** Funcion que obtiene las 10 mejores peliculas calificadas en el sistema */
@@ -55,8 +51,8 @@ function Home() {
 	}, []);
 
 	return (
-		<div className='flex justify-center flex-col container mx-auto mt-4 mb-4'>
-			<div className='w-full flex justify-between flex-row items-center'>
+		<div className='flex justify-center items-center flex-col container mx-auto mt-4 mb-4'>
+			<div className='w-5/6 flex justify-between flex-row items-center'>
 				<div
 					id='container-list'
 					className='flex row-auto justify-between w-3/4'>
@@ -82,23 +78,25 @@ function Home() {
 				</div>
 			</div>
 
-			<div className="flex items-center justify-start pt-8 pb-3 mx-2">
-				<h1 className='font-bold ml-1 dark:text-yellow-400'>MOVIES RELEASED TODAY</h1>
-			</div>
+			<div className="flex flex-col w-5/6">
+				<div className="flex items-center w-full justify-start pt-8 pb-3 ml-6">
+					<LabelTitle customClass="font-bold ml-1" title="MOVIES RELEASED TODAY" />
+				</div>
 
-			<Carousel
-				show={4}
-				// infiniteLoop
-				withIndicator>
-				{carrouselList ? (
-					carrouselList.map((item) => (
-						<MovieItem
-							item={item}
-							data-testid='carousel-item-1'
-						/>
-					))
-				) : ( <Loader /> )}
-			</Carousel>
+				<Carousel
+					show={3.5}
+					withIndicator>
+					{carrouselList ? (
+						carrouselList.map((item) => (
+							<MovieItem
+								item={item}
+								data-testid='carousel-item-1'
+							/>
+						))
+					) : ( <Loader /> )}
+				</Carousel>
+			</div>
+			
 		</div>
 	);
 }
