@@ -42,7 +42,7 @@ function Navbar() {
 		<nav
 			id='navbar-container'
 			className='bg-white pt-4 px-2 sm:px-4 py-2.5 dark:bg-gray-900 w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600'>
-			<div className='container flex flex-wrap items-center justify-between mx-auto'>
+			<div className='container flex flex-wrap items-center justify-between mx-auto w-4/6'>
 				<Link to={headerLogoButon.href} className='flex items-center'>
 					<img
 						src={headerLogoButon.logo}
