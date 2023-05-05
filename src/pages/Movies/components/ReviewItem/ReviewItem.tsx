@@ -8,37 +8,24 @@ interface ReviewItemProps {
 
 function ReviewItem({ item }: ReviewItemProps) {
 	return (
-		<article className=" w-5/12 flex flex-col " >
-			<div className="box arrow-bottom p-5 mt-5 border-2 mx-1'" >
-				<div className='flex items-center justify-between my-3'>
-					<StarRating onlyReview={true} customClass="w-4 h-4" rating={item.raiting} />
-					<div className='space-y-1 font-medium dark:text-white'>
-						<p>
-							<time
-								dateTime='2014-08-16 19:00'
-								className='block text-sm text-gray-500 dark:text-gray-400'>
-								Reviewed in {item.reviewdDate.toDateString()}
-							</time>
-						</p>
+		<div className="testimonial-box">
+			<article>
+				<div className="box-top">
+					<div className="profile">
+						<div className="name-user">
+							<strong>{item.name}</strong>
+							<span>{item.reviewedDate.toDateString()}</span>
+						</div>
+					</div>
+					<div className="reviews">
+						<div className="flex items-center mb-1">
+							<StarRating onlyReview={true} customClass="w-7 h-7 text-yellow-400" rating={item.rating} />
+						</div>
 					</div>
 				</div>
-				<p className='mb-2 text-gray-500 dark:text-gray-400'>
-					{item.body}
-				</p>
-			</div>
-
-			<div className='flex items-center justify-start mt-6 mb-4 mr-10 space-x-4'>
-				<img
-					className='ml-11 w-10 h-10 rounded-full'
-					src='https://wallpapers.com/images/hd/cool-profile-picture-ld8f4n1qemczkrig.jpg'
-					alt=''
-				/>
-				<h3 className='ml-2 text-sm font-semibold text-gray-300'>
-						{item.name}
-					</h3>
-				
-			</div>
-		</article>
+				<p className="mb-2 text-gray-500 dark:text-gray-400">{item.body}</p>
+			</article>
+		</div>
 	);
 }
 

@@ -27,22 +27,20 @@ const CommentsList: React.FC<CommentsListProps> = ({ comments, fetchComments }) 
   const dispatch = useDispatch();
 
   const handlerOnSaveMessage = (titleValue: string, commentValue: string) => {
-    const newComment: Comment = {name: titleValue, body: commentValue, id: getRandomNumber(10000), reviewdDate: new Date(), raiting: raiting };
+    const newComment: Comment = {name: titleValue, body: commentValue, id: getRandomNumber(10000), reviewedDate: new Date(), rating: raiting };
     // make the POST CALL to the API to POST the new comment
     dispatch(addComment(newComment));
   };
 
   return (
-    <div
-      className='w-full flex flex-col justify-center items-center'
-      id='comments-box'>
+    <div className='w-full flex flex-col justify-center items-center' id='comments-box'>
       <div className='flex w-full flex-col justify-start items-start p-1'>
         <div className='flex items-start justify-start'>
           <LabelTitle customClass='text-xl ml-1 font-bold text-yellow-400' title='RATE AND REVIEW' />
         </div>
         <CommentBox setRaiting={setRaiting} raiting={raiting} onSaveCommentEvent={handlerOnSaveMessage} />
       </div>
-      <div className='flex  justify-between items-start flex-wrap w-full'>
+      <div className='grid grid-cols-2 justify-between pr-4 py-0'>
         {comments.map((comment: Comment) => (
           <ReviewItem  item={comment} />
         ))}

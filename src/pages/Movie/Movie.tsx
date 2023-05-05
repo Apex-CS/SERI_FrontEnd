@@ -165,12 +165,8 @@ function Movie({}) {
 							{movie && (<MovieInfoElement item={movie} />)}
 						</div>
 				</div>
-				<div
-					id='comment-div'
-					className='flex flex-col w-8/12 justify-center items-center px-20'>
-					<div
-						className='w-full flex flex-col justify-center items-center'
-						id='comments-box'>
+				<div id='comment-div' className='flex flex-col w-8/12 justify-center items-center px-20'>
+					<div className='w-full flex flex-col justify-center items-center' id='comments-box'>
 						<CommentList />
 					</div>
 				</div>

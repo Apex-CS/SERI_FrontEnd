@@ -44,7 +44,7 @@ function CommentBox({onSaveCommentEvent, setRaiting, raiting,}: CommentBoxInterf
   return (
     <div className="w-full container">
       <form onSubmit={onSubmit}>
-        <div className="w-2/4 mb-4">
+        <div className="w-full mb-4">
           <div className="pr-4 py-2 rounded-t-lg">
           <div className="w-full flex items-end justify-end my-2">
             <StarRating customClass="w-12 h-12" onRatingChange={onRatingChangeEvent} rating={raiting} />

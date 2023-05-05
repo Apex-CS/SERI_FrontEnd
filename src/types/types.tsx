@@ -4,8 +4,8 @@ export interface Comment {
     id: number;
     name: string;
     body: string;
-    reviewdDate: Date,
-    raiting: number,
+    reviewedDate: Date,
+    rating: number,
   }
   
 export interface CommentsState {
