@@ -14,8 +14,8 @@ function MovieItem({ item }: MovieItemProps) {
 			<div
 				className={`
 					w-full flex flex-col items-center justify-around
-					bg-white border border-gray-200 
-					hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700
+				    border border-gray-200 
+					
 					rounded-lg shadow 
 					md:flex-row
 					`}>

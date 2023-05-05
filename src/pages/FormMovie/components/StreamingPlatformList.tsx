@@ -1,17 +1,21 @@
 import { useState } from "react";
 import { StreamingPlatformsCat } from "../../../types/types";
+import './StreamingPlatform.css';
+
 interface StreamingPlatformListProps {
 	listDataRender: StreamingPlatformsCat[];
 	setListDataRender?: React.Dispatch<React.SetStateAction<StreamingPlatformsCat[]>>;
+	selectFlag?: boolean,
 }
 interface ElementListProps {
 	itemPlatform: StreamingPlatformsCat;
 	setListDataRender?: React.Dispatch<React.SetStateAction<StreamingPlatformsCat[]>>;
+	selectFlag: boolean;
 }
 const SELECT_GENR_CLASS = "border-4 border-pink-600";
 const BUTTON_DEFAULT_CLASS = ' my-2 mx-1 rounded-xl flex justify-center items-center '
 
-const ListElement = ({ itemPlatform, setListDataRender }: ElementListProps) => {
+const ListElement = ({ itemPlatform, setListDataRender, selectFlag = true }: ElementListProps) => {
 	const [classFlag, setClassFlag] = useState(itemPlatform.select);
 
 	/**
@@ -53,6 +57,7 @@ const ListElement = ({ itemPlatform, setListDataRender }: ElementListProps) => {
 		<button
 			type='button'
 			style={{ listStyle: "none" }}
+			disabled={!selectFlag}
 			onClick={(event) => handlerGenrSelector(event)}
 			className={
 				classFlag
@@ -60,12 +65,16 @@ const ListElement = ({ itemPlatform, setListDataRender }: ElementListProps) => {
 					: BUTTON_DEFAULT_CLASS
 			}
 			key={itemPlatform.id}>
-			<img
-				title={itemPlatform.name}
-				className='w-16 h-16 rounded-full'
-				src={itemPlatform?.logo}
-				alt={"item-logo"}
-			/>
+				<div className="bubble bg-white rounded-full">
+					<img
+						
+						title={itemPlatform.name}
+						className='icon'
+						src={itemPlatform?.logo}
+						alt={"item-logo"}
+					/>
+				</div>
+			
 		</button>
 	);
 };
@@ -73,13 +82,14 @@ const ListElement = ({ itemPlatform, setListDataRender }: ElementListProps) => {
 const StreamingPlatformList = ({
 	listDataRender,
 	setListDataRender,
+	selectFlag = true,
 }: StreamingPlatformListProps) => {
 	
 	return (
 		<ul className='flex flex-row justify-around'>
 			{listDataRender?.map((item) => (
 				<li className='flex flex-col  items-center justify-center'>
-					<ListElement itemPlatform={item} setListDataRender={setListDataRender}/>
+					<ListElement itemPlatform={item} setListDataRender={setListDataRender} selectFlag={selectFlag}/>
 				</li>
 			))}
 		</ul>

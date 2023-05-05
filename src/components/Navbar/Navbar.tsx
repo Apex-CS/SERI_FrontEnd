@@ -63,7 +63,7 @@ function Navbar() {
 						))}
 					</ul>
 				</div>
-				<div className='flex justify-between items-center'>
+				<div className='flex justify-between items-center pr-24'>
 					<Button
 						label='Sign In'
 						onClickHandler={signIn}

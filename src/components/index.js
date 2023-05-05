@@ -17,6 +17,8 @@ import Button from "./Inputs/Button/Button";
 import Pagination from "./Pagination/Pagination";
 import InputTextArea from "./Inputs/InputTextArea/InputTextArea";
 import StreamingPlatformElement from "./StreamingPlatform/StremingPlatformElement";
+import StarRating from "./StarRanking/StarRanking";
+import LabelTitle from "./Labels/LabelTitle";
 
 export {
     MovieItem,
@@ -38,4 +40,6 @@ export {
     Pagination,
     InputTextArea,
     StreamingPlatformElement,
+    StarRating,
+    LabelTitle,
 };
