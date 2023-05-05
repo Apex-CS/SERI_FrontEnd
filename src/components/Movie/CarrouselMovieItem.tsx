@@ -5,24 +5,24 @@ interface MovieItemProps {
 	item: Movies;
 }
 
-function MovieItem({ item }: MovieItemProps) {
+function CarrouselMovieItem({ item }: MovieItemProps) {
 	const statPercent = (item.likes / 100) * 5
 	const starRaiting = Math.round(statPercent) ;
 	return (
-		<div className='w-full ml-3 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'>
-			<Link to={`/movie/${item.id}`} className='flex items-center'>
-				<div className="flex flex-col w-5/5">
-					
-					<div style={{height: 400, width: 315}} className="">
-						<img
-							className='p-8 rounded-t-lg rounded-lg w-full h-full shadow-xl dark:shadow-gray-800'
-							src={item.poster}
-							alt='movie'
-						/>
+		<div className='w-10/12 ml-3 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'>
+			<Link to={`/movie/${item.id}`} className='flex justify-center  items-center'>
+				<div className="flex flex-col w-5/5 items-start justify-start">
+					<div className="w-full flex items-center justify-center">
+						<div style={{height: 350, width: 250}} className="my-2 mt-4 flex justify-center items-center">
+							<img
+								className='p-2 rounded-t-lg w-full h-full '
+								src={item.poster}
+								alt='movie'
+							/>
+						</div>
 					</div>
-					
-					<div className='px-5 pb-0 flex flex-col justify-center items-start'>
-						<h5 className='font-semibold tracking-tight h-14 text-lg text-gray-900 dark:text-white'>
+					<div className='px-1 pb-0 flex flex-col justify-center w-10/12 items-start'>
+						<h5 className='font-semibold tracking-tight h-14  flex-wrap text-lg text-gray-900 dark:text-white'>
 							{item.title}
 						</h5>
 
@@ -49,4 +49,4 @@ function MovieItem({ item }: MovieItemProps) {
 	);
 }
 
-export default MovieItem;
+export default CarrouselMovieItem;

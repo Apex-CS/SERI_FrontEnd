@@ -1,4 +1,4 @@
-import MovieItem from "./Movie/MovieItem";
+import CarrouselMovieItem from "./Movie/CarrouselMovieItem";
 import Footer from "./Footer/Footer";
 import Navbar from "./Navbar/Navbar";
 import List from "./List/List";
@@ -19,9 +19,10 @@ import InputTextArea from "./Inputs/InputTextArea/InputTextArea";
 import StreamingPlatformElement from "./StreamingPlatform/StremingPlatformElement";
 import StarRating from "./StarRanking/StarRanking";
 import LabelTitle from "./Labels/LabelTitle";
+import LabelSubtitle from "./Labels/LabelSubTitle";
 
 export {
-    MovieItem,
+    CarrouselMovieItem,
     Footer,
     Navbar,
     List,
@@ -42,4 +43,5 @@ export {
     StreamingPlatformElement,
     StarRating,
     LabelTitle,
+    LabelSubtitle,
 };
