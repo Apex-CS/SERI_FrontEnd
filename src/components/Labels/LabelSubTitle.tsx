@@ -1,6 +1,3 @@
-import { LabelSizeEnum } from "../../types/types";
-
-
 interface LabelSubtitleProps {
     subtitle: string,
     customClass?: string,
