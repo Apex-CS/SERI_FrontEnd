@@ -1,14 +1,19 @@
 {
   "files": {
-    "main.css": "/SERI_FrontEnd/static/css/main.2b440f38.css",
-    "main.js": "/SERI_FrontEnd/static/js/main.bae8ebf8.js",
+    "main.css": "/SERI_FrontEnd/static/css/main.139ce466.css",
+    "main.js": "/SERI_FrontEnd/static/js/main.054ff231.js",
+    "static/media/cinema-logo.png": "/SERI_FrontEnd/static/media/cinema-logo.5cabecb58793654801a7.png",
+    "static/media/disney_plus.svg": "/SERI_FrontEnd/static/media/disney_plus.cca99c9ff6b9b830880e446f77a95201.svg",
+    "static/media/netflix.svg": "/SERI_FrontEnd/static/media/netflix.2460ec0964e1097a952e30b63518e3d8.svg",
     "static/media/Apex_logo_horizontal_white.png": "/SERI_FrontEnd/static/media/Apex_logo_horizontal_white.ae512bd79215d59686f7.png",
+    "static/media/amazon_prime_video.svg": "/SERI_FrontEnd/static/media/amazon_prime_video.015113c17d8f9846aa8842473736c6e9.svg",
+    "static/media/apple_tv.svg": "/SERI_FrontEnd/static/media/apple_tv.720dd8284642fefd1020cc7932af760a.svg",
     "index.html": "/SERI_FrontEnd/index.html",
-    "main.2b440f38.css.map": "/SERI_FrontEnd/static/css/main.2b440f38.css.map",
-    "main.bae8ebf8.js.map": "/SERI_FrontEnd/static/js/main.bae8ebf8.js.map"
+    "main.139ce466.css.map": "/SERI_FrontEnd/static/css/main.139ce466.css.map",
+    "main.054ff231.js.map": "/SERI_FrontEnd/static/js/main.054ff231.js.map"
   },
   "entrypoints": [
-    "static/css/main.2b440f38.css",
-    "static/js/main.bae8ebf8.js"
+    "static/css/main.139ce466.css",
+    "static/js/main.054ff231.js"
   ]
 }
