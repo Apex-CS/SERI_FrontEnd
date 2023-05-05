@@ -6,8 +6,18 @@ import { getRandomClassification, getRandomNumber } from "../../utils/utils";
 const moviesListData: Movies[] = [
 	{
 		id: getRandomNumber(),
-		poster: "./movies-wallpaper/2001-space-odyssey.jpg",
+		poster: "https://m.media-amazon.com/images/M/MV5BMmNlYzRiNDctZWNhMi00MzI4LThkZTctMTUzMmZkMmFmNThmXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_FMjpg_UX1000_.jpg",
 		title: "2001 Space Odessey",
+		duration: getRandomNumber(240),
+		release_date: new Date(),
+		likes: getRandomNumber(1000),
+		classification: getRandomClassification(),
+		
+	},
+	{
+		id: getRandomNumber(),
+		poster: "https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg",
+		title: "The Godfather",
 		duration: getRandomNumber(240),
 		release_date: new Date(),
 		likes: getRandomNumber(1000),
@@ -15,16 +25,7 @@ const moviesListData: Movies[] = [
 	},
 	{
 		id: getRandomNumber(),
-		poster: "./movies-wallpaper/2001-space-odyssey.jpg",
-		title: "2001 Space Odessey",
-		duration: getRandomNumber(240),
-		release_date: new Date(),
-		likes: getRandomNumber(1000),
-		classification: getRandomClassification(),
-	},
-	{
-		id: getRandomNumber(),
-		poster: "./movies-wallpaper/apocalypse-now.jpg",
+		poster: "https://m.media-amazon.com/images/M/MV5BYmQyNTA1ZGItNjZjMi00NzFlLWEzMWEtNWMwN2Q2MjJhYzEyXkEyXkFqcGdeQXVyMjUzOTY1NTc@._V1_FMjpg_UX1000_.jpg",
 		title: "Apocalypse Now",
 		duration: getRandomNumber(240),
 		release_date: new Date(),
@@ -33,7 +34,7 @@ const moviesListData: Movies[] = [
 	},
 	{
 		id: getRandomNumber(),
-		poster: "./movies-wallpaper/dr-strangelove.jpg",
+		poster: "https://m.media-amazon.com/images/M/MV5BZWI3ZTMxNjctMjdlNS00NmUwLWFiM2YtZDUyY2I3N2MxYTE0XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg",
 		title: "Dr Strangelove",
 		duration: getRandomNumber(240),
 		release_date: new Date(),
@@ -42,7 +43,7 @@ const moviesListData: Movies[] = [
 	},
 	{
 		id: getRandomNumber(),
-		poster: "./movies-wallpaper/paprika.jpg",
+		poster: "https://m.media-amazon.com/images/M/MV5BNDI4MGEwZDAtZDg0Yy00MjFhLTg1MjctODdmZTMyNTUyNDI3L2ltYWdlXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg",
 		title: "Paprika",
 		duration: getRandomNumber(240),
 		release_date: new Date(),
