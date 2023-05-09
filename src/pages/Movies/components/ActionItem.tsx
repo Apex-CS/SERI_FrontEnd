@@ -32,7 +32,7 @@ const ActionItem = ({ item }: ActionItemProps) => {
 	};
 
 	return (
-		<div className='flex  justify-start flex-col items-end w-96 mr-0'>
+		<div className='flex  justify-start flex-col items-end w-96 md:w-44 lg:mr-0 md:mr-5 md:items-start mr-0'>
 			<div className="px-5 pb-10">
 				<div className="flex justify-center">
 					<LabelSubtitle textSize="text-3xl" customClass="mb-6 text-white" subtitle="Vote!" />
