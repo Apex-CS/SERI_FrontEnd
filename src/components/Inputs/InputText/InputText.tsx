@@ -1,5 +1,6 @@
 import { InputTextTypeEnum } from "../../../types/generalTypes";
 import { objectIsNull } from "../../../utils/utils";
+import LabelSubtitle from "../../Labels/LabelSubTitle";
 
 interface InputTextProps {
 	type?: string;
@@ -16,12 +17,13 @@ interface InputTextProps {
 	customClassInput?: string;
 	onSubmitEvent?: () => void;
 	maxNumber?: number;
+	customClassLabel?: string,
 }
 
 function InputText({
 	type = "text",
 	name = "",
-	label,
+	label = '',
 	id = "",
 	placeHolder,
 	required = false,
@@ -29,40 +31,31 @@ function InputText({
 	numberValue,
 	setValue,
 	setNumberValue,
-	classNameContainer = 'relative z-0 mb-6 group',
+	classNameContainer = 'flex flex-col items-start justify-start relative z-0 mb-6 group rounded',
 	onSubmitEvent,
 	maxNumber,
 	customClassInput,
+	customClassLabel = '',
 }: InputTextProps) {
-	const classLabel = `
-    absolute text-sm text-gray-500 dark:text-gray-400 
-    duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0]
-    peer-placeholder-shown:scale-100 
-    peer-placeholder-shown:translate-y-0
-    peer-focus:font-medium 
-    peer-focus:scale-75
-    peer-focus:-translate-y-6
-    peer-focus:text-blue-600
-    peer-focus:dark:text-blue-500 
-    peer-focus:left-0
-    `;
-	const customClass = `--tw-translate-y: -1.5rem`;
+	const classLabel = `text-lg text-white  mb-1 ${customClassLabel} `;
 
 	const DEFAULT_CLASS_INPUT = customClassInput
 		? customClassInput
 		: `
-  block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 
-  border-gray-300 appearance-none dark:text-white dark:border-gray-600 
+  block py-2 px-0 w-full text-sm text-gray-900 bg-white border-0 border-b-2 
+  border-gray-300 appearance-none dark:border-gray-600 rounded
   dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer`;
 
 	// This function is called when the input changes
 	const inputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const inputValue = event?.target?.value;
 		if (type === 'number' && setNumberValue) {
+			console.log("🚀 ~ file: InputText.tsx:58 ~ inputHandler ~ Number(inputValue):", Number(inputValue))
 			setNumberValue(Number(inputValue))
 		} else if (setValue){
 			setValue(inputValue);
 		}
+			
 	};
 
 	const handleKeyboardEvent = (event: React.KeyboardEvent<HTMLElement>) => {
@@ -77,11 +70,13 @@ function InputText({
 
 	return (
 		<div className={classNameContainer}>
+			<LabelSubtitle customClass={classLabel} subtitle={label} /> 
 			<input
 				onKeyDown={handleKeyboardEvent}
 				type={type}
 				name={name}
 				max={maxNumber}
+				min={1}
 				value={type !== 'number' ? value : numberValue}
 				onChange={inputHandler}
 				id={id}
@@ -89,18 +84,7 @@ function InputText({
 				placeholder={placeHolder}
 				required={required}
 			/>
-			{label && (
-				<label
-					htmlFor={id}
-					style={
-						placeHolder !== undefined || value !== undefined
-							? { transform: `translateY(-20px)` }
-							: { transform: `translateY(0px)` }
-					}
-					className={classLabel}>
-					{label}:
-				</label>
-			)}
+			
 		</div>
 	);
 }

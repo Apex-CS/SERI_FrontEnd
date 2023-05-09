@@ -9,15 +9,19 @@ function App() {
 			<div className='header-container'>
 				<Navbar />
 			</div>
-			<div className='flex flex-col min-h-screen text-base font-sans children-container'>
-				<Routes>
-					<Route path={PATH_HOME} element={<Home />} />
-					<Route path={PATH_ADD_MOVIE} element={<AddNewMovie />} />
-					<Route path={PATH_EDIT_MOVIE} element={<EditMovie />} />
-					<Route path={PATH_MOVIE} element={<Movie />} />
-					<Route path={PATH_MOVIES} element={<Movies />} />
-					<Route path={PATH_ERROR_PAGE} element={<PageNotFound />} />
-				</Routes>
+			<div className='flex flex-col min-h-screen text-base font-sans items-center justify-center children-container'>
+			<div className="flex w-full items-center justify-center">
+				<div
+					className='flex w-9/12 flex-col justify-center items-center '>
+						<Routes>
+							<Route path={PATH_HOME} element={<Home />} />
+							<Route path={PATH_ADD_MOVIE} element={<AddNewMovie />} />
+							<Route path={PATH_EDIT_MOVIE} element={<EditMovie />} />
+							<Route path={PATH_MOVIE} element={<Movie />} />
+							<Route path={PATH_MOVIES} element={<Movies />} />
+							<Route path={PATH_ERROR_PAGE} element={<PageNotFound />} />
+						</Routes>
+				</div></div>
 			</div>
 			<Footer />
 		</div>

@@ -1,3 +1,5 @@
+import LabelSubtitle from "../../Labels/LabelSubTitle";
+
 interface InputTextAreaProps {
 	name?: string;
 	label: string;
@@ -25,16 +27,12 @@ function InputTextArea({
 
 	return (
 		<div>
-			<label
-				htmlFor='synopsis'
-				className='block mb-2 text-sm font-medium  dark:text-white'>
-				{label}:
-			</label>
+			<LabelSubtitle customClass="my-2 " subtitle="Synopsis" />
 			<textarea
 				id={id}
                 name={name}
 				rows={4}
-				className='block p-2.5 w-full text-sm  bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
+				className='block p-2.5 w-full text-sm text-black bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500'
 				value={value}
                 placeholder={placeHolder}
                 required={required}

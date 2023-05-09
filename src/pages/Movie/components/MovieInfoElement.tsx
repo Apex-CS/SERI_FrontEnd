@@ -3,10 +3,10 @@ import { Director, Movies, Star, StreamingPlatformsCat, Writer } from "../../../
 import { getRandomNumber } from "../../../utils/utils";
 import { StreamingPlatformList } from "../../FormMovie/components";
 import appleLogo from '../../../resources/img/logos-stream/apple_tv.svg';
-import amaoznLogo from '../../../resources/img/logos-stream/amazon_prime_video.svg';
+import amazonLogo from '../../../resources/img/logos-stream/amazon_prime_video.svg';
 import netflixLogo from '../../../resources/img/logos-stream/netflix.svg';
 import disneyLogo from '../../../resources/img/logos-stream/disney_plus.svg';
-// import hboLogo from '../../../resources/img/logos-stream/hbo_max.svg'
+import hboLogo from '../../../resources/img/logos-stream/hbo_max.svg'
 interface MovieInfoElementProps {
     item: Movies
 };
@@ -88,7 +88,7 @@ const MovieInfoElement = ({item}: MovieInfoElementProps) => {
 
     const tempStreaming: StreamingPlatformsCat[] = [
 		{
-			logo: amaoznLogo,
+			logo: amazonLogo,
             name: 'Amazon',
             id: '1',
 			url: "https://www.primevideo.com",

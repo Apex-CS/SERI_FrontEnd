@@ -39,7 +39,7 @@ const ContainerSearch = ({
 
     return (
         <div>
-            <div className={`flex w-full my-2 flex-col items-start justify-center  bg-gray-700 p-0 rounded-lg`}>
+            <div className={`flex w-full my-2 flex-col items-start justify-center p-0 rounded-lg`}>
                 <div className={`flex flex-row w-full items-center justify-center mt-3`}>
                     <h1 className="w-20 mx-3 flex items-center justify-center" >{label}:</h1>
                     <Search
@@ -49,7 +49,7 @@ const ContainerSearch = ({
                         onSubmit={onSubmitEventHandler}
                     />
                 </div>
-                <ul className='flex flex-wrap justify-around items-center flex-row w-full list-none my-2 py-2 bg-gray-700 text-gray-500 list-inside dark:text-gray-400'>
+                <ul className='flex flex-wrap justify-around items-center flex-row w-full list-none my-2 py-2  text-gray-500 list-inside dark:text-gray-400'>
                     {listData?.map((item) => (
                         <li onClick={() => clickHandlerList(item)} className="focus:outline-none text-white focus:ring-4 focus:ring-purple-300 font-medium rounded-lg m-1 px-3 py-1  bg-yellow-700 " key={getRandomNumber(1000000)}>
                             <h1>{item.name}</h1>

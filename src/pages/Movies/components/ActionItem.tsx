@@ -32,30 +32,24 @@ const ActionItem = ({ item }: ActionItemProps) => {
 	};
 
 	return (
-		<div className='flex  py-5 justify-start flex-col items-center w-40 mr-10'>
-			<div className="px-5 pb-5">
+		<div className='flex  justify-start flex-col items-end w-96 mr-0'>
+			<div className="px-5 pb-10">
 				<div className="flex justify-center">
-					<LabelSubtitle customClass="mb-12" subtitle="Vote!" />
+					<LabelSubtitle textSize="text-3xl" customClass="mb-6 text-white" subtitle="Vote!" />
 				</div>
 				
 				<div className={classIconContainer}>
-					<button className={classButtons}>
-						<Like />
+					<button className="m-3 hover:bg-gray-500 rounded-lg border-2 border-yellow-500 p-2 flex items-center justify-center">
+						<div className='w-6 '>
+							<Like width={24} height={24} color="#E1AE2A"
+							/>
+						</div>
 					</button>
-					<button className={classButtons}>
-						<DisLike />
-					</button>
-				</div>
-				<div className={`${classIconContainer} mb-2`}>
-					<button
-						onClick={handlerEditEvent}
-						className={classButtons}>
-						<Pencil />
-					</button>
-					<button
-						onClick={handlerViewEvent}
-						className={classButtons}>
-						<Eye />
+					<button className="m-3 hover:bg-gray-500 rounded-lg border-2 border-red-700 p-2 flex items-center justify-center" >
+						<div className='rotate-180 w-6'>
+							<Like width={24} height={24} color="#C70039"
+							/>
+						</div>
 					</button>
 				</div>
 			</div>
