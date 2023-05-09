@@ -2,12 +2,12 @@ import { IconProps } from "../../types/generalTypes";
 
 const defaultColor = "#fff";
 
-function Like({ color = defaultColor }: IconProps) {
+function Like({ color = defaultColor, height = 16, width  = 16}: IconProps) {
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
-			width='16'
-			height='16'
+			width={width}
+			height={height}
 			fill={color}
 			className='bi bi-hand-thumbs-up-fill'
 			viewBox='0 0 16 16'>

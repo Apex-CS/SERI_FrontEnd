@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { DisLike, Eye, Like, Pencil } from "../../../resources/svg/MoviesIcons";
 import { Movies } from "../../../types/types";
+import { LabelSubtitle } from "../../../components";
 
 interface ActionItemProps {
 	item: Movies;
@@ -11,12 +12,12 @@ const ActionItem = ({ item }: ActionItemProps) => {
 	const urlItem = `/movie/movieId:${item.id}`;
 	const editMovieUrl = `/edit-movie/movieId:${item.id}`;
 
-	const classButtons = `text-white m-4 bg-blue-700 h-22
-        hover:bg-blue-800 focus:ring-4 focus:outline-none 
-        focus:ring-blue-300 font-medium rounded-lg text-sm 
+	const classButtons = `text-white m-3 bg-yellow-500 h-22
+        hover:bg-yellow-800 focus:ring-4 focus:outline-none 
+        focus:ring-yellow-300 font-medium rounded-lg text-sm 
         p-2.5 text-center inline-flex items-center mr-2 
-        dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800`;
-	const classIconContainer = `flex flex-row m-6`;
+        dark:bg-yellow-500 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800`;
+	const classIconContainer = `flex flex-row mx-6 my-2`;
 
 	const handlerLikeEvent = () => {};
 
@@ -31,28 +32,28 @@ const ActionItem = ({ item }: ActionItemProps) => {
 	};
 
 	return (
-		<div className='flex justify-center flex-col items-center w-40'>
-			<h1 className='text-white'>Vote!</h1>
-			<div className={classIconContainer}>
-				<button className={classButtons}>
-					<Like />
-				</button>
-				<button className={classButtons}>
-					<DisLike />
-				</button>
+		<div className='flex  justify-start flex-col items-end w-96 mr-0'>
+			<div className="px-5 pb-10">
+				<div className="flex justify-center">
+					<LabelSubtitle textSize="text-3xl" customClass="mb-6 text-white" subtitle="Vote!" />
+				</div>
+				
+				<div className={classIconContainer}>
+					<button className="m-3 hover:bg-gray-500 rounded-lg border-2 border-yellow-500 p-2 flex items-center justify-center">
+						<div className='w-6 '>
+							<Like width={24} height={24} color="#E1AE2A"
+							/>
+						</div>
+					</button>
+					<button className="m-3 hover:bg-gray-500 rounded-lg border-2 border-red-700 p-2 flex items-center justify-center" >
+						<div className='rotate-180 w-6'>
+							<Like width={24} height={24} color="#C70039"
+							/>
+						</div>
+					</button>
+				</div>
 			</div>
-			<div className={classIconContainer}>
-				<button
-					onClick={handlerEditEvent}
-					className={classButtons}>
-					<Pencil />
-				</button>
-				<button
-					onClick={handlerViewEvent}
-					className={classButtons}>
-					<Eye />
-				</button>
-			</div>
+			
 		</div>
 	);
 };

@@ -6,48 +6,54 @@ import { getRandomClassification, getRandomNumber } from "../../utils/utils";
 const moviesListData: Movies[] = [
 	{
 		id: getRandomNumber(),
-		poster: "./movies-wallpaper/2001-space-odyssey.jpg",
+		poster: "https://m.media-amazon.com/images/M/MV5BMmNlYzRiNDctZWNhMi00MzI4LThkZTctMTUzMmZkMmFmNThmXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_FMjpg_UX1000_.jpg",
 		title: "2001 Space Odessey",
 		duration: getRandomNumber(240),
 		release_date: new Date(),
 		likes: getRandomNumber(1000),
 		classification: getRandomClassification(),
+		synopsis: 'Lorem ipsum es el texto que se usa habitualmente en diseño gráfico en demostraciones de tipografías o de borradores de diseño para probar el diseño visual antes de insertar el texto final. Aunque no posee actualmente fuentes para justificar sus hipótesis, el profesor de filología clásica Richard McClintock asegura que su uso se remonta a los impresores de comienzos del siglo xvi.1​ Su uso en algunos editores de texto muy conocidos en la actualidad ha dado al texto lorem ipsum nueva popularidad.'
+		
 	},
 	{
 		id: getRandomNumber(),
-		poster: "./movies-wallpaper/2001-space-odyssey.jpg",
-		title: "2001 Space Odessey",
+		poster: "https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg",
+		title: "The Godfather",
 		duration: getRandomNumber(240),
 		release_date: new Date(),
 		likes: getRandomNumber(1000),
 		classification: getRandomClassification(),
+		synopsis: 'Lorem ipsum es el texto que se usa habitualmente en diseño gráfico en demostraciones de tipografías o de borradores de diseño para probar el diseño visual antes de insertar el texto final. Aunque no posee actualmente fuentes para justificar sus hipótesis, el profesor de filología clásica Richard McClintock asegura que su uso se remonta a los impresores de comienzos del siglo xvi.1​ Su uso en algunos editores de texto muy conocidos en la actualidad ha dado al texto lorem ipsum nueva popularidad.'
 	},
 	{
 		id: getRandomNumber(),
-		poster: "./movies-wallpaper/apocalypse-now.jpg",
+		poster: "https://m.media-amazon.com/images/M/MV5BYmQyNTA1ZGItNjZjMi00NzFlLWEzMWEtNWMwN2Q2MjJhYzEyXkEyXkFqcGdeQXVyMjUzOTY1NTc@._V1_FMjpg_UX1000_.jpg",
 		title: "Apocalypse Now",
 		duration: getRandomNumber(240),
 		release_date: new Date(),
 		likes: getRandomNumber(1000),
 		classification: getRandomClassification(),
+		synopsis: 'Lorem ipsum es el texto que se usa habitualmente en diseño gráfico en demostraciones de tipografías o de borradores de diseño para probar el diseño visual antes de insertar el texto final. Aunque no posee actualmente fuentes para justificar sus hipótesis, el profesor de filología clásica Richard McClintock asegura que su uso se remonta a los impresores de comienzos del siglo xvi.1​ Su uso en algunos editores de texto muy conocidos en la actualidad ha dado al texto lorem ipsum nueva popularidad.'
 	},
 	{
 		id: getRandomNumber(),
-		poster: "./movies-wallpaper/dr-strangelove.jpg",
+		poster: "https://m.media-amazon.com/images/M/MV5BZWI3ZTMxNjctMjdlNS00NmUwLWFiM2YtZDUyY2I3N2MxYTE0XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg",
 		title: "Dr Strangelove",
 		duration: getRandomNumber(240),
 		release_date: new Date(),
 		likes: getRandomNumber(1000),
 		classification: getRandomClassification(),
+		synopsis: 'Lorem ipsum es el texto que se usa habitualmente en diseño gráfico en demostraciones de tipografías o de borradores de diseño para probar el diseño visual antes de insertar el texto final. Aunque no posee actualmente fuentes para justificar sus hipótesis, el profesor de filología clásica Richard McClintock asegura que su uso se remonta a los impresores de comienzos del siglo xvi.1​ Su uso en algunos editores de texto muy conocidos en la actualidad ha dado al texto lorem ipsum nueva popularidad.'
 	},
 	{
 		id: getRandomNumber(),
-		poster: "./movies-wallpaper/paprika.jpg",
+		poster: "https://m.media-amazon.com/images/M/MV5BNDI4MGEwZDAtZDg0Yy00MjFhLTg1MjctODdmZTMyNTUyNDI3L2ltYWdlXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg",
 		title: "Paprika",
 		duration: getRandomNumber(240),
 		release_date: new Date(),
 		likes: getRandomNumber(1000),
 		classification: getRandomClassification(),
+		synopsis: 'Lorem ipsum es el texto que se usa habitualmente en diseño gráfico en demostraciones de tipografías o de borradores de diseño para probar el diseño visual antes de insertar el texto final. Aunque no posee actualmente fuentes para justificar sus hipótesis, el profesor de filología clásica Richard McClintock asegura que su uso se remonta a los impresores de comienzos del siglo xvi.1​ Su uso en algunos editores de texto muy conocidos en la actualidad ha dado al texto lorem ipsum nueva popularidad.'
 	},
 ];
 
@@ -67,104 +73,25 @@ const GenrsListData: GenreCat[] = [
 	},
 	{
 		id: 4,
-		description: "Fantasy",
-	},
-	{
-		id: 5,
 		description: "Horror",
 	},
 	{
+		id: 5,
+		description: "Romance",
+	},
+	{
 		id: 6,
-		description: "Mystery",
+		description: "Science Fiction",
 	},
 	{
 		id: 7,
-		description: "Romance",
+		description: "Fantasy",
 	},
 	{
 		id: 8,
 		description: "Thriller",
 	},
-	{
-		id: 9,
-		description: "Western",
-	},
-	{
-		id: 10,
-		description: "War and military action",
-	},
-	{
-		id: 11,
-		description: "Spy and espionage action",
-	},
-	{
-		id: 12,
-		description: "Science fantasy",
-	},
-	{
-		id: 13,
-		description: "Cyberpunk",
-	},
-	{
-		id: 14,
-		description: "Space Opera",
-	},
-	{
-		id: 15,
-		description: "Action",
-	},
-	{
-		id: 16,
-		description: "Comedy",
-	},
-	{
-		id: 17,
-		description: "Drama",
-	},
-	{
-		id: 18,
-		description: "Fantasy",
-	},
-	{
-		id: 19,
-		description: "Horror",
-	},
-	{
-		id: 20,
-		description: "Mystery",
-	},
-	{
-		id: 21,
-		description: "Romance",
-	},
-	{
-		id: 22,
-		description: "Thriller",
-	},
-	{
-		id: 23,
-		description: "Western",
-	},
-	{
-		id: 24,
-		description: "War and military action",
-	},
-	{
-		id: 25,
-		description: "Spy and espionage action",
-	},
-	{
-		id: 26,
-		description: "Science fantasy",
-	},
-	{
-		id: 27,
-		description: "Cyberpunk",
-	},
-	{
-		id: 28,
-		description: "Space Opera",
-	},
+	
 ];
 
 const StreamingPlatformData: StreamingPlatformsCat[] = [

@@ -51,7 +51,7 @@ function List({ title, data, redirect = false }: ListProps) {
 									<span className='bg-blue-100 text-blue-800 flex items-center justify-center text-xs font-semibold mr-2 px-2.5 py-0.5 w-10 rounded dark:bg-blue-200 dark:text-blue-800 ml-3'>
 										{item.likes}
 									</span>
-							</div>
+								</div>
 							</div>
 						</li>
 					))

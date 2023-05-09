@@ -20,6 +20,8 @@ export interface HeaderLinks extends referenceLink {
 
 export interface IconProps {
 	color?: string,
+	height?: number,
+	width?: number,
 }
 
 export type InputTextStateProp = string | number;

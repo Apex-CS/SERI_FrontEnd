@@ -67,4 +67,25 @@ const handlerPosterValue = (posterValue) => {
 	}
 }
 
-export { objectIsNull, getRandomNumber, getRandomEnumValue, getRandomClassification, getRandomDate, getStringWithElipsis, handlerEmptyStringsValues, handlerEmptyNumberValues, handlerPosterValue};
+const formatTime = (minutes) => {
+	if (minutes) {
+		const hours = Math.floor(minutes / 60);
+		const remainingMinutes = minutes % 60;
+		return `${hours}h ${remainingMinutes}m`;
+	} else {
+		return '0H, Om';
+	}
+}
+
+export { 
+	objectIsNull,
+	getRandomNumber,
+	getRandomEnumValue,
+	getRandomClassification,
+	getRandomDate,
+	getStringWithElipsis,
+	handlerEmptyStringsValues,
+	handlerEmptyNumberValues,
+	handlerPosterValue,
+	formatTime,
+};

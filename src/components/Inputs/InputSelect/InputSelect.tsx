@@ -1,3 +1,5 @@
+import LabelSubtitle from "../../Labels/LabelSubTitle";
+
 interface InputSelectProps {
 	label: string;
 	id: string;
@@ -15,8 +17,9 @@ function InputSelect({
 	setValue,
 }: InputSelectProps) {
 	const defaultClassSelect =
-		"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500";
-	const defaultClassLabel = "block mb-2 text-sm font-medium text-gray-900 dark:text-white";
+		`bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 
+		dark:placeholder-gray-400 dark:text-black  dark:focus:ring-blue-500 dark:focus:border-blue-500 py-2.5`;
+	const defaultClassLabel = "block mb-2 text-lg text-black dark:text-white font-bold";
 
 	// This function is triggered when the select changes
 	const onChangeInputSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -26,15 +29,12 @@ function InputSelect({
 
 	return (
 		<div className={containerClass}>
-			<label
-				htmlFor={id}
-				className={defaultClassLabel}>
-				{label}
-			</label>
+			<LabelSubtitle customClass={defaultClassLabel} subtitle={label} />
 			<select
 				id={id}
 				value={value}
 				onChange={onChangeInputSelect}
+				style={{paddingTop: '0.5rem'}}
 				className={defaultClassSelect}>
 				{data.map((item) => (
 					<option selected>{item}</option>

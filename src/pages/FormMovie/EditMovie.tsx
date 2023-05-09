@@ -28,7 +28,7 @@ function EditMovie() {
 	const [classification, setClassification] = React.useState<string>("");
 	const [classificationData, setClassificationData] = React.useState<string[]>([""]);
 	const [genres, setGenres] = React.useState<GenreCat[]>([]);
-	const [duration, setDuration] = React.useState<number>(0);
+	const [duration, setDuration] = React.useState<number>(1);
 	const [synopsis, setSynopsis] = React.useState<string>("");
 	const [language, setLanguage] = React.useState<string>("");
 	const [streamingPlatforms, setStreamingPlatforms] = React.useState<StreamingPlatformsCat[]>([]);
@@ -271,7 +271,7 @@ function EditMovie() {
     },[]); // Effect execute just one time
         
 	return (
-		<div className='flex justify-center items-stretch flex-col container w-3/5 mx-auto mt-5 mb-5 text-white'>
+		<div className='flex justify-center items-stretch flex-col container w-full mx-auto mt-5 mb-5 px-4 text-white'>
 		{movieLoadingFlag ? (
 			<form
 				onSubmit={onSubmitHandler}
@@ -287,7 +287,7 @@ function EditMovie() {
 						label={"Title"}
 						value={title}
 						setValue={setTitle}
-						classNameContainer={`w-2/4 mr-4 mt-2 flex items-center`}
+						classNameContainer={`w-2/4 mr-4 mt-0 flex flex-col items-start justify-start`}
 					/>
 					<InputFile
 						label={"Poster"}
@@ -349,7 +349,7 @@ function EditMovie() {
 						label={"duration"}
 						maxNumber={500}
 						placeHolder={""}
-						classNameContainer={`w-2/12 m-5 flex justify-between`}
+						classNameContainer={`w-2/12 m-5 mt-6 flex flex-col items-start justify-start`}
 					/>
 
 					<div className={`w-2/5 flex justify-center items-center flex-col mx-2`}>

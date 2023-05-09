@@ -41,8 +41,15 @@ function Navbar() {
 	return (
 		<nav
 			id='navbar-container'
-			className='bg-white pt-4 px-2 sm:px-4 py-2.5 dark:bg-gray-900 w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600'>
-			<div className='container flex flex-wrap items-center justify-between mx-auto'>
+			className='bg-white pt-4 px-2  py-2.5
+					dark:bg-gray-900 w-full z-20 top-0 left-0 border-b
+					border-gray-200 dark:border-gray-600 
+					sm:px-4
+					md:
+					lg:
+					xl:
+					'>
+			<div className='container flex flex-wrap items-center justify-around mx-auto w-9/12'>
 				<Link to={headerLogoButon.href} className='flex items-center'>
 					<img
 						src={headerLogoButon.logo}
@@ -63,7 +70,7 @@ function Navbar() {
 						))}
 					</ul>
 				</div>
-				<div className='flex justify-between items-center pr-24'>
+				<div className='flex justify-between items-center'>
 					<Button
 						label='Sign In'
 						onClickHandler={signIn}
