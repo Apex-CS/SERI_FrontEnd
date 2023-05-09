@@ -128,7 +128,7 @@ function Movie({}) {
 									/>
 									<div className="w-full flex justify-end items-end">
 										<div className='w-3/4 flex flex-col justify-around items-center max-w-3xl borde text-white border-gray-200 rounded-lg '>
-											<div className='flex flex-col w-2/4 mb-5 items-center justify-around'>
+											<div className='flex flex-col 2xl:w-3/5 xl:w-3/4 lg:w-3/4 md:w-5/5 mb-5 items-center justify-around'>
 												<h1 className='text-3xl m-0 font-bold text-yellow-400'>{movie?.title}</h1>
 												<div className="flex flex-row justify-end items-center mb-2">
 													<GenresList listItems={tempGenrs} />
