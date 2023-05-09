@@ -5,17 +5,18 @@ const setIDMovie = () => {
 };
 
 const carrouselData: Movies[] = [
-	{ 
-		title: "A Man Called Otto", 
-		likes: Math.round(Math.random() * 100),
-		id: setIDMovie(),
-		poster: 'https://m.media-amazon.com/images/M/MV5BNzg3OTEzMTgtYWU0OC00YTI0LWIxOTAtNmRkNTc0Nzg2YWU1XkEyXkFqcGdeQXVyNjY1MTg4Mzc@._V1_FMjpg_UX1000_.jpg',
-	},
+	
 	{
 		title: "Everything Everywhere All at Once ",
 		likes: Math.round(Math.random() * 100),
 		id: setIDMovie(),
-		poster: 'https://m.media-amazon.com/images/M/MV5BYTdiOTIyZTQtNmQ1OS00NjZlLWIyMTgtYzk5Y2M3ZDVmMDk1XkEyXkFqcGdeQXVyMTAzMDg4NzU0._V1_FMjpg_UX1000_.jpg',
+		poster: 'https://m.media-amazon.com/images/M/MV5BNDE1NzMzZDEtYzE4OS00MTRjLTg4NmUtMDcyMGM3ZGMwY2VlXkEyXkFqcGdeQXVyNjM0MTI4Mw@@._V1_FMjpg_UX1000_.jpg',
+	},
+	{
+		title: 'The Super Mario Bros. Movie',
+		likes: Math.round(Math.random() * 100),
+		id: setIDMovie(),
+		poster: 'https://m.media-amazon.com/images/M/MV5BOTJhNzlmNzctNTU5Yy00N2YwLThhMjQtZDM0YjEzN2Y0ZjNhXkEyXkFqcGdeQXVyMTEwMTQ4MzU5._V1_FMjpg_UX1000_.jpg',
 	},
 	{ 
 		title: "Missing",
