@@ -71,7 +71,7 @@ function Movies() {
 								{moviesList.length > 0 ? (
 									<>
 										<div className='pl-10 flex items-center justify-end w-full'>
-											<Search className="w-2/6 pl-10 pr-2" />
+											<Search className="2xl:w-2/6 xl:w-4/6 pl-10 pr-2" />
 										</div>
 										<>
 											{moviesList?.map((item) => (
