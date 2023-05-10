@@ -18,8 +18,8 @@ function MovieItem({ item }: MovieItemProps) {
 	return (
 	<div className={classContainer} >
 		<img className="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-60 md:rounded-none md:rounded-l-lg" src={item.poster} alt="" />
-		<div className="flex flex-row justify-between w-full p-4 leading-normal">
-			<div className="flex flex-col my-auto h-full">
+		<div className="flex flex-row justify-between w-full p-4 leading-normal 2xl:w-full xl:w-full lg:w-4/6  2xl:justify-between xl:justify-between lg:justify-between">
+			<div className="flex flex-col my-auto h-full lg:w-6/12">
 				<h5 className="mb-2 text-2xl font-bold tracking-tight w- text-yellow-400  ">{item.title}</h5>
 
 				<ol className="max-w-md space-y-1 text-gray-500 mt- list-none list-inside dark:text-gray-400">
@@ -61,7 +61,7 @@ function MovieItem({ item }: MovieItemProps) {
 				
 				</div>
 			</div>
-			<div className="w-full flex justify-end items-end">
+			<div className="w-full flex justify-end items-end 2xl:justify-end xl:justify-start lg:w-auto lg:justify-center">
 				<ActionItem item={item} />
 			</div>
 			

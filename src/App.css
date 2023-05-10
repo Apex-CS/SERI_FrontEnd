@@ -49,13 +49,12 @@
 }
 .waviy span {
   font-weight: bold;
-  color: #E1AE2A;
+  color: #e1ae2a;
   position: relative;
   display: inline-block;
   text-transform: uppercase;
   animation: waviy 3.5s infinite;
   animation-delay: calc(0.1s * var(--i));
-
 }
 
 .filled {
@@ -75,4 +74,10 @@
   20% {
     transform: translateY(-20px);
   }
+}
+
+.carrousel-item-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
 }

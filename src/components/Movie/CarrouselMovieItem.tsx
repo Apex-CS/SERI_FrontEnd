@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Movies } from "../../types/types";
+import '../../App.css';
 
 interface MovieItemProps {
 	item: Movies;
@@ -11,18 +12,18 @@ function CarrouselMovieItem({ item }: MovieItemProps) {
 	return (
 		<div className='w-10/12 ml-3 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'>
 			<Link to={`/movie/${item.id}`} className='flex justify-center  items-center'>
-				<div className="flex flex-col w-5/5 items-start justify-start">
+				<div className="flex flex-col w-full items-start justify-start">
 					<div className="w-full flex items-center justify-center">
-						<div style={{height: 350, width: 250}} className="my-2 mt-4 flex justify-center items-center">
+						<div className="my-2 mt-4 flex justify-center items-center">
 							<img
-								className='p-2 rounded-t-lg w-full h-full '
+								className='pt-2 2xl:px-9 xl:px-8 lg:px-8 rounded-t-lg w-full h-96 '
 								src={item.poster}
 								alt='movie'
 							/>
 						</div>
 					</div>
-					<div className='px-1 pb-0 flex flex-col justify-center w-10/12 items-start'>
-						<h5 className='font-semibold tracking-tight h-14  flex-wrap text-lg text-gray-900 dark:text-white'>
+					<div className='px-8 pb-0 flex flex-col justify-center w-full items-start'>
+						<h5 className='font-semibold carrousel-item-title  w-full tracking-tight 2xl:h-7 xl:h-7  text-lg text-gray-900 dark:text-white'>
 							{item.title}
 						</h5>
 

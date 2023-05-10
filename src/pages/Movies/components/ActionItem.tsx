@@ -17,7 +17,7 @@ const ActionItem = ({ item }: ActionItemProps) => {
         focus:ring-yellow-300 font-medium rounded-lg text-sm 
         p-2.5 text-center inline-flex items-center mr-2 
         dark:bg-yellow-500 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800`;
-	const classIconContainer = `flex flex-row mx-6 my-2`;
+	const classIconContainer = `flex 2xl:flex-row mx-6 my-2 xl:flex-col lg:flex-col xl:mx-0`;
 
 	const handlerLikeEvent = () => {};
 
@@ -32,7 +32,7 @@ const ActionItem = ({ item }: ActionItemProps) => {
 	};
 
 	return (
-		<div className='flex  justify-start flex-col items-end w-96 mr-0'>
+		<div className='flex  justify-start flex-col items-end mr-0 w-96 2xl:w-44  xl:w-24 lg:w-20 md:w-12 lg:mr-10 md:mr-5 md:items-start '>
 			<div className="px-5 pb-10">
 				<div className="flex justify-center">
 					<LabelSubtitle textSize="text-3xl" customClass="mb-6 text-white" subtitle="Vote!" />
