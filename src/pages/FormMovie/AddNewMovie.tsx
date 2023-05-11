@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect } from "react";
-import { Button, InputFile, InputSelect, InputText, InputTextArea } from "../../components";
+import { Button, InputFile, InputSelect, InputText, InputTextArea, LabelSubtitle } from "../../components";
 import InputDatePicker from "../../components/Inputs/InputDatePicker/InputDatePicker";
 import { DirectorsListExample, GenrsListData, StarsListTemp, StreamingPlatformData, WritersListExample } from "../../resources/data/MoviesData";
 import {
@@ -303,15 +303,15 @@ function AddNewMovie() {
 								type='number'
 								numberValue={duration}
 								setNumberValue={setDuration}
-								label={"duration"}
+								label={"Duration"}
 								maxNumber={500}
 								placeHolder={""}
-								classNameContainer={`w-2/12 m-5 mt-7 flex flex-col items-start justify-end`}
+								classNameContainer={`w-1/12 m-5 mt-7 flex flex-col items-start justify-end`}
 							/>
 
 							<div className={`w-auto flex justify-end items-end flex-col mx-2`}>
 								<div>
-									<h1>Release Date</h1>
+									<LabelSubtitle textSize="text-lg" subtitle="Release Date" />
 									<InputDatePicker
 										setDateValue={setReleaseDate}
 										dateValue={releaseDate}

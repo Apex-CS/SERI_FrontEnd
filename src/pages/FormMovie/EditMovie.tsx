@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useState } from "react";
-import { Button, InputFile, InputSelect, InputText, InputTextArea, Loader } from "../../components";
+import { Button, InputFile, InputSelect, InputText, InputTextArea, LabelSubtitle, Loader } from "../../components";
 import InputDatePicker from "../../components/Inputs/InputDatePicker/InputDatePicker";
 import { DirectorsListExample, GenrsListData, GenrsListDataByMovieExample, MovieExample, StarsListTemp, StreamingPlatformData, StreamingPlatformListByMovieExample, WritersListExample } from "../../resources/data/MoviesData";
 import {
@@ -18,7 +18,7 @@ import { ContainerSearch, GenrsList, StreamingPlatformList, TagsList } from "./c
 import { useParams } from "react-router-dom";
 
 const rowClass = "grid md:grid-cols-2 md:gap-6 mt-5";
-const inputSelecContainerClass = `w-2/4 mx-2`;
+const inputSelecContainerClass = `w-3/12 mr-2`;
 function EditMovie() {
     let { movieId } = useParams();
 	const [poster, setPoster] = React.useState<File | string>('');
@@ -346,14 +346,14 @@ function EditMovie() {
 						type='number'
 						numberValue={duration}
 						setNumberValue={setDuration}
-						label={"duration"}
+						label={"Duration"}
 						maxNumber={500}
 						placeHolder={""}
-						classNameContainer={`w-2/12 m-5 mt-6 flex flex-col items-start justify-start`}
+						classNameContainer={`w-1/12 m-5 mt-6 flex flex-col items-start justify-start`}
 					/>
 
 					<div className={`w-2/5 flex justify-center items-center flex-col mx-2`}>
-						<h1 className="mr-12">Release Date</h1>
+						<LabelSubtitle textSize="text-lg" subtitle="Release Date" />
 						<InputDatePicker
 							setDateValue={setReleaseDate}
 							dateValue={releaseDate}
