@@ -142,11 +142,6 @@ const StreamingPlatformData: StreamingPlatformsCat[] = [
 		name: "Youtube",
 		logo: youtubeLogo,
 	},
-	{
-		id: 10,
-		name: "MGM+",
-		logo: "https://i.pcmag.com/imagery/reviews/00H3zSdMq7ymk6OkkSbap8q-1.fit_lim.size_240x136.v1674227193.png",
-	},
 ];
 
 const TagsMovieExamples: string[] = [

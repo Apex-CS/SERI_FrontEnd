@@ -1,5 +1,3 @@
-import { InputTextTypeEnum } from "../../../types/generalTypes";
-import { objectIsNull } from "../../../utils/utils";
 import LabelSubtitle from "../../Labels/LabelSubTitle";
 
 interface InputTextProps {
@@ -42,7 +40,7 @@ function InputText({
 	const DEFAULT_CLASS_INPUT = customClassInput
 		? customClassInput
 		: `
-  block py-2 px-0 w-full text-sm text-gray-900 bg-white border-0 border-b-2 
+  block py-2 px-2 w-full text-sm text-gray-900 bg-white border-0 border-b-2 
   border-gray-300 appearance-none dark:border-gray-600 rounded
   dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer`;
 
@@ -62,11 +60,7 @@ function InputText({
 		if (event.code === "Enter" && onSubmitEvent) {
 			onSubmitEvent();
 		}
-
-		// if (event.code)
 	};
-
-	// const classContainer = `relative z-0 mb-6 group ${classNameContainer} `;
 
 	return (
 		<div className={classNameContainer}>
