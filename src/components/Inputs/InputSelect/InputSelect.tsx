@@ -17,8 +17,8 @@ function InputSelect({
 	setValue,
 }: InputSelectProps) {
 	const defaultClassSelect =
-		`bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 
-		dark:placeholder-gray-400 dark:text-black  dark:focus:ring-blue-500 dark:focus:border-blue-500 py-2.5`;
+		`bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:border-gray-600 
+		dark:placeholder-gray-400 dark:text-black  dark:focus:ring-blue-500 dark:focus:border-blue-500`;
 	const defaultClassLabel = "block mb-2 text-lg text-black dark:text-white font-bold";
 
 	// This function is triggered when the select changes
@@ -34,7 +34,7 @@ function InputSelect({
 				id={id}
 				value={value}
 				onChange={onChangeInputSelect}
-				style={{paddingTop: '0.5rem'}}
+				style={{height: '2.4rem'}}
 				className={defaultClassSelect}>
 				{data.map((item) => (
 					<option selected>{item}</option>
