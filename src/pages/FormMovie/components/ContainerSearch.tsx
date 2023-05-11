@@ -38,10 +38,10 @@ const ContainerSearch = ({
     };
 
     return (
-        <div>
+        <div className="flex flex-col w-full">
             <div className={`flex w-full my-2 flex-col items-start justify-center p-0 rounded-lg`}>
                 <div className={`flex flex-row w-full items-center justify-center mt-3`}>
-                    <h1 className="w-20 mx-3 flex items-center justify-center" >{label}:</h1>
+                    <h1 className="w-20 mr-6 flex items-center justify-center" >{label}:</h1>
                     <Search
                         label={label}
                         placeholder={placeHolder}
@@ -56,33 +56,32 @@ const ContainerSearch = ({
                         </li>
                     ))}
                 </ul>
-                
+                {localList.length > 0 && (
+                    <div className="flex w-full flex-col ml-0 items-end">
+                        <h1 className="text-sm w-full text-gray-400">Selected {label}:</h1>
+                        <ul className='flex w-full flex-row flex-wrap list-none container my-2 ml-3 text-gray-500list-inside dark:text-gray-400'>
+                            {localList?.map((item, index) => (
+                                <li className="focus:outline-none flex flex-row items-center justify-between text-white focus:ring-4 focus:ring-purple-300 font-medium bg-yellow-500 w-fit border-x-purple-600 rounded-lg p-2 mt-2 mr-2" key={getRandomNumber(1000000)}>
+                                    <h1>{item.name}</h1>
+                                    <svg
+                                        onClick={(event) => {
+                                            onClickRemoveTag(index);
+                                            event.preventDefault();
+                                        }}
+                                        xmlns='http://www.w3.org/2000/svg'
+                                        width='16'
+                                        height='16'
+                                        fill='currentColor'
+                                        className='bi bi-x ml-3 mb-2'
+                                        viewBox='0 0 16 16'>
+                                        <path d='M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z' />
+                                    </svg>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
             </div>
-            {localList.length > 0 && (
-                <>
-                    <h1 className="text-sm text-gray-400">Selected {label}:</h1>
-                    <ul className='flex flex-row flex-wrap list-none container my-2 ml-3 text-gray-500list-inside dark:text-gray-400'>
-                        {localList?.map((item, index) => (
-                            <li className="focus:outline-none flex flex-row items-center justify-between text-white focus:ring-4 focus:ring-purple-300 font-medium   bg-yellow-500 w-fit border-x-purple-600 rounded-lg p-2 m-2 " key={getRandomNumber(1000000)}>
-                                <h1>{item.name}</h1>
-                                <svg
-                                    onClick={(event) => {
-                                        onClickRemoveTag(index);
-                                        event.preventDefault();
-                                    }}
-                                    xmlns='http://www.w3.org/2000/svg'
-                                    width='16'
-                                    height='16'
-                                    fill='currentColor'
-                                    className='bi bi-x ml-3 mb-2'
-                                    viewBox='0 0 16 16'>
-                                    <path d='M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z' />
-                                </svg>
-                            </li>
-                        ))}
-                    </ul>
-                </>
-            )}
         </div>
          );
 };
