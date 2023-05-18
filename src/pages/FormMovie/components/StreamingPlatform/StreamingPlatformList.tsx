@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { StreamingPlatformsCat } from "../../../types/types";
+import { StreamingPlatformsCat } from "../../../../types/types";
 import './StreamingPlatform.css';
 
 interface StreamingPlatformListProps {
