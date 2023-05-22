@@ -51,7 +51,7 @@ const ContainerSearch = ({
         <div
           className={`flex flex-row w-full items-center justify-center mt-3`}
         >
-          <div className="w-20 mr-6 flex items-center justify-start">
+          <div className="w-24 mr-6 flex items-center justify-start">
             <LabelSubtitle textSize="text-lg" subtitle={label + ":"} />
           </div>
           <Search

@@ -1,97 +1,111 @@
 import { useState } from "react";
 import { StreamingPlatformsCat } from "../../../../types/types";
-import './StreamingPlatform.css';
+import "./StreamingPlatform.css";
 
 interface StreamingPlatformListProps {
-	listDataRender: StreamingPlatformsCat[];
-	setListDataRender?: React.Dispatch<React.SetStateAction<StreamingPlatformsCat[]>>;
-	selectFlag?: boolean,
+  listDataRender?: StreamingPlatformsCat[];
+  setListDataRender?: React.Dispatch<
+    React.SetStateAction<StreamingPlatformsCat[]>
+  >;
+  selectFlag?: boolean;
 }
 interface ElementListProps {
-	itemPlatform: StreamingPlatformsCat;
-	setListDataRender?: React.Dispatch<React.SetStateAction<StreamingPlatformsCat[]>>;
-	selectFlag: boolean;
+  itemPlatform: StreamingPlatformsCat;
+  setListDataRender?: React.Dispatch<
+    React.SetStateAction<StreamingPlatformsCat[]>
+  >;
+  selectFlag: boolean;
 }
 const SELECT_GENR_CLASS = "border-4 border-pink-600";
-const BUTTON_DEFAULT_CLASS = ' my-2 mx-1 rounded-xl flex justify-center items-center '
+const BUTTON_DEFAULT_CLASS =
+  " my-2 mx-1 rounded-xl flex justify-center items-center ";
 
-const ListElement = ({ itemPlatform, setListDataRender, selectFlag = true }: ElementListProps) => {
-	const [classFlag, setClassFlag] = useState(itemPlatform.select);
+const ListElement = ({
+  itemPlatform,
+  setListDataRender,
+  selectFlag = true,
+}: ElementListProps) => {
+  const [classFlag, setClassFlag] = useState(itemPlatform.select);
 
-	/**
-	 * Function that handle the borderColor class for the single item
-	 * and set the new array of the GenrCat item in the array to send in the form
-	 * @param itemPlatform
-	 */
-	const handlerGenrSelector = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-		setClassFlag((prevValue) => {
-		// Validate if push a new object
-		if (setListDataRender) {
-			if (!prevValue) {
-				setListDataRender((preArray) => {
-					preArray.forEach((prevItem) => {
-						if (prevItem.id === itemPlatform.id) {
-							prevItem.select = true;
-						}
-					})
-					return preArray;
-				});
-					
-			} else {
-				setListDataRender((preArray) => {
-					preArray.forEach((itemPrev) => {
-						if(itemPrev.id === itemPlatform.id) {
-							itemPrev.select = false;
-						}
-					});
-					return preArray;
-				});
-			}
-		}
-			return !prevValue; // Change the styleClassFlag value
-		});
-		event.preventDefault();
-	};
+  /**
+   * Function that handle the borderColor class for the single item
+   * and set the new array of the GenrCat item in the array to send in the form
+   * @param itemPlatform
+   */
+  const handlerGenrSelector = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    setClassFlag((prevValue) => {
+      // Validate if push a new object
+      if (setListDataRender) {
+        if (!prevValue) {
+          setListDataRender((preArray) => {
+            preArray.forEach((prevItem) => {
+              if (prevItem.id === itemPlatform.id) {
+                prevItem.select = true;
+              }
+            });
+            return preArray;
+          });
+        } else {
+          setListDataRender((preArray) => {
+            preArray.forEach((itemPrev) => {
+              if (itemPrev.id === itemPlatform.id) {
+                itemPrev.select = false;
+              }
+            });
+            return preArray;
+          });
+        }
+      }
+      return !prevValue; // Change the styleClassFlag value
+    });
+    event.preventDefault();
+  };
 
-	return (
-		<button
-			type='button'
-			style={{ listStyle: "none" }}
-			disabled={!selectFlag}
-			onClick={(event) => handlerGenrSelector(event)}
-			className={
-				classFlag
-					? BUTTON_DEFAULT_CLASS + SELECT_GENR_CLASS
-					: BUTTON_DEFAULT_CLASS
-			}
-			key={itemPlatform.id}>
-				<div className="bubble bg-white rounded-full">
-					<img
-						
-						title={itemPlatform.name}
-						className='icon'
-						src={itemPlatform?.logo}
-						alt={"item-logo"}
-					/>
-				</div>
-			
-		</button>
-	);
+  return (
+    <button
+      type="button"
+      style={{ listStyle: "none" }}
+      disabled={!selectFlag}
+      onClick={(event) => handlerGenrSelector(event)}
+      className={
+        classFlag
+          ? BUTTON_DEFAULT_CLASS + SELECT_GENR_CLASS
+          : BUTTON_DEFAULT_CLASS
+      }
+      key={itemPlatform.id}
+    >
+      <div className="bubble bg-white rounded-full">
+        <img
+          title={itemPlatform.name}
+          className="icon"
+          src={itemPlatform?.logo}
+          alt={"item-logo"}
+        />
+      </div>
+    </button>
+  );
 };
 
 const StreamingPlatformList = ({
-	listDataRender,
-	setListDataRender,
-	selectFlag = true,
+  listDataRender,
+  setListDataRender,
+  selectFlag = true,
 }: StreamingPlatformListProps) => {
-	
-	return (
-		<ul className='flex flex-row justify-around'>
-			{listDataRender?.map((item) => (
-				<li className='flex flex-col  items-center justify-center'>
-					<ListElement itemPlatform={item} setListDataRender={setListDataRender} selectFlag={selectFlag}/>
-				</li>
-			))}
-		</ul>
-	);}
+  return (
+    <ul className="flex flex-row justify-around">
+      {listDataRender &&
+        listDataRender?.map((item) => (
+          <li className="flex flex-col  items-center justify-center">
+            <ListElement
+              itemPlatform={item}
+              setListDataRender={setListDataRender}
+              selectFlag={selectFlag}
+            />
+          </li>
+        ))}
+    </ul>
+  );
+};
 export default StreamingPlatformList;

@@ -1,14 +1,15 @@
 import { useState } from "react";
 import { GenreCat } from "../../../../types/types";
+import { LabelSubtitle } from "../../../../components";
 
 interface GenrsListProps {
   listGenrs: GenreCat[] | undefined;
-  setGenres: React.Dispatch<React.SetStateAction<GenreCat[]>>;
+  setGenres?: React.Dispatch<React.SetStateAction<GenreCat[]>>;
 }
 
 interface ElementListProps {
   item: GenreCat;
-  setGenresData: React.Dispatch<React.SetStateAction<GenreCat[]>>;
+  setGenresData?: React.Dispatch<React.SetStateAction<GenreCat[]>>;
 }
 
 const SELECT_GENR_CLASS =
@@ -25,27 +26,30 @@ const ListElement = ({ item, setGenresData }: ElementListProps) => {
    */
   const handlerGenrSelector = (itemGenr: GenreCat) => {
     setclassFlag((prevValue) => {
-      // Validate if change the value of the object
-      if (!prevValue) {
-        setGenresData((prevArray) => {
-          prevArray.forEach((prevItem) => {
-            if (prevItem.id === itemGenr.id) {
-              prevItem.selected = true;
-            }
+      if (setGenresData) {
+        if (!prevValue) {
+          setGenresData((prevArray) => {
+            prevArray.forEach((prevItem) => {
+              if (prevItem.id === itemGenr.id) {
+                prevItem.selected = true;
+              }
+            });
+            return prevArray;
           });
-          return prevArray;
-        });
-      } else {
-        // Validate if change the value of the object
-        setGenresData((prevArray) => {
-          prevArray.forEach((prevItem) => {
-            if (prevItem.id === itemGenr.id) {
-              prevItem.selected = false;
-            }
+        } else {
+          // Validate if change the value of the object
+          setGenresData((prevArray) => {
+            prevArray.forEach((prevItem) => {
+              if (prevItem.id === itemGenr.id) {
+                prevItem.selected = false;
+              }
+            });
+            return prevArray;
           });
-          return prevArray;
-        });
+        }
       }
+      // Validate if change the value of the object
+
       return !prevValue; // Change the styleClassFlag value
     });
   };
@@ -58,7 +62,7 @@ const ListElement = ({ item, setGenresData }: ElementListProps) => {
       className={classFlag ? SELECT_GENR_CLASS : BUTTON_DEFAULT_CLASS}
       key={item.id}
     >
-      <h1 className="text-lg text-ellipsis text-white">{item.description}</h1>
+      <LabelSubtitle subtitle={item.description} />
     </button>
   );
 };

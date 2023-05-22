@@ -1,3 +1,4 @@
+import { LabelSubtitle } from "../../../../components";
 import { getStringWithElipsis } from "../../../../utils/utils";
 
 interface TagsListProps {
@@ -8,11 +9,14 @@ interface TagsListProps {
 function TagsList({ tagsList, onClickRemoveTag }: TagsListProps) {
   return (
     <div className="my-1 w-10/12 mr-5">
-      <ul className="flex flex-row flex-wrap justify-around">
+      <ul className="flex flex-row flex-wrap justify-start">
         {tagsList.map((tag, index) => (
           <li>
             <div className="container flex flex-row bg-yellow-500 w-fit border-x-purple-600 rounded-lg p-2 mb-4 mx-2">
-              <h2 className="">{getStringWithElipsis(tag, 15)}</h2>
+              <LabelSubtitle
+                textSize="text-md"
+                subtitle={getStringWithElipsis(tag, 15)}
+              />
               <svg
                 onClick={(event) => {
                   onClickRemoveTag(index);
