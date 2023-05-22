@@ -2,6 +2,14 @@ import { Writer } from "../../types/types";
 import { Star } from "../../types/types";
 import { Director, GenreCat, Movies, StreamingPlatformsCat } from "../../types/types";
 import { getRandomClassification, getRandomNumber } from "../../utils/utils";
+import amazonLogo from '../img/logos-stream/amazon_prime_video.svg';
+import netflixLogo from '../img/logos-stream/netflix.svg';
+import disneyLogo from '../img/logos-stream/disney_plus.svg';
+import appleLogo from '../img/logos-stream/apple_tv.svg';
+import hboLogo from '../img/logos-stream/hbo-max.svg';
+import youtubeLogo from '../img/logos-stream/youtube.svg';
+
+
 
 const moviesListData: Movies[] = [
 	{
@@ -57,7 +65,6 @@ const moviesListData: Movies[] = [
 	},
 ];
 
-const MAX_NUMBER_ID_GENRS = 88;
 const GenrsListData: GenreCat[] = [
 	{
 		id: 1,
@@ -98,32 +105,27 @@ const StreamingPlatformData: StreamingPlatformsCat[] = [
 	{
 		id: 1,
 		name: "Amazon Prime Video",
-		logo: "https://www.citypng.com/public/uploads/preview/-11596295514wdrm03x1ui.png",
+		logo: amazonLogo,
 	},
 	{
 		id: 2,
 		name: "Netflix",
-		logo: "https://w7.pngwing.com/pngs/153/31/png-transparent-netflix-macos-bigsur-icon.png",
-	},
-	{
-		id: 3,
-		name: "Start +",
-		logo: "https://w7.pngwing.com/pngs/591/520/png-transparent-star-plus-star-india-television-show-television-channel-net.png",
+		logo: netflixLogo,
 	},
 	{
 		id: 4,
 		name: "HBO Max",
-		logo: "https://www.citypng.com/public/uploads/preview/hbo-max-logo-hd-png-11663461870m9srh5j4us.png",
+		logo: hboLogo,
 	},
 	{
 		id: 5,
-		name: "Hulu",
-		logo: "https://i.pcmag.com/imagery/reviews/0142ww1h6aRqMkc4gP3zfUo-21.fit_lim.size_240x136.v1603983170.png",
+		name: "Apple TV",
+		logo: appleLogo,
 	},
 	{
 		id: 6,
 		name: "Disney+",
-		logo: "https://image.pngaaa.com/851/4786851-middle.png",
+		logo: disneyLogo ,
 	},
 	{
 		id: 7,
@@ -138,12 +140,7 @@ const StreamingPlatformData: StreamingPlatformsCat[] = [
 	{
 		id: 9,
 		name: "Youtube",
-		logo: "https://w7.pngwing.com/pngs/1009/93/png-transparent-youtube-computer-icons-logo-youtube-angle-social-media-share-icon.png",
-	},
-	{
-		id: 10,
-		name: "MGM+",
-		logo: "https://i.pcmag.com/imagery/reviews/00H3zSdMq7ymk6OkkSbap8q-1.fit_lim.size_240x136.v1674227193.png",
+		logo: youtubeLogo,
 	},
 ];
 

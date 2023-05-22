@@ -1,3 +1,11 @@
 .react-date-picker__wrapper {
   border: 0 !important;
 }
+
+.react-date-picker__button__icon {
+  stroke: blue;
+}
+
+.react-date-picker__button__icon:hover {
+  stroke: aqua;
+}

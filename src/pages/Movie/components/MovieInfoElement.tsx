@@ -105,12 +105,6 @@ const MovieInfoElement = ({item}: MovieInfoElementProps) => {
             id: '3',
 			url: "https://www.starplus.com/es-mx/welcome/stream-now",
 		},
-		// {
-		// 	logo: hboLogo,
-        //     name: 'hbomax',
-        //     id: '4',
-		// 	url: "https://www.hbomax.com/activate",
-		// },
         {
 			logo: appleLogo,
             name: 'apple',
