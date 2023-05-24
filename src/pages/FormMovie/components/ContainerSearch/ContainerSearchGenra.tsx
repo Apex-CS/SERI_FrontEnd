@@ -3,22 +3,20 @@ import { LabelSubtitle, Search } from "../../../../components";
 import { Director, GenreCat, Star, Writer } from "../../../../types/types";
 import { getRandomNumber } from "../../../../utils/utils";
 
-interface ContainerSearchProps {
+interface ContainerSearchGenresProps {
   label: string;
   placeHolder: string;
-  listData: Director[] | Star[] | Writer[];
-  setListData: React.Dispatch<
-    React.SetStateAction<Director[] | Star[] | Writer[]>
-  >;
+  listData: GenreCat[];
+  setListData: React.Dispatch<React.SetStateAction<GenreCat[]>>;
   onSearchHandlerEvent: (searchText: string) => void;
   classNameContainer?: string;
   classNameContainerInput?: string;
-  handlerClickElement: (element: Director | Star | Writer) => void;
+  handlerClickElement: (element: GenreCat) => void;
 }
 
 const titleColoDefault = "text-yellow-500";
 
-const ContainerSearch = ({
+const ContainerSearchGenres = ({
   label,
   placeHolder,
   listData,
@@ -26,15 +24,14 @@ const ContainerSearch = ({
   onSearchHandlerEvent,
   handlerClickElement,
   classNameContainer = "",
-}: ContainerSearchProps) => {
-  const [localList, setlocalList] = useState<Director[] | Star[] | Writer[]>(
-    []
-  );
+}: ContainerSearchGenresProps) => {
+  console.log("🚀 ~ file: ContainerSearchGenra.tsx:27 ~ listData:", listData);
+  const [localList, setlocalList] = useState<GenreCat[]>([]);
   const onSubmitEventHandler = (searchValue: string) => {
     onSearchHandlerEvent(searchValue);
   };
 
-  const clickHandlerList = (item: Director | Star | Writer) => {
+  const clickHandlerList = (item: GenreCat) => {
     handlerClickElement(item);
     setlocalList((prevState) => [...prevState, item]);
     setListData([]);
@@ -60,8 +57,8 @@ const ContainerSearch = ({
             />
           </div>
           <Search
-            inputSize="w-10/12"
             label={label}
+            inputSize="w-10/12"
             placeholder={placeHolder}
             className={`w-full flex items-center`}
             onSubmit={onSubmitEventHandler}
@@ -72,10 +69,10 @@ const ContainerSearch = ({
           {listData?.map((item) => (
             <li
               onClick={() => clickHandlerList(item)}
-              className="focus:outline-none text-white focus:ring-4 focus:ring-purple-300 font-medium rounded-lg m-1 px-3 py-1  bg-yellow-700 "
+              className="focus:outline-none text-white focus:ring-4 font-medium rounded-lg m-1 px-3 py-1  bg-yellow-700 "
               key={getRandomNumber(1000000)}
             >
-              <h1>{item.name}</h1>
+              <h1>{item.description}</h1>
             </li>
           ))}
         </ul>
@@ -85,10 +82,10 @@ const ContainerSearch = ({
             <ul className="flex w-full flex-row flex-wrap list-none container my-2 ml-3 text-gray-500list-inside dark:text-gray-400">
               {localList?.map((item, index) => (
                 <li
-                  className="focus:outline-none flex flex-row items-center justify-between text-white focus:ring-4 focus:ring-purple-300 font-medium bg-yellow-500 w-fit border-x-purple-600 rounded-lg p-2 mt-2 mr-2"
+                  className="focus:outline-none flex flex-row items-center justify-between text-white focus:ring-4 font-medium bg-yellow-500 w-fit border-x-purple-600 rounded-lg p-2 mt-2 mr-2"
                   key={getRandomNumber(1000000)}
                 >
-                  <h1>{item.name}</h1>
+                  <h1>{item.description}</h1>
                   <svg
                     onClick={(event) => {
                       onClickRemoveTag(index);
@@ -113,4 +110,4 @@ const ContainerSearch = ({
   );
 };
 
-export default ContainerSearch;
+export default ContainerSearchGenres;

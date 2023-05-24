@@ -6,6 +6,21 @@ interface SearchProps {
   buttonLabel?: string;
   placeholder?: string;
   className?: string;
+  grayBackground?: boolean;
+  inputSize?:
+    | "w-1/12"
+    | "w-2/12"
+    | "w-3/12"
+    | "w-4/12"
+    | "w-5/12"
+    | "w-6/12"
+    | "w-7/12"
+    | "w-8/12"
+    | "w-9/12"
+    | "w-10/12"
+    | "w-11/12"
+    | "w-12/12"
+    | "w-full";
 }
 function Search({
   label = "Search",
@@ -13,12 +28,16 @@ function Search({
   buttonLabel = "Search",
   placeholder = "Search movie...",
   className = `flex items-center`,
+  grayBackground = false,
+  inputSize = "w-full",
 }: SearchProps) {
-  const defaultInputClass = `block w-11/12 p-4 pt-5 pl-10 text-sm text-gray-900 border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`;
+  const defaultInputClass = `block ${inputSize} p-4 pt-5 pl-10 text-sm text-gray-900  rounded-lg ${
+    grayBackground ? "bg-gray-50" : "bg-white"
+  } dark:placeholder-gray-400  `;
   const disabledButtonClass =
-    "text-white bg-blue-400 dark:bg-blue-500 cursor-not-allowed font-medium rounded-lg text-sm px-4 py-2 mx-2 text-center";
+    "text-white absolute right-3.5 bottom-2.5 bg-blue-400 dark:bg-blue-500 cursor-not-allowed font-medium rounded-lg text-sm px-4 py-2 mx-2 text-center";
   const defaultClassButton =
-    "text-white absolute right-3.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800";
+    "text-white absolute right-3.5 bottom-2.5 hover:bg-blue-800 font-medium rounded-lg text-sm px-4 py-2 mx-2 dark:bg-blue-600 dark:hover:bg-blue-700";
   const [searchValue, setSearchValue] = useState("");
   const onSubmitEventHandler = () => {
     if (onSubmit) {
@@ -36,11 +55,13 @@ function Search({
     <div className={`${className}`}>
       <label
         htmlFor="default-search"
-        className={`mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white`}
+        className={`mb-2 text-sm font-medium text-gray-900 sr-only`}
       >
         {label}
       </label>
-      <div className="w-full flex flex-row items-center  relative dark:bg-gray-700 dark:border-gray-600  rounded-md ">
+      <div
+        className={`w-full flex flex-row items-center  relative bg-white rounded-md `}
+      >
         <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
           <svg
             aria-hidden="true"
@@ -60,23 +81,28 @@ function Search({
         </div>
         <input
           type="search"
+          style={{ outline: "none" }}
           id="default-search"
           className={defaultInputClass}
           placeholder={placeholder}
           value={searchValue}
           onChange={inputSearchHandler}
         />
-        <button
-          onClick={onSubmitEventHandler}
-          type="submit"
-          disabled={searchValue.length === 0}
-          className={
-            searchValue.length === 0 ? disabledButtonClass : defaultClassButton
-          }
-        >
-          {" "}
-          {buttonLabel}{" "}
-        </button>
+        <div>
+          <button
+            onClick={onSubmitEventHandler}
+            type="submit"
+            disabled={searchValue.length === 0}
+            className={
+              searchValue.length === 0
+                ? disabledButtonClass
+                : defaultClassButton
+            }
+          >
+            {" "}
+            {buttonLabel}{" "}
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -8,12 +8,12 @@ import {
   LabelSubtitle,
 } from "../../../../components";
 import ContainerSearch from "../ContainerSearch/ContainerSearch";
-import GenrsList from "../GenrsList/GenrsList";
 import StreamingPlatformList from "../StreamingPlatform/StreamingPlatformList";
 import TagsList from "../Tags/TagsList";
 import {
   ClassificationCatEnum,
   Director,
+  GenreCat,
   LanguageEnum,
   Star,
   StreamingPlatformsCat,
@@ -28,10 +28,11 @@ import {
   StreamingPlatformData,
   WritersListExample,
 } from "../../../../resources/data/MoviesData";
+import ContainerSearchGenres from "../ContainerSearch/ContainerSearchGenra";
+import "./FormMovie.css";
 
 const rowClass = "grid md:grid-cols-2 md:gap-6 mt-5";
-const inputSelecContainerClass = `w-2/12 mr-2`;
-
+const titleColoDefault = "text-yellow-500 mb-2";
 interface FormMoviePropst {
   onSubmitHandler: () => void;
 }
@@ -54,11 +55,12 @@ const FormMovie = ({ onSubmitHandler }: FormMoviePropst) => {
   const [directorsData, setDirectorsData] = useState<Director[]>([]);
   const [writersData, setWritersData] = useState<Writer[]>([]);
   const [starsData, setStarsData] = useState<Star[]>([]);
+  const [genresData, setGenresData] = useState<GenreCat[]>([]);
   const [writers, setWriters] = useState<Writer[]>([]);
   const [stars, setStars] = useState<Star[]>([]);
   const [directors, setDirectors] = useState<Director[]>([]);
-  const [genres, setGenres] = useState(getGenres());
-  const [releaseDate, setReleaseDate] = useState<Date>(new Date());
+  const [genres, setGenres] = useState<GenreCat[]>([]);
+  const [releasedDate, setReleasedDate] = useState<Date>(new Date());
   const [tags, setTags] = useState<string[]>([]);
   const [tagInput, setTagInput] = useState<string>("");
   const [streamingsMovie, setStreamingsMovie] = useState<
@@ -104,6 +106,15 @@ const FormMovie = ({ onSubmitHandler }: FormMoviePropst) => {
     setStarsData(getStars(searchValue));
   };
 
+  const handlerSearchGenres = (searchValue: string) => {
+    /**
+     * Call API to search some list  of related values
+     * with the searchValue:string
+     * and return a array of elements
+     */
+    setGenresData(getGenres());
+  };
+
   const handlerSearchWritter = (searchValue: string) => {
     console.log(
       "🚀 ~ file: AddNewMovie.tsx:80 ~ handlerSearchWritter ~ searchValue:",
@@ -114,7 +125,18 @@ const FormMovie = ({ onSubmitHandler }: FormMoviePropst) => {
      * with the searchValue:string
      * and return a array of elements
      */
-    setWriters(getWritters(searchValue));
+    setWritersData(getWritters(searchValue));
+  };
+
+  const handlerClickGenrEvent = (genre: GenreCat) => {
+    console.log(
+      "🚀 ~ file: EditMovie.tsx:103 ~ handlerClickStarEvent ~ Star:",
+      genre
+    );
+    setGenres((prevArray) => {
+      prevArray.push(genre);
+      return prevArray;
+    });
   };
 
   const handlerClickStarEvent = (star: Star) => {
@@ -169,10 +191,9 @@ const FormMovie = ({ onSubmitHandler }: FormMoviePropst) => {
     setClassification("");
     setLanguage("");
     setDuration(0);
-    // setStreamingsMovie([]);
-    setReleaseDate(new Date());
+    setReleasedDate(new Date());
+    setStreamingsMovie(getStreamingPlatforms());
     setSynopsis("");
-    // setStreamingPlatforms(params.streamingPlatforms);
     setPoster("");
     const updatedParams = {
       title: title,
@@ -190,16 +211,12 @@ const FormMovie = ({ onSubmitHandler }: FormMoviePropst) => {
       writers: writers,
       stars: stars,
       directors: directors,
-      releaseDate: releaseDate,
+      releasedDate: releasedDate,
       streamingsMovie: [],
       tags: [],
       tagInput: "",
       streamingPlatforms: params.streamingPlatforms,
     };
-    console.log(
-      "🚀 ~ file: FormMovie.tsx:158 ~ handleUpdateParams ~ updatedParams:",
-      updatedParams
-    );
     setParams(updatedParams);
   };
 
@@ -222,21 +239,12 @@ const FormMovie = ({ onSubmitHandler }: FormMoviePropst) => {
       writers: writers,
       stars: stars,
       directors: directors,
-      releaseDate: releaseDate,
+      releasedDate: releasedDate,
       streamingsMovie: streamingsMovie,
       tags: tags,
       tagInput: "",
-      // streamingPlatforms: params.streamingPlatforms,
     };
 
-    console.log(
-      "🚀 ~ file: FormMovie.tsx:235 ~ handleUpdateParams ~ streamingsMovie:",
-      streamingsMovie
-    );
-    console.log(
-      "🚀 ~ file: FormMovie.tsx:158 ~ handleUpdateParams ~ updatedParams:",
-      updatedParams
-    );
     setParams(updatedParams);
   };
 
@@ -246,35 +254,32 @@ const FormMovie = ({ onSubmitHandler }: FormMoviePropst) => {
         <div className="flex w-full flex-col justify-center items-center ">
           <div className="flex justify-center items-stretch flex-col container mx-auto mt-5 mb-5 text-white">
             <form onSubmit={onSubmitHandlerEvent} className="">
-              {/* Titulo */}
-              <div className="relative z-0 w-full mb-1 group flex flex-row items-start justify-between">
-                <InputText
-                  type={"text"}
-                  name={"title"}
-                  id={"title"}
-                  placeHolder={"Title Movie"}
-                  required={true}
-                  label={"Title"}
-                  value={title}
-                  setValue={setTitle}
-                  classNameContainer={`w-full mt-0 flex flex-col items-start justify-start`}
-                />
-              </div>
-              <div className="w-full my-8 flex">
-                <div className="w-full">
-                  <InputFile
-                    label={"Poster"}
-                    valueImage={poster}
-                    setValueImage={setPoster}
+              <div className="flex flex-row justify-between mb-10">
+                {/* Titulo */}
+                <div className="relative z-0 w-2/4 mb-0 group flex flex-row items-start justify-between">
+                  <InputText
+                    type={"text"}
+                    name={"title"}
+                    id={"title"}
+                    placeHolder={"Title Movie"}
+                    required={true}
+                    label={"Title"}
+                    value={title}
+                    setValue={setTitle}
+                    customClassLabel={titleColoDefault}
+                    classNameContainer={`w-full mt-0 flex mr-5 flex-col items-start justify-start`}
                   />
                 </div>
-              </div>
-
-              <div className="inline-flex items-center justify-center w-full">
-                <span className="absolute px-3 font-medium  -translate-x-1/2  left-1/2 dark:text-white ">
-                  Info
-                </span>
-                <hr className="w-full h-px my-5 bg-gray-200 border-0 dark:bg-gray-700" />
+                <div className="w-2/4 ml-14 flex">
+                  <div className="w-full">
+                    <InputFile
+                      label={"Poster"}
+                      valueImage={poster}
+                      setValueImage={setPoster}
+                      customClassLabel={titleColoDefault}
+                    />
+                  </div>
+                </div>
               </div>
 
               {/* Synopsis */}
@@ -285,12 +290,9 @@ const FormMovie = ({ onSubmitHandler }: FormMoviePropst) => {
                 label={"Synopsis"}
                 id={"synopsis"}
                 placeHolder={""}
+                customClassLabel={titleColoDefault}
               />
               <div className={rowClass}></div>
-              {/* Genres */}
-              <div className="flex items-center justify-center py-5 ">
-                <GenrsList setGenres={setGenres} listGenrs={genres} />
-              </div>
               <div className="flex flex-row w-full justify-between items-center py-1">
                 {/* Languages */}
                 <InputSelect
@@ -300,17 +302,19 @@ const FormMovie = ({ onSubmitHandler }: FormMoviePropst) => {
                   key={"language"}
                   setValue={setLanguage}
                   value={language}
-                  containerClass={inputSelecContainerClass}
+                  customClassLabel={titleColoDefault}
+                  containerClass={`w-3/12 mr-5`}
                 />
                 {/* Clasifications */}
                 <InputSelect
+                  customClassLabel={titleColoDefault}
                   data={getClasifications()}
                   id={"clasifications"}
                   label={"Clasification"}
                   key={"clasifications"}
                   setValue={setClassification}
                   value={classification}
-                  containerClass={inputSelecContainerClass}
+                  containerClass={`w-3/12 mr-6`}
                 />
                 <InputText
                   type="number"
@@ -318,56 +322,74 @@ const FormMovie = ({ onSubmitHandler }: FormMoviePropst) => {
                   setNumberValue={setDuration}
                   label={"Duration"}
                   maxNumber={500}
+                  customClassLabel={`text-yellow-500 mb-2`}
                   placeHolder={""}
-                  classNameContainer={`w-2/12 m-5 mt-7 flex flex-col items-start justify-end`}
+                  classNameContainer={`w-3/12 ml-10 mr-5 flex flex-col items-start justify-end`}
                 />
 
                 <div
-                  className={`w-auto flex justify-end items-end flex-col mx-2`}
+                  className={`w-3/12 flex justify-center items-center flex-col ml-1`}
                 >
-                  <div>
-                    <InputDatePicker
-                      label="Release Date"
-                      setDateValue={setReleaseDate}
-                      dateValue={releaseDate}
-                    />
-                  </div>
+                  <InputDatePicker
+                    label="Released Date"
+                    setDateValue={setReleasedDate}
+                    dateValue={releasedDate}
+                  />
                 </div>
               </div>
               <div id="container-search" className="flex py-5 flex-col">
-                {/* Director */}
-                <ContainerSearch
-                  label="Directors"
-                  listData={directorsData}
-                  onSearchHandlerEvent={handlerSearchDirectors}
-                  placeHolder={"Search Directores by name..."}
-                  setListData={setDirectorsData}
-                  handlerClickElement={handlerClickDirectorEvent}
-                />
-                {/* Writers */}
-                <ContainerSearch
-                  label="Writers"
-                  listData={writersData}
-                  setListData={setWritersData}
-                  onSearchHandlerEvent={handlerSearchWritter}
-                  placeHolder={"Search Writers by name..."}
-                  handlerClickElement={handlerClickWritterEvent}
-                />
-                {/* Stars */}
-                <ContainerSearch
-                  label="Stars"
-                  listData={starsData}
-                  setListData={setStarsData}
-                  onSearchHandlerEvent={handlerSearchStars}
-                  placeHolder={"Search Stars by name..."}
-                  handlerClickElement={handlerClickStarEvent}
-                />
+                <div className="w'full flex flex-row">
+                  {/* Director */}
+                  <ContainerSearch
+                    label="Directors"
+                    listData={directorsData}
+                    onSearchHandlerEvent={handlerSearchDirectors}
+                    placeHolder={"Search Directores by name..."}
+                    setListData={setDirectorsData}
+                    handlerClickElement={handlerClickDirectorEvent}
+                    classNameContainer="mr-8"
+                  />
+                  {/* Writers */}
+                  <ContainerSearch
+                    label="Writers"
+                    listData={writersData}
+                    setListData={setWritersData}
+                    onSearchHandlerEvent={handlerSearchWritter}
+                    placeHolder={"Search Writers by name..."}
+                    handlerClickElement={handlerClickWritterEvent}
+                    classNameContainer="ml-8"
+                  />
+                </div>
+
+                <div className="w'full flex flex-row">
+                  {/* Stars */}
+                  <ContainerSearch
+                    label="Stars"
+                    listData={starsData}
+                    setListData={setStarsData}
+                    onSearchHandlerEvent={handlerSearchStars}
+                    placeHolder={"Search Stars by name..."}
+                    handlerClickElement={handlerClickStarEvent}
+                    classNameContainer="mr-8"
+                  />
+                  {/* Genres */}
+                  <ContainerSearchGenres
+                    label="Genres"
+                    listData={genresData}
+                    setListData={setGenresData}
+                    onSearchHandlerEvent={handlerSearchGenres}
+                    placeHolder={"Search Stars by name..."}
+                    handlerClickElement={handlerClickGenrEvent}
+                    classNameContainer="ml-8"
+                  />
+                </div>
               </div>
-              <div className="flex items-center justify-between py-5">
+              <div className="flex items-center justify-between py-5 mb-10">
                 <div className=" w-full justify-between items-center ">
                   <LabelSubtitle
                     textSize="text-lg"
-                    subtitle="Where to Watch:"
+                    customClass={titleColoDefault}
+                    subtitle="Where to Watch"
                   />
                   <StreamingPlatformList
                     setListDataRender={setStreamingsMovie}
@@ -375,8 +397,12 @@ const FormMovie = ({ onSubmitHandler }: FormMoviePropst) => {
                   />
                 </div>
               </div>
-              <LabelSubtitle textSize="text-lg" subtitle="Tags:" />
-              <div className="flex flex-row h-full py-3">
+              <LabelSubtitle
+                textSize="text-lg"
+                customClass={titleColoDefault}
+                subtitle="Tags"
+              />
+              <div className="flex flex-row h-full py-0">
                 <InputText
                   label=""
                   value={tagInput}
@@ -397,10 +423,10 @@ const FormMovie = ({ onSubmitHandler }: FormMoviePropst) => {
                   isPillStyle={true}
                   type={"submit"}
                   customClass={
-                    "mx-2 w-1/6 bg-yellow-500 text-lg text-center text-white"
+                    "mx-2 w-4/12 bg-yellow-500 text-3xl text-center text-white"
                   }
                 />
-                <Button
+                {/* <Button
                   label="Cancel"
                   isPillStyle={true}
                   type={"button"}
@@ -408,7 +434,7 @@ const FormMovie = ({ onSubmitHandler }: FormMoviePropst) => {
                   customClass={
                     "mx-2 w-1/6 bg-yellow-500 text-lg text-center text-white"
                   }
-                />
+                /> */}
               </div>
             </form>
           </div>

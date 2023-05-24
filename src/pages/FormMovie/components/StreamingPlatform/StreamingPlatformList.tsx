@@ -16,9 +16,10 @@ interface ElementListProps {
   >;
   selectFlag: boolean;
 }
-const SELECT_GENR_CLASS = "border-4 border-pink-600";
+const SELECT_GENR_CLASS =
+  "my-2 mx-1 rounded-xl border-4 border-pink-600 flex justify-center items-center ";
 const BUTTON_DEFAULT_CLASS =
-  " my-2 mx-1 rounded-xl flex justify-center items-center ";
+  " my-2 mx-1 rounded-xl border-4 border-transparent flex justify-center items-center ";
 
 const ListElement = ({
   itemPlatform,
@@ -69,11 +70,7 @@ const ListElement = ({
       style={{ listStyle: "none" }}
       disabled={!selectFlag}
       onClick={(event) => handlerGenrSelector(event)}
-      className={
-        classFlag
-          ? BUTTON_DEFAULT_CLASS + SELECT_GENR_CLASS
-          : BUTTON_DEFAULT_CLASS
-      }
+      className={classFlag ? SELECT_GENR_CLASS : BUTTON_DEFAULT_CLASS}
       key={itemPlatform.id}
     >
       <div className="bubble bg-white rounded-full">
