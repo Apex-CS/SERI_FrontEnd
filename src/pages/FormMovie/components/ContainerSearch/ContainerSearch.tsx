@@ -68,21 +68,26 @@ const ContainerSearch = ({
             grayBackground={false}
           />
         </div>
-        <ul className="flex flex-wrap justify-around items-center flex-row w-full list-none my-2 py-2  text-gray-500 list-inside dark:text-gray-400">
-          {listData?.map((item) => (
-            <li
-              onClick={() => clickHandlerList(item)}
-              className="focus:outline-none text-white focus:ring-4 focus:ring-purple-300 font-medium rounded-lg m-1 px-3 py-1  bg-yellow-700 "
-              key={getRandomNumber(1000000)}
-            >
-              <h1>{item.name}</h1>
-            </li>
-          ))}
-        </ul>
+        {listData.length > 0 && (
+          <ul className="flex overflow-y-auto flex-wrap justify-around items-center flex-row w-full list-none my-2 py-2  text-gray-500 list-inside dark:text-gray-400">
+            {listData?.map((item) => (
+              <li
+                onClick={() => clickHandlerList(item)}
+                className="focus:outline-none text-white focus:ring-4 focus:ring-purple-300 font-medium rounded-lg m-1 px-3 py-1  bg-yellow-700 "
+                key={getRandomNumber(1000000)}
+              >
+                <h1>{item.name}</h1>
+              </li>
+            ))}
+          </ul>
+        )}
+
         {localList.length > 0 && (
           <div className="flex w-full flex-col ml-0 items-end">
-            <h1 className="text-sm w-full text-gray-400">Selected {label}:</h1>
-            <ul className="flex w-full flex-row flex-wrap list-none container my-2 ml-3 text-gray-500list-inside dark:text-gray-400">
+            <h1 className="text-sm w-full mt-2 text-gray-400">
+              Selected {label}:
+            </h1>
+            <ul className="flex w-full flex-row flex-wrap list-none container ml-3 text-gray-500list-inside dark:text-gray-400">
               {localList?.map((item, index) => (
                 <li
                   className="focus:outline-none flex flex-row items-center justify-between text-white focus:ring-4 focus:ring-purple-300 font-medium bg-yellow-500 w-fit border-x-purple-600 rounded-lg p-2 mt-2 mr-2"

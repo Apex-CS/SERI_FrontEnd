@@ -31,13 +31,13 @@ function Search({
   grayBackground = false,
   inputSize = "w-full",
 }: SearchProps) {
-  const defaultInputClass = `block ${inputSize} p-4 pt-5 pl-10 text-sm text-gray-900  rounded-lg ${
+  const defaultInputClass = `block ${inputSize} h-auto py-2.5 pl-10 text-sm text-gray-900 rounded ${
     grayBackground ? "bg-gray-50" : "bg-white"
-  } dark:placeholder-gray-400  `;
+  } dark:placeholder-gray-400`;
   const disabledButtonClass =
-    "text-white absolute right-3.5 bottom-2.5 bg-blue-400 dark:bg-blue-500 cursor-not-allowed font-medium rounded-lg text-sm px-4 py-2 mx-2 text-center";
+    "text-white absolute right-3.5 py-1 bg-blue-400 dark:bg-blue-500 cursor-not-allowed font-medium rounded-lg text-sm px-4 mx-2 text-center";
   const defaultClassButton =
-    "text-white absolute right-3.5 bottom-2.5 hover:bg-blue-800 font-medium rounded-lg text-sm px-4 py-2 mx-2 dark:bg-blue-600 dark:hover:bg-blue-700";
+    "text-white absolute right-3.5 py-1 hover:bg-blue-800 font-medium rounded-lg text-sm px-4 mx-2 dark:bg-blue-600 dark:hover:bg-blue-700";
   const [searchValue, setSearchValue] = useState("");
   const onSubmitEventHandler = () => {
     if (onSubmit) {
@@ -55,7 +55,7 @@ function Search({
     <div className={`${className}`}>
       <label
         htmlFor="default-search"
-        className={`mb-2 text-sm font-medium text-gray-900 sr-only`}
+        className={`text-sm font-medium text-gray-900 sr-only`}
       >
         {label}
       </label>
@@ -88,7 +88,7 @@ function Search({
           value={searchValue}
           onChange={inputSearchHandler}
         />
-        <div>
+        <div className="flex items-center justify-center">
           <button
             onClick={onSubmitEventHandler}
             type="submit"

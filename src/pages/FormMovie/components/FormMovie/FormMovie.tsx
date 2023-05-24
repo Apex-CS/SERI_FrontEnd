@@ -384,7 +384,7 @@ const FormMovie = ({ onSubmitHandler }: FormMoviePropst) => {
                   />
                 </div>
               </div>
-              <div className="flex items-center justify-between py-5 mb-10">
+              <div className="flex items-center justify-between pb-5">
                 <div className=" w-full justify-between items-center ">
                   <LabelSubtitle
                     textSize="text-lg"
@@ -416,7 +416,7 @@ const FormMovie = ({ onSubmitHandler }: FormMoviePropst) => {
               </div>
               <div
                 id="buttons-container"
-                className="flex w-full items-center justify-around my-6"
+                className="flex w-full items-center justify-around mb-6"
               >
                 <Button
                   label="Save"
@@ -426,15 +426,6 @@ const FormMovie = ({ onSubmitHandler }: FormMoviePropst) => {
                     "mx-2 w-4/12 bg-yellow-500 text-3xl text-center text-white"
                   }
                 />
-                {/* <Button
-                  label="Cancel"
-                  isPillStyle={true}
-                  type={"button"}
-                  onClickHandler={onResetHandlerEvent}
-                  customClass={
-                    "mx-2 w-1/6 bg-yellow-500 text-lg text-center text-white"
-                  }
-                /> */}
               </div>
             </form>
           </div>
