@@ -23,8 +23,6 @@ import { ParamsContext, ParamsType } from "./context/FormContext";
 
 function AddNewMovie() {
   const [poster, setPoster] = React.useState<File | string>("");
-  const [title, setTitle] = React.useState<string>("");
-  const [languages, setLanguages] = React.useState<string[]>([""]);
   const [classification, setClassification] = React.useState<string>("");
   const [classificationData, setClassificationData] = React.useState<string[]>([
     "",
@@ -38,17 +36,6 @@ function AddNewMovie() {
     StreamingPlatformsCat[]
   >([]);
 
-  const [directorsData, setDirectorsData] = React.useState<Director[]>([]);
-  const [writersData, setWritersData] = React.useState<Writer[]>([]);
-  const [starsData, setStarsData] = React.useState<Star[]>([]);
-  const [writers, setWriters] = React.useState<Writer[]>([]);
-  const [stars, setStars] = React.useState<Star[]>([]);
-  const [directors, setDirectors] = React.useState<Director[]>([]);
-
-  const [releaseDate, setReleaseDate] = React.useState<Date>(new Date());
-  const [streamingsMovie, setStreamingsMovie] = React.useState<
-    StreamingPlatformsCat[]
-  >([]);
   const [tags, setTags] = React.useState<string[]>([]);
   const [tagInput, setTagInput] = React.useState<string>("");
 
@@ -97,14 +84,13 @@ function AddNewMovie() {
     return responseMovieHosted;
   };
 
-  //   const onSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
   const onSubmitHandler = () => {
     const formData: Movies = {
       id: getRandomNumber(1000),
       title: params.title.toString(),
       createdDate: new Date(),
       duration: params.duration,
-      release_date: params.releaseDate,
+      release_date: params.releasedDate,
       originalLanguage: params.language,
       classification: params.classification,
       synopsis: params.synopsis,
@@ -112,81 +98,7 @@ function AddNewMovie() {
       likes: 0,
       poster: handlerPosterValue(params.poster),
     };
-    params.tags.forEach((tagItem) => {
-      postTag(tagItem);
-    });
-
-    // params.genres.forEach((genrItem) => {
-    //   console.log(
-    //     "🚀 ~ file: AddNewMovie.tsx:105 ~ genres.forEach ~ send genrItem to API Genrs:",
-    //     genrItem
-    //   );
-    // });
-
-    // params.directors.forEach((directorItem) => {
-    //   console.log(
-    //     "🚀 ~ file: EditMovie.tsx:173 ~ directors.forEach ~ directorItem:",
-    //     directorItem
-    //   );
-    // });
-
-    // params.writers.forEach((writerItem) => {
-    //   console.log(
-    //     "🚀 ~ file: EditMovie.tsx:177 ~ writers.forEach ~ writerItem:",
-    //     writerItem
-    //   );
-    // });
-
-    // params.stars.forEach((StarItem) => {
-    //   console.log(
-    //     "🚀 ~ file: EditMovie.tsx:181 ~ stars.forEach ~ StarItem:",
-    //     StarItem
-    //   );
-    // });
-
-    // console.log(
-    //   "🚀 ~ file: AddNewMovie.tsx:107 ~ onSubmitHandler ~ streamingsMovie:",
-    //   params.streamingsMovie
-    // );
-
-    // const streamMovisDataAPI = params.streamingsMovie.filter(
-    //   (value, index, self) => index === self.findIndex((t) => t.id === value.id)
-    // );
-    // console.log(
-    //   "🚀 ~ file: AddNewMovie.tsx:115 ~ onSubmitHandler ~ streamMovisDataAPI:",
-    //   streamMovisDataAPI
-    // );
-
-    // streamMovisDataAPI.forEach((streamItem) => {
-    //   console.log("CALL API streamItem", streamItem);
-    // });
-    console.log(
-      "🚀 ~ file: AddNewMovie.tsx:96 ~ onSubmitHandler ~ send formData:",
-      formData
-    );
-    //   event.preventDefault();
   };
-
-  const onResetHandlerEvent = () => {
-    // clean all the elements in the form
-    setTitle("");
-    setTags([]);
-    setTagInput("");
-    setClassification("");
-    setLanguage("");
-    setDuration(0);
-    setStreamingsMovie([]);
-    setReleaseDate(new Date());
-    setSynopsis("");
-    setStreamingPlatforms(getStreamingPlatforms());
-    setPoster("");
-  };
-
-  useEffect(() => {
-    setLanguages(getLanguages());
-    setClassificationData(getClasifications());
-    setStreamingPlatforms(getStreamingPlatforms());
-  }, []);
 
   const genrsListDataRef = React.useRef<GenreCat[]>();
 
@@ -216,14 +128,6 @@ function AddNewMovie() {
       duration,
       synopsis,
       language,
-      directorsData,
-      writersData,
-      starsData,
-      writers,
-      stars,
-      directors,
-      releaseDate,
-      streamingsMovie,
       tags,
       tagInput,
       streamingPlatforms: getStreamingPlatforms(),
