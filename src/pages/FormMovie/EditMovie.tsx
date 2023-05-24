@@ -71,7 +71,7 @@ function EditMovie() {
   const [directorsData, setDirectorsData] = React.useState<Director[]>([]);
   const [writersData, setWritersData] = React.useState<Writer[]>([]);
   const [starsData, setStarsData] = React.useState<Star[]>([]);
-  const [releaseDate, setReleaseDate] = React.useState<Date>(new Date());
+  const [releasedDate, setReleasedDate] = React.useState<Date>(new Date());
   const [streamingsMovie, setStreamingsMovie] = React.useState<
     StreamingPlatformsCat[]
   >([]);
@@ -192,7 +192,7 @@ function EditMovie() {
       title: title.toString(),
       createdDate: new Date(),
       duration: duration,
-      release_date: releaseDate,
+      release_date: releasedDate,
       originalLanguage: language,
       classification: classification,
       synopsis: synopsis,
@@ -256,7 +256,7 @@ function EditMovie() {
     setLanguage("");
     setDuration(0);
     setStreamingsMovie([]);
-    setReleaseDate(new Date());
+    setReleasedDate(new Date());
     setSynopsis("");
     setStreamingPlatforms(getStreamingPlatforms());
     setPoster("");
@@ -278,7 +278,7 @@ function EditMovie() {
       setPoster(responseMovie.poster);
       setSynopsis(handlerEmptyStringsValues(responseMovie.synopsis));
       setTitle(handlerEmptyStringsValues(responseMovie.title));
-      setReleaseDate(
+      setReleasedDate(
         responseMovie.release_date ? responseMovie.release_date : new Date()
       );
     };
@@ -396,7 +396,7 @@ function EditMovie() {
       writers,
       stars,
       directors,
-      releaseDate,
+      releasedDate,
       streamingsMovie,
       tags,
       tagInput,

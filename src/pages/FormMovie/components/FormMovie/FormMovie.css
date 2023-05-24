@@ -1,0 +1,7 @@
+input::file-selector-button {
+  padding: 0.6em;
+  background-color: white;
+  border-radius: 0.5rem;
+  border: 0px;
+  height: 100%;
+}

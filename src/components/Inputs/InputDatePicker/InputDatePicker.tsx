@@ -11,6 +11,8 @@ interface InputDatePickerProps {
   label?: string;
 }
 
+const titleColoDefault = "text-yellow-500 mb-2";
+
 const InputDatePicker = ({
   setDateValue,
   dateValue,
@@ -26,9 +28,15 @@ const InputDatePicker = ({
 
   return (
     <div className="flex flex-col container">
-      {label && <LabelSubtitle textSize="text-lg" subtitle={label} />}
+      {label && (
+        <LabelSubtitle
+          customClass={titleColoDefault}
+          textSize="text-lg"
+          subtitle={label}
+        />
+      )}
       <DatePicker
-        className={"bg-gray-800 py-1 mt-1.5 rounded border border-white"}
+        className={"bg-white py-1 mt-0 rounded border text-black border-white"}
         onChange={(value) => onChangeEvent(value)}
         value={dateValue}
       />

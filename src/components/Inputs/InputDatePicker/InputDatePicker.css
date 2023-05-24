@@ -3,9 +3,38 @@
 }
 
 .react-date-picker__button__icon {
-  stroke: blue;
+  stroke: #e1ae2a;
 }
 
 .react-date-picker__button__icon:hover {
-  stroke: aqua;
+  stroke: #e1ae2a;
 }
+
+.react-date-picker__button__icon:focus {
+  stroke: #e1ae2a;
+}
+
+.react-calendar__navigation {
+  color: black;
+}
+
+.react-calendar__tile {
+  color: black;
+}
+
+.react-calendar__month-view__days__day--weekend {
+  color: red;
+}
+
+.react-date-picker__clear-button .react-date-picker__button {
+  color: yellow;
+}
+
+.react-date-picker__button:enabled:hover .react-date-picker__button__icon,
+.react-date-picker__button:enabled:focus .react-date-picker__button__icon {
+  stroke: #e1ae2a !important;
+}
+
+/* .react-calendar__tile {
+  color: black;
+} */

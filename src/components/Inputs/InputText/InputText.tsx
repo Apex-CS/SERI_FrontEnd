@@ -41,8 +41,8 @@ function InputText({
     ? customClassInput
     : `
   block py-2 px-2 w-full text-sm text-gray-900 bg-white border-0 border-b-2 
-  border-gray-300 appearance-none dark:border-gray-600 rounded
-  dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer`;
+   appearance-none rounded
+   focus:outline-none focus:ring-0 peer`;
 
   // This function is called when the input changes
   const inputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -67,6 +67,7 @@ function InputText({
     <div className={classNameContainer}>
       <LabelSubtitle customClass={classLabel} subtitle={label} />
       <input
+        style={{ outline: "none" }}
         onKeyDown={handleKeyboardEvent}
         name={name}
         max={maxNumber}
