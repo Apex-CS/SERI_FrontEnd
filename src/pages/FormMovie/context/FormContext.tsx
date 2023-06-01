@@ -10,27 +10,21 @@ import {
 export type ParamsType = {
   title: string;
   poster: string | File;
-  languages?: string[];
+  languages: string[];
   classification: string;
   classificationData?: string[];
   genres: GenreCat[];
   duration: number;
   synopsis: string;
   language: string;
-  directorsData?: Director[];
-  writersData?: Writer[];
-  starsData?: Star[];
-  writers?: Writer[];
-  stars?: Star[];
-  directors?: Director[];
-  releasedDate?: Date;
-  streamingsMovie?: StreamingPlatformsCat[];
-  tags?: string[];
+  writers: Writer[];
+  stars: Star[];
+  directors: Director[];
+  releasedDate: Date;
+  streamingsMovie: StreamingPlatformsCat[];
+  tags: string[];
   tagInput?: string;
   streamingPlatforms?: StreamingPlatformsCat[];
-  getDirector?: (directoValueSearch: string) => Director[];
-  getStars?: (startValueSearch: string) => Star[];
-  getWritters?: (writterValueSearch: string) => Writer[];
   onSubmitHandler?: () => void;
 };
 

@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   Button,
   InputFile,
@@ -38,6 +38,7 @@ interface FormMoviePropst {
 }
 
 const FormMovie = ({ onSubmitHandler }: FormMoviePropst) => {
+  const { params, setParams } = useContext(ParamsContext);
   const getGenres = () => {
     return GenrsListData;
   };
@@ -60,12 +61,33 @@ const FormMovie = ({ onSubmitHandler }: FormMoviePropst) => {
   const [stars, setStars] = useState<Star[]>([]);
   const [directors, setDirectors] = useState<Director[]>([]);
   const [genres, setGenres] = useState<GenreCat[]>([]);
-  const [releasedDate, setReleasedDate] = useState<Date>(new Date());
+  const [releasedDate, setReleasedDate] = useState<Date>(params?.releasedDate);
   const [tags, setTags] = useState<string[]>([]);
   const [tagInput, setTagInput] = useState<string>("");
   const [streamingsMovie, setStreamingsMovie] = useState<
     StreamingPlatformsCat[]
   >(getStreamingPlatforms());
+
+  useEffect(() => {
+    console.log(
+      "🚀 ~ file: FormMovie.tsx:224 ~ FormMovie ~ params:",
+      Object.keys(params)
+    );
+    if (Object.keys(params).length > 0) {
+      console.log("entro");
+      setTitle(params.title);
+      setSynopsis(params.synopsis);
+      setLanguage(params.language);
+      setReleasedDate(params?.releasedDate);
+      setDuration(params?.duration);
+      setTags(params?.tags);
+      setClassification(params?.classification);
+      setStars(params?.stars);
+      setWriters(params?.writers);
+      setDirectors(params?.directors);
+      setGenres(params?.genres);
+    }
+  }, [params]);
 
   const getDirector = (directoValueSearch: string) => {
     const responseDirectorsAPI: Director[] = DirectorsListExample;
@@ -129,43 +151,19 @@ const FormMovie = ({ onSubmitHandler }: FormMoviePropst) => {
   };
 
   const handlerClickGenrEvent = (genre: GenreCat) => {
-    console.log(
-      "🚀 ~ file: EditMovie.tsx:103 ~ handlerClickStarEvent ~ Star:",
-      genre
-    );
-    setGenres((prevArray) => {
-      prevArray.push(genre);
-      return prevArray;
-    });
+    setGenres((prevState) => [...prevState, genre]);
   };
 
   const handlerClickStarEvent = (star: Star) => {
-    console.log(
-      "🚀 ~ file: EditMovie.tsx:103 ~ handlerClickStarEvent ~ Star:",
-      star
-    );
-    setStars((prevArray) => {
-      prevArray.push(star);
-      return prevArray;
-    });
+    setStars((prevState) => [...prevState, star]);
   };
 
   const handlerClickWritterEvent = (writter: Writer) => {
-    console.log(
-      "🚀 ~ file: EditMovie.tsx:106 ~ handlerClickWritterEvent ~ writter:",
-      writter
-    );
-    setWriters((prevArray) => {
-      prevArray.push(writter);
-      return prevArray;
-    });
+    setWriters((prevState) => [...prevState, writter]);
   };
 
   const handlerClickDirectorEvent = (director: Director) => {
-    setDirectors((prevArray) => {
-      prevArray.push(director);
-      return prevArray;
-    });
+    setDirectors((prevState) => [...prevState, director]);
   };
 
   const onsubmitTag = () => {
@@ -183,45 +181,6 @@ const FormMovie = ({ onSubmitHandler }: FormMoviePropst) => {
     onSubmitHandler();
   };
 
-  const onResetHandlerEvent = () => {
-    // clean all the elements in the form
-    setTitle("");
-    setTags([]);
-    setTagInput("");
-    setClassification("");
-    setLanguage("");
-    setDuration(0);
-    setReleasedDate(new Date());
-    setStreamingsMovie(getStreamingPlatforms());
-    setSynopsis("");
-    setPoster("");
-    const updatedParams = {
-      title: title,
-      poster: poster,
-      languages: params.languages,
-      classification: classification,
-      classificationData: params.classificationData,
-      genres: params.genres,
-      duration: 1,
-      synopsis: synopsis,
-      language: language,
-      directorsData: params.directorsData,
-      writersData: params.writersData,
-      starsData: params.starsData,
-      writers: writers,
-      stars: stars,
-      directors: directors,
-      releasedDate: releasedDate,
-      streamingsMovie: [],
-      tags: [],
-      tagInput: "",
-      streamingPlatforms: params.streamingPlatforms,
-    };
-    setParams(updatedParams);
-  };
-
-  const { params, setParams } = useContext(ParamsContext);
-
   const handleUpdateParams = () => {
     const updatedParams = {
       title: title,
@@ -233,9 +192,6 @@ const FormMovie = ({ onSubmitHandler }: FormMoviePropst) => {
       duration: 0,
       synopsis: synopsis,
       language: language,
-      directorsData: params.directorsData,
-      writersData: params.writersData,
-      starsData: params.starsData,
       writers: writers,
       stars: stars,
       directors: directors,
@@ -254,7 +210,7 @@ const FormMovie = ({ onSubmitHandler }: FormMoviePropst) => {
         <div className="flex w-full flex-col justify-center items-center ">
           <div className="flex justify-center items-stretch flex-col container mx-auto mt-5 mb-5 text-white">
             <form onSubmit={onSubmitHandlerEvent} className="">
-              <div className="flex flex-row justify-between mb-10">
+              <div className="flex flex-row justify-between mb-5">
                 {/* Titulo */}
                 <div className="relative z-0 w-2/4 mb-0 group flex flex-row items-start justify-between">
                   <InputText
@@ -343,6 +299,7 @@ const FormMovie = ({ onSubmitHandler }: FormMoviePropst) => {
                   <ContainerSearch
                     label="Directors"
                     listData={directorsData}
+                    renderList={directors}
                     onSearchHandlerEvent={handlerSearchDirectors}
                     placeHolder={"Search Directores by name..."}
                     setListData={setDirectorsData}
@@ -352,6 +309,7 @@ const FormMovie = ({ onSubmitHandler }: FormMoviePropst) => {
                   {/* Writers */}
                   <ContainerSearch
                     label="Writers"
+                    renderList={writers}
                     listData={writersData}
                     setListData={setWritersData}
                     onSearchHandlerEvent={handlerSearchWritter}
@@ -366,6 +324,7 @@ const FormMovie = ({ onSubmitHandler }: FormMoviePropst) => {
                   <ContainerSearch
                     label="Stars"
                     listData={starsData}
+                    renderList={stars}
                     setListData={setStarsData}
                     onSearchHandlerEvent={handlerSearchStars}
                     placeHolder={"Search Stars by name..."}
@@ -377,6 +336,8 @@ const FormMovie = ({ onSubmitHandler }: FormMoviePropst) => {
                     label="Genres"
                     listData={genresData}
                     setListData={setGenresData}
+                    renderList={genres}
+                    setRenderList={setGenres}
                     onSearchHandlerEvent={handlerSearchGenres}
                     placeHolder={"Search Stars by name..."}
                     handlerClickElement={handlerClickGenrEvent}
