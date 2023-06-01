@@ -1,13 +1,14 @@
-import { useState } from "react";
 import { LabelSubtitle, Search } from "../../../../components";
-import { Director, GenreCat, Star, Writer } from "../../../../types/types";
+import { GenreCat } from "../../../../types/types";
 import { getRandomNumber } from "../../../../utils/utils";
 
 interface ContainerSearchGenresProps {
   label: string;
   placeHolder: string;
   listData: GenreCat[];
+  renderList: GenreCat[];
   setListData: React.Dispatch<React.SetStateAction<GenreCat[]>>;
+  setRenderList: React.Dispatch<React.SetStateAction<GenreCat[]>>;
   onSearchHandlerEvent: (searchText: string) => void;
   classNameContainer?: string;
   classNameContainerInput?: string;
@@ -24,21 +25,20 @@ const ContainerSearchGenres = ({
   onSearchHandlerEvent,
   handlerClickElement,
   classNameContainer = "",
+  renderList,
+  setRenderList,
 }: ContainerSearchGenresProps) => {
-  console.log("🚀 ~ file: ContainerSearchGenra.tsx:27 ~ listData:", listData);
-  const [localList, setlocalList] = useState<GenreCat[]>([]);
   const onSubmitEventHandler = (searchValue: string) => {
     onSearchHandlerEvent(searchValue);
   };
 
   const clickHandlerList = (item: GenreCat) => {
     handlerClickElement(item);
-    setlocalList((prevState) => [...prevState, item]);
     setListData([]);
   };
 
   const onClickRemoveTag = (indexRemove: number) => {
-    setlocalList((prevArray) =>
+    setRenderList((prevArray) =>
       prevArray.filter((prevItem, index) => index !== indexRemove)
     );
   };
@@ -79,13 +79,13 @@ const ContainerSearchGenres = ({
           </ul>
         )}
 
-        {localList.length > 0 && (
+        {renderList.length > 0 && (
           <div className="flex w-full flex-col ml-0 items-end">
             <h1 className="text-sm w-full mt-2 text-gray-400">
               Selected {label}:
             </h1>
             <ul className="flex w-full flex-row flex-wrap list-none container ml-3 text-gray-500list-inside dark:text-gray-400">
-              {localList?.map((item, index) => (
+              {renderList?.map((item, index) => (
                 <li
                   className="focus:outline-none flex flex-row items-center justify-between text-white focus:ring-4 font-medium bg-yellow-500 w-fit border-x-purple-600 rounded-lg p-2 mt-2 mr-2"
                   key={getRandomNumber(1000000)}
