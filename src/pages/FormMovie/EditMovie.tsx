@@ -19,6 +19,9 @@ import {
   StreamingPlatformData,
   StreamingPlatformListByMovieExample,
   WritersListExample,
+  DirectorsSelectedListExample,
+  WritersSelectedListExample,
+  StarsSelectedListExample,
 } from "../../resources/data/MoviesData";
 import {
   ClassificationCatEnum,
@@ -247,6 +250,20 @@ function EditMovie() {
     // event.preventDefault();
   };
 
+  const getMovieInfoFromID = () => {
+    const responseMovie: Movies = MovieExample;
+    setClassification(handlerEmptyStringsValues(responseMovie.classification));
+    setDuration(handlerEmptyNumberValues(responseMovie.duration));
+    setLanguage(handlerEmptyStringsValues(responseMovie.originalLanguage));
+    setPoster(responseMovie.poster);
+    setSynopsis(handlerEmptyStringsValues(responseMovie.synopsis));
+    setTitle(handlerEmptyStringsValues(responseMovie.title));
+    setReleasedDate(
+      responseMovie.release_date ? responseMovie.release_date : new Date()
+    );
+    return responseMovie;
+  };
+
   const onResetHandlerEvent = () => {
     // clean all the elements in the form
     setTitle("");
@@ -261,109 +278,79 @@ function EditMovie() {
     setStreamingPlatforms(getStreamingPlatforms());
     setPoster("");
   };
-  useEffect(() => {
-    setLanguages(getLanguages());
-    setClassificationData(getClasifications());
-    setStreamingPlatforms(getStreamingPlatforms());
-  }, []);
 
-  useEffect(() => {
-    const getMovieInfoFromID = () => {
-      const responseMovie: Movies = MovieExample;
-      setClassification(
-        handlerEmptyStringsValues(responseMovie.classification)
-      );
-      setDuration(handlerEmptyNumberValues(responseMovie.duration));
-      setLanguage(handlerEmptyStringsValues(responseMovie.originalLanguage));
-      setPoster(responseMovie.poster);
-      setSynopsis(handlerEmptyStringsValues(responseMovie.synopsis));
-      setTitle(handlerEmptyStringsValues(responseMovie.title));
-      setReleasedDate(
-        responseMovie.release_date ? responseMovie.release_date : new Date()
-      );
-    };
+  const getTagsByMovie = () => {
+    const tagsResponse = [
+      "Foreign",
+      "Written-directed",
+      "Enjoyable",
+      "Brilliant",
+      "Emotional",
+      "Well-acted",
+      "Moving",
+      "Insightful",
+      "Beautiful",
+      "Dramatic",
+      "Powerful",
+      "Absorbing",
+      "Family",
+      "Intense",
+      "Character-driven",
+      "Touching",
+      "Mysterious",
+      "Teenagers",
+      "Challenging",
+      "LGBT",
+      "Fun",
+      "Based on a book",
+      "Thrilling",
+      "Violent",
+      "Dark",
+    ];
+    return tagsResponse;
+  };
 
-    const getTagsByMovie = () => {
-      const tagsResponse = [
-        "Foreign",
-        "Written-directed",
-        "Enjoyable",
-        "Brilliant",
-        "Emotional",
-        "Well-acted",
-        "Moving",
-        "Insightful",
-        "Beautiful",
-        "Dramatic",
-        "Powerful",
-        "Absorbing",
-        "Family",
-        "Intense",
-        "Character-driven",
-        "Touching",
-        "Mysterious",
-        "Teenagers",
-        "Challenging",
-        "LGBT",
-        "Fun",
-        "Based on a book",
-        "Thrilling",
-        "Violent",
-        "Dark",
-      ];
-      setTags(tagsResponse);
-    };
+  const getGenresByMovie = () => {
+    const genrsAPIData = GenrsListDataByMovieExample.map((item) => {
+      item.selected = false;
+      return item;
+    });
+    const tempAPIArray: GenreCat[] = [];
+    // const tempAPIArray =
+    GenrsListData.map((itemGenrRenderItem) => {
+      if (genrsAPIData.find((e) => e.id === itemGenrRenderItem.id)) {
+        tempAPIArray.push(itemGenrRenderItem);
+      }
+      // else {
+      //   itemGenrRenderItem.selected = false;
+      // }
 
-    const getGenresByMovie = () => {
-      const genrsAPIData = GenrsListDataByMovieExample.map((item) => {
-        item.selected = false;
-        return item;
-      });
+      // return itemGenrRenderItem;
+    });
+    console.log(
+      "🚀 ~ file: EditMovie.tsx:246 ~ tempAPIArray ~ tempAPIArray:",
+      tempAPIArray
+    );
+    return tempAPIArray;
+  };
 
-      const tempAPIArray = GenrsListData.map((itemGenrRenderItem) => {
-        if (genrsAPIData.find((e) => e.id === itemGenrRenderItem.id)) {
-          itemGenrRenderItem.selected = true;
+  const getStreamPlatformByMovie = () => {
+    const streamPlatforms: StreamingPlatformsCat[] = getMoviesHosted(
+      movieId ? movieId : "0"
+    );
+    streamPlatforms.forEach((streamItem) => (streamItem.select = false));
+    const tempStreamingPlatformOriginal = getStreamingPlatforms().map(
+      (itemStream) => {
+        if (streamPlatforms.find((e) => e.id === itemStream.id)) {
+          itemStream.select = true;
         } else {
-          itemGenrRenderItem.selected = false;
+          itemStream.select = false;
         }
-
-        return itemGenrRenderItem;
-      });
-      console.log(
-        "🚀 ~ file: EditMovie.tsx:246 ~ tempAPIArray ~ tempAPIArray:",
-        tempAPIArray
-      );
-
-      setGenres(tempAPIArray);
-    };
-
-    const getStreamPlatformByMovie = () => {
-      const streamPlatforms: StreamingPlatformsCat[] = getMoviesHosted(
-        movieId ? movieId : "0"
-      );
-      streamPlatforms.forEach((streamItem) => (streamItem.select = false));
-      const tempStreamingPlatformOriginal = getStreamingPlatforms().map(
-        (itemStream) => {
-          if (streamPlatforms.find((e) => e.id === itemStream.id)) {
-            itemStream.select = true;
-          } else {
-            itemStream.select = false;
-          }
-          return itemStream;
-        }
-      );
-      setStreamingPlatforms(tempStreamingPlatformOriginal);
-    };
-
-    setTimeout(() => {
-      getMovieInfoFromID();
-      getTagsByMovie();
-      getGenresByMovie();
-      getStreamPlatformByMovie();
-      setMovieLoadingFlag(true);
-    }, 5000);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // Effect execute just one time
+        return itemStream;
+      }
+    );
+    setStreamingPlatforms(tempStreamingPlatformOriginal);
+  };
 
   const updateParams = (newParams: ParamsType) => {
     console.log(
@@ -380,37 +367,44 @@ function EditMovie() {
   const [params, setParams] = useState<ParamsType>({} as ParamsType);
 
   useEffect(() => {
-    const movieFirstRender = {
-      title: "",
-      poster,
-      languages: getLanguages(),
-      classification,
-      classificationData: getClasifications(),
-      genres: getGenres(),
-      duration,
-      synopsis,
-      language,
-      directorsData,
-      writersData,
-      starsData,
-      writers,
-      stars,
-      directors,
-      releasedDate,
-      streamingsMovie,
-      tags,
-      tagInput,
-      streamingPlatforms: getStreamingPlatforms(),
-      getDirector,
-      getStars,
-      getWritters,
-      onSubmitHandler,
-    };
-    console.log(
-      "🚀 ~ file: EditMovie.tsx:411 ~ useEffect ~ movieFirstRender:",
-      movieFirstRender
-    );
-    setParams(movieFirstRender);
+    setTimeout(() => {
+      const movie = getMovieInfoFromID();
+      console.log(
+        "🚀 ~ file: EditMovie.tsx:472 ~ setTimeout ~ movieByID:",
+        movie
+      );
+      getTagsByMovie();
+      getGenresByMovie();
+      getStreamPlatformByMovie();
+
+      const movieFirstRender = {
+        title: movie?.title + "",
+        poster: movie?.poster + "",
+        languages: getLanguages(),
+        classification: movie.classification + "",
+        classificationData: getClasifications(),
+        genres: getGenresByMovie(),
+        duration: movie?.duration + 0,
+        synopsis: movie?.synopsis + "",
+        language: movie?.originalLanguage + "",
+
+        writers: WritersSelectedListExample,
+        stars: StarsSelectedListExample,
+        directors: DirectorsSelectedListExample,
+        releasedDate: movie?.release_date ? movie?.release_date : new Date(),
+        streamingsMovie: [],
+        tags: getTagsByMovie(),
+        tagInput,
+        streamingPlatforms: getStreamingPlatforms(),
+        onSubmitHandler,
+      };
+      console.log(
+        "🚀 ~ file: EditMovie.tsx:411 ~ useEffect ~ movieFirstRender:",
+        movieFirstRender
+      );
+      setParams(movieFirstRender);
+      setMovieLoadingFlag(true);
+    }, 5000);
   }, []); // first render
 
   return (
