@@ -185,7 +185,6 @@ const FormMovie = ({ onSubmitHandler }: FormMoviePropst) => {
     const updatedParams = {
       title: title,
       poster: poster,
-      languages: params.languages,
       classification: classification,
       classificationData: params.classificationData,
       genres: genres,
@@ -237,7 +236,6 @@ const FormMovie = ({ onSubmitHandler }: FormMoviePropst) => {
                   </div>
                 </div>
               </div>
-
               {/* Synopsis */}
               <InputTextArea
                 name="synopsis"
