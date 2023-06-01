@@ -98,6 +98,10 @@ function AddNewMovie() {
       likes: 0,
       poster: handlerPosterValue(params.poster),
     };
+    console.log(
+      "🚀 ~ file: AddNewMovie.tsx:101 ~ onSubmitHandler ~ formData:",
+      formData
+    );
   };
 
   const genrsListDataRef = React.useRef<GenreCat[]>();
@@ -120,22 +124,28 @@ function AddNewMovie() {
   useEffect(() => {
     const movieFirstRender = {
       title: "",
-      poster,
+      poster: "",
       languages: getLanguages(),
-      classification,
+      classification: "",
       classificationData: getClasifications(),
-      genres: getGenres(),
-      duration,
-      synopsis,
-      language,
-      tags,
+      genres: [],
+      duration: 0,
+      synopsis: "",
+      language: "",
+      writers: [],
+      stars: [],
+      directors: [],
+      releasedDate: new Date(),
+      streamingsMovie: [],
+      tags: [],
       tagInput,
       streamingPlatforms: getStreamingPlatforms(),
-      getDirector,
-      getStars,
-      getWritters,
       onSubmitHandler,
     };
+    console.log(
+      "🚀 ~ file: AddNewMovie.tsx:141 ~ useEffect ~ movieFirstRender:",
+      movieFirstRender
+    );
     setParams(movieFirstRender);
   }, []); // first render
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { LabelSubtitle, Search } from "../../../../components";
-import { Director, GenreCat, Star, Writer } from "../../../../types/types";
+import { Director, Star, Writer } from "../../../../types/types";
 import { getRandomNumber } from "../../../../utils/utils";
 
 interface ContainerSearchProps {
@@ -10,6 +10,7 @@ interface ContainerSearchProps {
   setListData: React.Dispatch<
     React.SetStateAction<Director[] | Star[] | Writer[]>
   >;
+  renderList: Director[] | Star[] | Writer[];
   onSearchHandlerEvent: (searchText: string) => void;
   classNameContainer?: string;
   classNameContainerInput?: string;
@@ -22,6 +23,7 @@ const ContainerSearch = ({
   label,
   placeHolder,
   listData,
+  renderList,
   setListData,
   onSearchHandlerEvent,
   handlerClickElement,
@@ -82,13 +84,13 @@ const ContainerSearch = ({
           </ul>
         )}
 
-        {localList.length > 0 && (
+        {renderList.length > 0 && (
           <div className="flex w-full flex-col ml-0 items-end">
             <h1 className="text-sm w-full mt-2 text-gray-400">
               Selected {label}:
             </h1>
             <ul className="flex w-full flex-row flex-wrap list-none container ml-3 text-gray-500list-inside dark:text-gray-400">
-              {localList?.map((item, index) => (
+              {renderList?.map((item, index) => (
                 <li
                   className="focus:outline-none flex flex-row items-center justify-between text-white focus:ring-4 focus:ring-purple-300 font-medium bg-yellow-500 w-fit border-x-purple-600 rounded-lg p-2 mt-2 mr-2"
                   key={getRandomNumber(1000000)}
