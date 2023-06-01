@@ -10,7 +10,6 @@ import {
 export type ParamsType = {
   title: string;
   poster: string | File;
-  languages: string[];
   classification: string;
   classificationData?: string[];
   genres: GenreCat[];
@@ -23,8 +22,6 @@ export type ParamsType = {
   releasedDate: Date;
   streamingsMovie: StreamingPlatformsCat[];
   tags: string[];
-  tagInput?: string;
-  streamingPlatforms?: StreamingPlatformsCat[];
   onSubmitHandler?: () => void;
 };
 
