@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/SERI_FrontEnd/static/css/main.99660da7.css",
-    "main.js": "/SERI_FrontEnd/static/js/main.918fdb63.js",
+    "main.css": "/SERI_FrontEnd/static/css/main.0d41cc7b.css",
+    "main.js": "/SERI_FrontEnd/static/js/main.9c09195a.js",
     "static/media/cinema-logo.png": "/SERI_FrontEnd/static/media/cinema-logo.5cabecb58793654801a7.png",
     "static/media/disney_plus.svg": "/SERI_FrontEnd/static/media/disney_plus.cca99c9ff6b9b830880e446f77a95201.svg",
-    "static/media/netflix.svg": "/SERI_FrontEnd/static/media/netflix.2460ec0964e1097a952e30b63518e3d8.svg",
+    "static/media/netflix.svg": "/SERI_FrontEnd/static/media/netflix.ae2a41d90fee77c5be706ac523bf5e0a.svg",
     "static/media/Apex_logo_horizontal_white.png": "/SERI_FrontEnd/static/media/Apex_logo_horizontal_white.ae512bd79215d59686f7.png",
     "static/media/amazon_prime_video.svg": "/SERI_FrontEnd/static/media/amazon_prime_video.015113c17d8f9846aa8842473736c6e9.svg",
     "static/media/hbo-max.svg": "/SERI_FrontEnd/static/media/hbo-max.13f0e1f6e55134be834d052efeeec004.svg",
-    "static/media/apple_tv.svg": "/SERI_FrontEnd/static/media/apple_tv.720dd8284642fefd1020cc7932af760a.svg",
+    "static/media/apple_tv.svg": "/SERI_FrontEnd/static/media/apple_tv.1ddb049863d99f6d38a4f47f5b3e60af.svg",
     "index.html": "/SERI_FrontEnd/index.html",
     "static/media/youtube.svg": "/SERI_FrontEnd/static/media/youtube.efaa9b8b8f4271698549d36ee5c87b39.svg",
-    "main.99660da7.css.map": "/SERI_FrontEnd/static/css/main.99660da7.css.map",
-    "main.918fdb63.js.map": "/SERI_FrontEnd/static/js/main.918fdb63.js.map"
+    "main.0d41cc7b.css.map": "/SERI_FrontEnd/static/css/main.0d41cc7b.css.map",
+    "main.9c09195a.js.map": "/SERI_FrontEnd/static/js/main.9c09195a.js.map"
   },
   "entrypoints": [
-    "static/css/main.99660da7.css",
-    "static/js/main.918fdb63.js"
+    "static/css/main.0d41cc7b.css",
+    "static/js/main.9c09195a.js"
   ]
 }
